@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   distance.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:47:31 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/26 19:43:48 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/26 19:44:39 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "./algebra/vector/vector.h"
-
-int	main(void)
+double	vec_distances(const t_vec a, const t_vec b)
 {
-	const t_vec	v = vec_make1(42);
+	const t_vec	delta = vec_sub(&b, &a);
 
-	vec_debug(&v);
-	return (0);
+	return (vec_length(&delta));
+}
+
+double	vec_distance(const t_vec *a, const t_vec *b)
+{
+	const t_vec	delta = vec_sub(b, a);
+
+	return (vec_length(&delta));
 }

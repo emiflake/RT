@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"stat.h": "c",
+		"vector.h": "c",
+		"compdef.h": "c"
+	}
+}

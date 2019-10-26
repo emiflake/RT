@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   normalize.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:47:31 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/26 19:36:22 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/26 19:42:22 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "./algebra/vector/vector.h"
-
-int	main(void)
+t_vec	vec_normalizeds(const t_vec a)
 {
-	const t_vec	v = vec_make1(42);
+	return (vec_normalized(&a));
+}
 
-	vec_debug(&v);
-	return (0);
+t_vec	vec_normalized(const t_vec *a)
+{
+	REAL l;
+
+	l = vec_length(a);
+	return ((t_vec){a->x / l, a->y / l, a->z / l});
+}
+
+void	vec_normalize(t_vec *v)
+{
+	REAL l;
+
+	l = vec_length(v);
+	v->x /= l;
+	v->y /= l;
+	v->z /= l;
 }

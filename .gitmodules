@@ -1,0 +1,3 @@
+[submodule "deps/libftprintf"]
+	path = deps/libftprintf
+	url = git@github.com:emiflake/libftprintf.git

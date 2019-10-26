@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   constructor.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:47:31 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/26 18:57:11 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/26 18:58:09 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "./algebra/vector/vector.h"
-
-int	main(void)
+t_vec	vec_make1(REAL r)
 {
-	const t_vec	v = vec_make1(42);
+	return ((t_vec){r, r, r});
+}
 
-	vec_debug(&v);
-	return (0);
+t_vec	vec_mk(REAL x, REAL y, REAL z)
+{
+	return ((t_vec){x, y, z});
 }

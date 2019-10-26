@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   debug.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:47:31 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/26 19:00:18 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/26 19:47:55 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-#include "./algebra/vector/vector.h"
+#include "vector.h"
 
-int	main(void)
+void	vec_debug(const t_vec *v)
 {
-	const t_vec	v = vec_make1(42);
+	ft_printf("%f, %f, %f", v->x, v->y, v->z);
+}
 
+void	vec_debugs(const t_vec v)
+{
 	vec_debug(&v);
-	return (0);
 }

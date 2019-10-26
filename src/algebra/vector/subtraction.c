@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   subtraction.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:47:31 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/26 19:30:46 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/26 19:40:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "./algebra/vector/vector.h"
-
-int	main(void)
+t_vec	vec_subs(const t_vec a, const t_vec b)
 {
-	const t_vec	v = vec_make1(42);
+	return ((t_vec){a.x - b.x, a.y - b.y, a.z - b.z});
+}
 
-	vec_debug(&v);
-	return (0);
+t_vec	vec_sub(const t_vec *a, const t_vec *b)
+{
+	return ((t_vec){a->x - b->x, a->y - b->y, a->z - b->z});
+}
+
+void	vec_sub_mut(t_vec *a, const t_vec *b)
+{
+	a->x -= b->x;
+	a->y -= b->y;
+	a->z -= b->z;
 }

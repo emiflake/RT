@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: emiflake <marvin@student.codam.nl>           +#+                      #
+#    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/10/26 13:08:36 by emiflake       #+#    #+#                 #
-#    Updated: 2019/10/26 14:01:47 by nmartins      ########   odam.nl          #
+#    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
+#    Updated: 2019/10/26 19:51:24 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ include colors.mk
 #### Variables
 
 NAME=		RT
+all: $(NAME)
 
 CFLAGS=		\
 			-Werror -Wall -Wextra \
@@ -26,6 +27,24 @@ CC=			clang
 
 #### Project Structure
 
+# Dependencies
+# deps/
+DEP_DIR=		./deps
+
+PRINTF_DIR=		$(DEP_DIR)/libftprintf
+PRINTF=			$(PRINTF_DIR)/libftprintf.a
+PRINTF_INC=		-I$(PRINTF_DIR)
+$(PRINTF):
+	@$(MAKE) -C $(PRINTF_DIR)
+
+DEPS=			$(PRINTF)
+
+DEP_FLAGS=		-L$(PRINTF_DIR) -lftprintf
+
+clean_deps:
+	@echo "$(TIME) $(CMINUS) Cleaning dependencies"
+	@for f in $(DEPS) ; do $(MAKE) fclean -C $$(dirname $$f) ; echo "$(TIME) $(CMINUS) Dependency $$f" ; done
+
 # Source code (includes and header files mixed):
 # src/
 #   */*.{c,h}
@@ -33,13 +52,21 @@ SRC_DIR=		./src
 
 STNAMES=		\
 				core/main \
+				algebra/vector/addition \
+				algebra/vector/subtraction \
+				algebra/vector/dot \
+				algebra/vector/normalize \
+				algebra/vector/length \
+				algebra/vector/distance \
+				algebra/vector/constructor \
+				algebra/vector/debug \
 
 # Garbage location
 # .obj/
 OBJ_DIR=		./.obj
 
 INCLUDES=		$(wildcard $(SRC_DIR)/**/*.h $(SRC_DIR)/*.h)
-INCLUDE_FLAG=	-I$(SRC_DIR)
+INCLUDE_FLAG=	-I$(SRC_DIR) $(PRINTF_INC)
 
 # Where we keep models, scenes, textures
 # assets/
@@ -47,18 +74,16 @@ INCLUDE_FLAG=	-I$(SRC_DIR)
 #### Rules
 ONAMES=	$(patsubst %,$(OBJ_DIR)/%.o, $(STNAMES))
 
-all: $(NAME)
-
-$(NAME): $(INCLUDES) $(ONAMES)
+$(NAME): $(ONAMES)
 	@echo "$(TIME) $(CPLUS) $@"
-	@$(CC) -o $@ $(ONAMES) $(CFLAGS) 
+	@$(CC) -o $@ $(ONAMES) $(CFLAGS) $(DEP_FLAGS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEPS) $(INCLUDES) 
 	@echo "$(TIME) $(CPLUS) $@"
 	@mkdir -p $(shell dirname $@)
-	@$(CC) -o $@ -c $<
+	@$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE_FLAG)
 
-clean:
+clean: clean_deps
 	@echo "$(TIME) $(CMINUS) $(OBJ_DIR)"
 	@rm -rf $(OBJ_DIR)
 
@@ -67,12 +92,12 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re:
-	$(MAKE) fclean
-	$(MAKE) re
+	@$(MAKE) fclean
+	@$(MAKE)
 
 #### Utility rules
 
 dev:
 	@$(MAKE) -j10 -s
-	@echo "$(CRED) ==> Output:$(CDEF)"
+	@echo "$(TIME) $(CRED)Running $(CCYAN)$(NAME)$(CDEF)"
 	@./$(NAME)

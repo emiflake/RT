@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 13:24:14 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/10/26 19:06:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 */
 
 /*
-** By doing it this way, we are able to 
+** By doing it this way, we are able to
 ** switch from floats to doubles.
 */
-#define real double
+# define REAL double
 
 #endif
