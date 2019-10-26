@@ -1,0 +1,13 @@
+name: C build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-10.14
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: make
+      run: make
