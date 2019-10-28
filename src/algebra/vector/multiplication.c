@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   multiplication.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:11:56 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/28 14:09:27 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/28 14:09:56 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "./algebra/vector/vector.h"
-
-int	main(void)
+t_vec	vec_mults(const t_vec a, const t_vec b)
 {
-	t_vec	v = vec_make1(42);
+	return ((t_vec){a.x * b.x, a.y * b.y, a.z * b.z});
+}
 
-	v = vec_adds(v, vec_mk(1, 2, 3));
-	v = vec_mults(v, vec_mk(0.5, 1.0, 0.25));
+t_vec	vec_mult(const t_vec *a, const t_vec *b)
+{
+	return ((t_vec){a->x * b->x, a->y * b->y, a->z * b->z});
+}
 
-	vec_debug(&v);
-	return (0);
+void	vec_mult_mut(t_vec *a, const t_vec *b)
+{
+	a->x *= b->x;
+	a->y *= b->y;
+	a->z *= b->z;
 }

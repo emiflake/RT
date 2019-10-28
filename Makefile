@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/10/26 19:51:24 by nmartins      ########   odam.nl          #
+#    Updated: 2019/10/28 14:10:42 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ STNAMES=		\
 				core/main \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
+				algebra/vector/multiplication \
 				algebra/vector/dot \
 				algebra/vector/normalize \
 				algebra/vector/length \

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 19:48:02 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/10/28 14:10:26 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void			vec_add_mut(t_vec *a, const t_vec *b);
 t_vec			vec_subs(const t_vec a, const t_vec b);
 t_vec			vec_sub(const t_vec *a, const t_vec *b);
 void			vec_sub_mut(t_vec *a, const t_vec *b);
+
+t_vec			vec_mults(const t_vec a, const t_vec b);
+t_vec			vec_mult(const t_vec *a, const t_vec *b);
+void			vec_mult_mut(t_vec *a, const t_vec *b);
 
 double			vec_dot(const t_vec *a, const t_vec *b);
 
