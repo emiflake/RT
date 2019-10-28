@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   keystate.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:55:43 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/28 14:54:01 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/28 15:03:45 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#ifndef KEYSTATE_H
+# define KEYSTATE_H
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+# include <compdef.h>
+# include <stdint.h>
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
+typedef uint32_t 	t_key;
 
-# define BYTE char
-# define REAL double
+typedef struct		s_keystate
+{
+	bool	keys[512];
+}					t_keystate;
+
+void				keystate_set_down(t_keystate *ks, t_key key);
+void				keystate_set_up(t_keystate *ks, t_key key);
+bool				keystate_is_down(t_keystate *ks, t_key key);
 
 #endif

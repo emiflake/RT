@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   ui.h                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:55:43 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/28 14:53:54 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#ifndef UI_H
+# define UI_H
 
 /*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
+** We will use SDL2 for handling all UI.
 */
+
+# include <SDL2/SDL.h>
 
 /*
-** By doing it this way, we are able to
-** switch from floats to doubles.
+** UI is responsible for handling window management.
+** Actual rendering is done elsewhere (probably in `core`)
 */
 
-# define BYTE char
-# define REAL double
+typedef struct	s_window
+{
+	SDL_Window	*win_ptr;
+	SDL_Surface	*win_srf;
+}				t_window;
 
 #endif

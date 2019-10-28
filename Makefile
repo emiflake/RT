@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/10/28 14:16:37 by nmartins      ########   odam.nl          #
+#    Updated: 2019/10/28 14:50:21 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ $(PRINTF):
 
 DEPS=			$(PRINTF)
 
-DEP_FLAGS=		-L$(PRINTF_DIR) -lftprintf
+DEP_FLAGS=		\
+				-L$(PRINTF_DIR) -lftprintf \
+				$(shell sdl2-config --libs) \
 
 clean_deps:
 	@echo "$(TIME) $(CMINUS) Cleaning dependencies"
@@ -67,7 +69,9 @@ STNAMES=		\
 OBJ_DIR=		./.obj
 
 INCLUDES=		$(wildcard $(SRC_DIR)/**/*.h $(SRC_DIR)/*.h)
-INCLUDE_FLAG=	-I$(SRC_DIR) $(PRINTF_INC)
+INCLUDE_FLAG=	-I$(SRC_DIR) \
+				$(PRINTF_INC) \
+				-I$(shell brew --prefix)/include \
 
 # Where we keep models, scenes, textures
 # assets/
