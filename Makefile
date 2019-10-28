@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/10/28 14:10:42 by nmartins      ########   odam.nl          #
+#    Updated: 2019/10/28 14:16:37 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ PRINTF_DIR=		$(DEP_DIR)/libftprintf
 PRINTF=			$(PRINTF_DIR)/libftprintf.a
 PRINTF_INC=		-I$(PRINTF_DIR)
 $(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -s -C $(PRINTF_DIR)
 
 DEPS=			$(PRINTF)
 
@@ -100,5 +100,5 @@ re:
 
 dev:
 	@$(MAKE) -j10 -s
-	@echo "$(TIME) $(CRED)Running $(CCYAN)$(NAME)$(CDEF)"
+	@echo "$(TIME) $(CNORM) $(CRED)Running $(CCYAN)$(NAME)$(CDEF)"
 	@./$(NAME)

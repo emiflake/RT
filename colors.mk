@@ -8,6 +8,7 @@ CDEF=$(CDEFAULT)
 
 CMINUS=$(CRED)[-]$(CDEF)
 CPLUS=$(CGREEN)[+]$(CDEF)
+CNORM=$(CYELLOW)[~]$(CDEF)
 
 TIME=$(CCYAN)[$$(date +"%H:%M:%S")]$(CDEF)
 
