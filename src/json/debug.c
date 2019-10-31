@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   debug.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 15:06:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/31 15:04:32 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/31 15:06:33 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "json.h"
 #include <ft_printf.h>
-#include <assert.h>
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-int	main(void)
+void			json_debug(const t_json_value *val)
 {
-	const char *example = "\"hello\"";
-
-	t_json_value *val = parse_json(example);
-
-	json_debug(val);
-
-	return (0);
+	if (val->type == JSON_STRING)
+		ft_printf("\"%s\"", val->value.as_string);
+	else if (val->type == JSON_NUMBER)
+		ft_printf("%lf", val->value.as_number);
+	else
+		ft_printf("Unhandled JSON type");
 }
