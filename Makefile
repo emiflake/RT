@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/10/31 15:04:45 by nmartins      ########   odam.nl          #
+#    Updated: 2019/10/31 21:53:19 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,17 @@ STNAMES=		\
 				json/string \
 				json/number \
 				json/debug \
+				json/list \
+				json/dict \
+				json/dict_debug \
+				json/util \
+				hashmap/bucket \
+				hashmap/clean \
+				hashmap/common \
+				hashmap/hasher \
+				hashmap/hashmap \
+				hashmap/iter \
+				hashmap/length \
 
 # Garbage location
 # .obj/

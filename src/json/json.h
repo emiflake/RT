@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 15:05:11 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/10/31 21:50:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include "compdef.h"
+# include "hashmap/ashmap.h"
 
 typedef char*	t_json_string;
 typedef REAL	t_json_number;
@@ -26,7 +27,7 @@ typedef struct	s_kvp
 
 typedef struct	s_json_dict
 {
-	// TODO: use ash-map
+	t_hashmap	*hashmap;
 }				t_json_dict;
 
 typedef struct	s_json_list_node
@@ -64,6 +65,10 @@ typedef struct	s_json_value
 	}	type;
 }				t_json_value;
 
+/*
+** Parsing functions
+*/
+
 t_json_value	*do_parse_string(const char **str);
 t_json_value	*do_parse_number(const char **str);
 t_json_value	*do_parse_dict(const char **str);
@@ -71,9 +76,19 @@ t_json_value	*do_parse_list(const char **str);
 t_json_value	*do_parse_json(const char **str);
 t_json_value	*parse_json(const char *str);
 
+/*
+** Util functions
+*/
+
+void			skip_whitespace(const char **str);
+
+/*
+** Misc functions
+*/
+
+void			do_json_debug(const t_json_value *val, size_t indentation);
 void			json_debug(const t_json_value *val);
+void			json_free(t_json_value *val);
+void			do_dict_debug(const t_json_dict *dict, size_t indentation);
 
-
-
-
-#endif 
+#endif

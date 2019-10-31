@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:55:37 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 15:01:26 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/10/31 20:22:06 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int				ft_atoi(const char *str)
 
 	result = 0;
 	mag = 1;
-	while (*str == ' ' || *str == '\t'
+	while (*str == ' ' || *str == '\t' || *str == '\n'
 		|| *str == '\r' || *str == '\v' || *str == '\f')
 		str++;
 	if (*str == '+')
@@ -58,6 +58,9 @@ t_json_value			*do_parse_number(const char **str)
 
 	i = 0;
 	walker = *str;
+	skip_whitespace(&walker);
+	if (!(*walker >= '0' && *walker <= '9'))
+		return (NULL);
 	val = ft_atoi(walker);
 	while (walker[i] >= '0' && walker[i] <= '9')
 	{
