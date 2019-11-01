@@ -6,16 +6,18 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 21:49:30 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 21:53:08 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:07:46 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json.h"
 #include <stdbool.h>
 #include <ft_printf.h>
+#include <assert.h>
 
 static void		do_kvp_debug(const t_bucket_node *node, size_t indentation)
 {
+	assert(node != NULL);
 	ft_printf("%*s\"%s\": ", indentation, "", node->key);
 	if (((t_json_value*)node->value)->type == JSON_NUMBER
 		|| ((t_json_value*)node->value)->type == JSON_STRING)

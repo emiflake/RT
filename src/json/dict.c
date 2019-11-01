@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 20:31:37 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 21:34:33 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:52:34 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_json_value	*mk_dict(t_hashmap *dict)
 {
 	t_json_value	*val;
 
-	val = (t_json_value*)malloc(sizeof(val));
+	val = (t_json_value*)malloc(sizeof(t_json_value));
 	val->type = JSON_DICT;
 	val->value.as_dict.hashmap = dict;
 	return (val);
@@ -33,7 +33,7 @@ size_t			parse_and_insert_kvp(t_hashmap *dict, const char **str)
 	key = do_parse_string(str);
 	if (!key || key->type != JSON_STRING)
 		return (1);
-	skip_whitespace(str);
+	skip_whitespace(str);	
 	if (**str != ':')
 		return (1);
 	(*str)++;
@@ -49,7 +49,7 @@ t_json_value	*do_parse_dict(const char **str)
 	t_hashmap		*dict;
 	const char		*walker;
 
-	dict = ash_hashmap_new(ash_hash);
+	dict = ash_hashmap_with_size(8, ash_hash);
 	walker = *str;
 	skip_whitespace(&walker);
 	if (*walker != '{')

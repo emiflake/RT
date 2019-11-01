@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 15:04:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 21:49:47 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:19:58 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ static void		do_list_debug(const t_json_list *list, size_t indentation)
 
 void			do_json_debug(const t_json_value *val, size_t indentation)
 {
-	if (!val)
-		ft_printf("I have no clue???");
-	else if (val->type == JSON_STRING)
+	if (val->type == JSON_STRING)
 		ft_printf("%*s\"%s\"", indentation, "", val->value.as_string);
 	else if (val->type == JSON_NUMBER)
 		ft_printf("%*s%lf", indentation, "", val->value.as_number);

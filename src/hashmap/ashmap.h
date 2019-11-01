@@ -6,7 +6,7 @@
 /*   By: emiflake <marvin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/14 15:42:32 by emiflake       #+#    #+#                */
-/*   Updated: 2019/10/31 21:52:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:14:33 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_hashmap			*ash_hashmap_with_size(size_t length, t_hasher hasher);
 t_bucket			*ash_hashmap_get_bucket(t_hashmap *map, char *key);
 void				*ash_bucket_get(t_bucket *bucket, char *key);
 void				*ash_bucket_set(t_bucket *bucket, char *key, void *value);
+void				ash_buckets_init(t_bucket *buckets, size_t length);
 void				*ash_hashmap_insert(t_hashmap *map, char *key, void *value);
 void				*ash_hashmap_get(t_hashmap *map, char *key);
 size_t				ash_length(t_hashmap *map);

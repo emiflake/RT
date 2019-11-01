@@ -6,7 +6,7 @@
 /*   By: emiflake <marvin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/14 15:11:22 by emiflake       #+#    #+#                */
-/*   Updated: 2019/10/31 18:57:23 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:12:55 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ t_hashmap	*ash_hashmap_with_size(size_t length, t_hasher hasher)
 		return (NULL);
 	buckets = (t_bucket*)malloc(sizeof(t_bucket) * length);
 	if (!buckets)
+	{
+		free(hashmap);
 		return (NULL);
+	}
+	ash_buckets_init(buckets, length);
 	hashmap->buckets = buckets;
 	hashmap->bucket_count = length;
 	return (hashmap);

@@ -6,7 +6,7 @@
 /*   By: emiflake <marvin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/14 15:53:21 by emiflake       #+#    #+#                */
-/*   Updated: 2019/10/31 21:16:07 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:15:02 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 
 #include "./ashmap.h"
 #include "./ash_common.h"
+
+void			ash_buckets_init(t_bucket *buckets, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < length)
+	{
+		buckets[i].node_count = 0;
+		buckets[i].nodes = NULL;
+		i++;
+	}
+}
 
 void			*ash_bucket_get(t_bucket *bucket, char *key)
 {

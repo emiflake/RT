@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 19:01:04 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 20:29:42 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 14:37:12 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_json_value	*mk_list(t_json_list lst)
 {
 	t_json_value	*val;
 
-	val = (t_json_value*)malloc(sizeof(val));
+	val = (t_json_value*)malloc(sizeof(t_json_value));
 	val->type = JSON_LIST;
 	val->value.as_list = lst;
 	return (val);
@@ -68,6 +68,7 @@ t_json_value		*do_parse_list(const char **str)
 		skip_whitespace(&walker);
 	}
 	skip_whitespace(&walker);
+	// TODO fix leak
 	if (*walker != ']')
 		return (NULL);
 	*str = &walker[1];
