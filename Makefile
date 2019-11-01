@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/10/28 14:50:21 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/01 14:19:22 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ CFLAGS=		\
 			-O3 \
 
 CC=			clang
+
+EXTRA=	
 
 #### Project Structure
 
@@ -63,6 +65,22 @@ STNAMES=		\
 				algebra/vector/distance \
 				algebra/vector/constructor \
 				algebra/vector/debug \
+				json/json \
+				json/string \
+				json/number \
+				json/debug \
+				json/list \
+				json/dict \
+				json/dict_debug \
+				json/util \
+				json/free \
+				hashmap/bucket \
+				hashmap/clean \
+				hashmap/common \
+				hashmap/hasher \
+				hashmap/hashmap \
+				hashmap/iter \
+				hashmap/length \
 
 # Garbage location
 # .obj/
@@ -86,7 +104,7 @@ $(NAME): $(ONAMES)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEPS) $(INCLUDES) 
 	@echo "$(TIME) $(CPLUS) $@"
 	@mkdir -p $(shell dirname $@)
-	@$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE_FLAG)
+	@$(CC) -o $@ -c $< $(EXTRA) $(CFLAGS) $(INCLUDE_FLAG)
 
 clean: clean_deps
 	@echo "$(TIME) $(CMINUS) $(OBJ_DIR)"

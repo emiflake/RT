@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   util.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/01 15:00:14 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/31 19:01:29 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/31 19:58:43 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <ft_printf.h>
-#include <assert.h>
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-int	main(void)
+static bool	is_space(char c)
 {
-	const char *example = "\
-	{\
-		\"key\": [\
-			{\"num\": 42},\
-			{\"hello\": \"world\", \"otherkey\": 69}\
-		],\
-		\"owo\": [\
-			{}\
-		]\
-	}";
+	return (c == '\t' || c == ' ' || c == '\n');
+}
 
-	t_json_value *val = parse_json(example);
-
-	json_debug(val);
-	json_free(val);
-	getchar();
-	return (0);
+void		skip_whitespace(const char **str)
+{
+	while (is_space(**str))
+		(*str)++;
 }

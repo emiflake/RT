@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   length.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/01 15:00:14 by nmartins      ########   odam.nl         */
+/*   Created: 2019/10/31 21:51:01 by nmartins       #+#    #+#                */
+/*   Updated: 2019/10/31 21:53:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#include "ashmap.h"
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-int	main(void)
+size_t	ash_length(t_hashmap *map)
 {
-	const char *example = "\
-	{\
-		\"key\": [\
-			{\"num\": 42},\
-			{\"hello\": \"world\", \"otherkey\": 69}\
-		],\
-		\"owo\": [\
-			{}\
-		]\
-	}";
+	t_bucket		*bucket;
+	size_t			i;
+	size_t			count;
 
-	t_json_value *val = parse_json(example);
-
-	json_debug(val);
-	json_free(val);
-	getchar();
-	return (0);
+	count = 0;
+	i = 0;
+	while (i < map->bucket_count)
+	{
+		bucket = &map->buckets[i];
+		count += bucket->node_count;
+		i++;
+	}
+	return (count);
 }

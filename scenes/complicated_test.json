@@ -1,0 +1,22 @@
+{
+	"key": "value",
+	"other_key": "other_value",
+	"number_value": 42,
+	"settings": {
+		"fov": 90,
+		"spp": 4
+	},
+	"scene": {
+		"camera": {
+			"position": {"x": 50, "y": 70, "z": 100}
+		},
+		"objects": [
+			{
+				"position": {"x": 50, "y": 70.8479, "z": 100}
+			},
+			{
+				"position": {"x": 50, "y": 70, "z": 100}
+			}
+		]
+	}
+}
