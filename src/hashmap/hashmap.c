@@ -6,7 +6,7 @@
 /*   By: emiflake <marvin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/14 15:11:22 by emiflake       #+#    #+#                */
-/*   Updated: 2019/11/01 18:53:17 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/01 19:35:26 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_hashmap	*ash_hashmap_with_size(size_t length, t_hasher hasher)
 	t_hashmap	*hashmap;
 	t_bucket	*buckets;
 
-	ft_printf("Creating a hashmap\n");
 	hashmap = (t_hashmap*)malloc(sizeof(t_hashmap));
 	hashmap->hasher = hasher;
 	if (!hashmap)
