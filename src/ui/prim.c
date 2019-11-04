@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   prim.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:47:44 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/04 17:58:03 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/04 17:58:10 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "ui.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+void		prim_clear(SDL_Surface *surface, uint32_t color)
+{
+	uint32_t	*pixels_arr;
+	size_t		index;
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL double
-
-#endif
+	pixels_arr = (uint32_t*)surface->pixels;
+	index = 0;
+	while (index < (size_t)(surface->w * surface->h))
+	{
+		pixels_arr[index] = color;
+		index++;
+	}
+}

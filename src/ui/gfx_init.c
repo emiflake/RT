@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   gfx_init.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:47:44 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/04 17:20:48 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/04 17:50:09 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include <ft_printf.h>
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+#include "ui.h"
+#include "text.h"
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL double
-
-#endif
+int				gfx_init(t_gfx_context *ctx)
+{
+	if (TTF_Init())
+	{
+		ft_printf("Unable to initialize TTF: %s\n", TTF_GetError());
+		exit(1);
+	}
+	ctx->font = font_load("SpaceMono-Regular.ttf", 17);
+	return (SUCCESS);
+}

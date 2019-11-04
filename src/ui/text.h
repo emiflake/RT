@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   text.h                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:47:44 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/04 17:01:46 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/04 17:57:13 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#ifndef TEXT_H
+# define TEXT_H
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+# include <SDL2/SDL_ttf.h>
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
+# include "../algebra/point2/point2.h"
 
-# define SUCCESS 0
-# define FAILURE 1
+struct s_window;
 
-# define BYTE char
-# define REAL double
+typedef struct	s_font
+{
+	TTF_Font	*font;
+}				t_font;
+
+t_font			font_load(const char *filename, size_t size);
+
+void			ui_put_text(
+	const t_font *font, struct s_window *win, t_point2 p, const char *text);
+void			ui_put_text_free(
+	const t_font *font, struct s_window *win, t_point2 p, char *text);
 
 #endif

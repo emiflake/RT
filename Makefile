@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/11/01 14:19:22 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/04 17:58:47 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ DEPS=			$(PRINTF)
 DEP_FLAGS=		\
 				-L$(PRINTF_DIR) -lftprintf \
 				$(shell sdl2-config --libs) \
+				-lSDL2_ttf \
 
 clean_deps:
 	@echo "$(TIME) $(CMINUS) Cleaning dependencies"
@@ -56,6 +57,14 @@ SRC_DIR=		./src
 
 STNAMES=		\
 				core/main \
+				ui/window_init \
+				ui/app_init \
+				ui/app_run \
+				ui/keystate \
+				ui/text \
+				ui/gfx_init \
+				ui/fps \
+				ui/prim \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \
