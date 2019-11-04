@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:53:54 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/04 17:58:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,42 @@
 ** Actual rendering is done elsewhere (probably in `core`)
 */
 
+# include "keystate.h"
+# include "text.h"
+
+typedef struct	s_gfx_context
+{
+	t_font		font;
+}				t_gfx_context;
+
 typedef struct	s_window
 {
 	SDL_Window	*win_ptr;
 	SDL_Surface	*win_srf;
 }				t_window;
 
+typedef struct	s_app
+{
+	t_window		window;
+	t_keystate		keys;
+
+	t_gfx_context	gfx_ctx;
+
+	bool			running;
+}				t_app;
+
+int				window_init(t_window *win);
+
+int				app_init(t_app *app);
+
+int				app_free(t_app *app);
+
+void			app_run(t_app *app);
+
+int				gfx_init(t_gfx_context *app);
+
+long			get_current_epoch(void);
+int				ui_get_fps(int do_tick);
+
+void			prim_clear(SDL_Surface *surface, uint32_t color);
 #endif

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   app_init.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:47:44 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/04 17:20:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include <ft_printf.h>
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+#include "ui.h"
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL double
-
-#endif
+int				app_init(t_app *app)
+{
+	ft_printf("- Welcome to RT! -\n");
+	if (window_init(&app->window) != SUCCESS)
+		return (FAILURE);
+	app->running = true;
+	keystate_init(&app->keys);
+	gfx_init(&app->gfx_ctx);
+	return (SUCCESS);
+}
