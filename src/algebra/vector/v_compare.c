@@ -36,7 +36,7 @@ int		vec_isnull(t_vec *a)
 	res *= ((a->x >= 0) ? a->x < EPS : a->x > EPS);
 	res *= ((a->y >= 0) ? a->y < EPS : a->y > EPS);
 	res *= ((a->z >= 0) ? a->z < EPS : a->z > EPS);
-	return (a->x < EPS &&  a->y < EPS && a->z < EPS);
+	return (res);
 }
 
 int		vec_isnulls(t_vec a)

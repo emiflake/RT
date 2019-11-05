@@ -52,7 +52,6 @@ REAL			vec_length(const t_vec *a);
 REAL			vec_distances(const t_vec a, const t_vec b);
 REAL			vec_distance(const t_vec *a, const t_vec *b);
 
-/*t_vec			vec_make1(REAL r); this gives wrong result if r != 1 */
 t_vec			vec_make0(void);
 t_vec			vec_make1(void);
 t_vec			vec_mk(REAL x, REAL y, REAL z);

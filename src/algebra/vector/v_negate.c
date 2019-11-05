@@ -17,7 +17,6 @@ t_vec	vec_negate(t_vec *v)
 	v->x = -v->x;
 	v->y = -v->y;
 	v->z = -v->z;
-
 	return (*v);
 }
 
