@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:19:12 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/05 19:56:00 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_H
 
 # include <math.h>
+# include "compdef.h"
 
 # define EPS	0.00001
 

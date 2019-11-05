@@ -3,6 +3,18 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
+#    By: pacovali <marvin@codam.nl>                   +#+                      #
+#                                                    +#+                       #
+#    Created: 2019/11/05 19:50:44 by pacovali      #+#    #+#                  #
+#    Updated: 2019/11/05 19:50:49 by pacovali      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
@@ -74,14 +86,14 @@ STNAMES=		\
 				algebra/vector/distance \
 				algebra/vector/constructor \
 				algebra/vector/debug \
-				algebra/v_angle \
-				algebra/v_compare \
-				algebra/v_conversion \
-				algebra/v_cross \
-				algebra/v_negate \
-				algebra/v_reflect \
-				algebra/v_reflectance \
-				algebra/v_refract \
+				algebra/vector/angle \
+				algebra/vector/compare \
+				algebra/vector/conversion \
+				algebra/vector/cross \
+				algebra/vector/negate \
+				algebra/vector/reflect \
+				algebra/vector/reflectance \
+				algebra/vector/refract \
 				json/json \
 				json/string \
 				json/number \
