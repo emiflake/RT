@@ -74,6 +74,14 @@ STNAMES=		\
 				algebra/vector/distance \
 				algebra/vector/constructor \
 				algebra/vector/debug \
+				algebra/v_angle \
+				algebra/v_compare \
+				algebra/v_conversion \
+				algebra/v_cross \
+				algebra/v_negate \
+				algebra/v_reflect \
+				algebra/v_reflectance \
+				algebra/v_refract \
 				json/json \
 				json/string \
 				json/number \
