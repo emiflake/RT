@@ -6,7 +6,7 @@
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/11/04 17:58:47 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/05 18:32:09 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,13 @@ STNAMES=		\
 				algebra/vector/distance \
 				algebra/vector/constructor \
 				algebra/vector/debug \
+				algebra/vector/minmax \
+				algebra/mmath/min \
+				algebra/mmath/max \
+				algebra/mmath/clamp \
+				algebra/bbox/center \
+				algebra/bbox/merge \
+				algebra/bbox/extend \
 				json/json \
 				json/string \
 				json/number \

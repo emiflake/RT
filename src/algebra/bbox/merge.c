@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   merge.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 16:00:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:16:55 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 18:30:47 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#include "bbox.h"
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-#include "./ui/ui.h"
-
-int	main(void)
+t_bbox	bbox_merges(const t_bbox a, const t_bbox b)
 {
-	t_app app;
+	return ((t_bbox){
+		.min = vec_min(&a.min, &b.min),
+		.max = vec_max(&a.max, &b.max)
+	});
+}
 
-	app_init(&app);
-	app_run(&app);
-	return (0);
+void	bbox_merge_mut(t_bbox *a, const t_bbox b)
+{
+	a->max = vec_max(&a->max, &b.max);
+	a->min = vec_min(&a->min, &b.min);
 }

@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   bbox.h                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 16:00:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:02:05 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:05:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#ifndef BBOX_H
+# define BBOX_H
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
+# include "../vector/vector.h"
+# include "compdef.h"
 
-#include "./ui/ui.h"
-
-int	main(void)
+typedef struct	s_bbox
 {
-	t_app app;
+	t_vec	min;
+	t_vec	max;
+}				t_bbox;
 
-	app_init(&app);
-	app_run(&app);
-	return (0);
-}
+t_vec	bbox_center(const t_bbox *bbox);
+
+t_bbox	bbox_merges(const t_bbox a, const t_bbox b);
+void	bbox_merge_mut(t_bbox *a, const t_bbox b);
+
+t_bbox	bbox_extends(const t_bbox a, const t_vec vec);
+void	bbox_extend_mut(t_bbox *a, const t_vec vec);
+
+#endif

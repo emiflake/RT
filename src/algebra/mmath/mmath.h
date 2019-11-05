@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   mmath.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 16:00:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:09:08 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:10:09 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#ifndef MMATH_H
+# define MMATH_H
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
+# include "compdef.h"
 
-#include "./ui/ui.h"
+REAL	min(REAL a, REAL b);
+REAL	max(REAL a, REAL b);
+REAL	clamp(REAL v, REAL v_min, REAL v_max);
 
-int	main(void)
-{
-	t_app app;
-
-	app_init(&app);
-	app_run(&app);
-	return (0);
-}
+#endif

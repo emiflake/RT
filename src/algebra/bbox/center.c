@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   center.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 16:00:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:13:41 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:15:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#include "bbox.h"
+#include "../vector/vector.h"
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-#include "./ui/ui.h"
-
-int	main(void)
+t_vec	bbox_center(const t_bbox *bbox)
 {
-	t_app app;
-
-	app_init(&app);
-	app_run(&app);
-	return (0);
+	return ((t_vec){
+		(bbox->max.x + bbox->min.x) / 2,
+		(bbox->max.y + bbox->min.y) / 2,
+		(bbox->max.z + bbox->min.z) / 2
+	});
 }

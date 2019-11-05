@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/28 14:19:12 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/05 16:19:50 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ t_vec			vec_mk(REAL x, REAL y, REAL z);
 
 void			vec_debug(const t_vec *v);
 void			vec_debugs(const t_vec v);
+
+t_vec			vec_max(const t_vec *a, const t_vec *b);
+t_vec			vec_min(const t_vec *a, const t_vec *b);
 
 #endif

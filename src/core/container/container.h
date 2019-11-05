@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   container.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 16:00:54 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 15:59:15 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:08:28 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#ifndef CONTAINER_H
+# define CONTAINER_H
 
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
+/*
+** Dummy type
+*/
+struct s_object;
 
-#include "./ui/ui.h"
+/*
+** For now, container will be linked list
+*/
 
-int	main(void)
+typedef struct	s_object_container_node
 {
-	t_app app;
+	struct s_object					*val;
+	struct s_object_container_node	*next;
+}				t_object_container_node;
 
-	app_init(&app);
-	app_run(&app);
-	return (0);
-}
+typedef struct	s_object_container
+{
+	t_object_container_node	*root;
+}				t_object_container;
+
+#endif
