@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   memcpy.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/06 16:14:42 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/06 14:36:34 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/06 14:36:57 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#include "common.h"
 
-#include "./common/common.h"
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
-
-#include "./ui/ui.h"
-
-int	main(void)
+void	rt_memcpy(BYTE *dest, BYTE *res, size_t len)
 {
-	t_app app;
+	size_t	i;
 
-	app_init(&app);
-	app_run(&app);
-	return (0);
+	i = 0;
+	while (i < len)
+	{
+		dest[i] = res[i];
+		i++;
+	}
 }

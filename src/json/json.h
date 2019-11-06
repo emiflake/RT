@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 21:50:07 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/06 14:31:03 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define JSON_H
 
 # include <stddef.h>
+# include <stdbool.h>
 # include "compdef.h"
 # include "hashmap/ashmap.h"
 
@@ -75,6 +76,17 @@ t_json_value	*do_parse_dict(const char **str);
 t_json_value	*do_parse_list(const char **str);
 t_json_value	*do_parse_json(const char **str);
 t_json_value	*parse_json(const char *str);
+
+t_json_value	*read_json(const char *filename);
+
+typedef struct	s_str_vec
+{
+	char	*str;
+	size_t	len;
+	size_t	cap;
+}				t_str_vec;
+
+bool			read_file(const char *filename, char **res);
 
 /*
 ** Util functions
