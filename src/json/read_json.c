@@ -27,7 +27,6 @@ t_json_value	*read_json(const char *filename)
 	}
 	else
 	{
-		ft_printf("%s\n", contents);
 		val = (parse_json(contents));
 		free(contents);
 		return (val);
