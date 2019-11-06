@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 20:31:37 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/01 18:55:51 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/06 15:23:01 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ size_t			parse_and_insert_kvp(t_hashmap *dict, const char **str)
 	(*str)++;
 	skip_whitespace(str);
 	value = do_parse_json(str);
+	ft_printf("Adding key %s\n", key->value.as_string);
 	ash_hashmap_insert(dict, key->value.as_string, value);
 	free(key);
 	skip_whitespace(str);

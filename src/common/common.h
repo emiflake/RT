@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   common.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/06 16:14:42 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/06 14:33:49 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/06 14:35:41 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#ifndef COMMON_H
+# define COMMON_H
 
-#include "./common/common.h"
-#include "./algebra/vector/vector.h"
-#include "./json/json.h"
+# include "../compdef.h"
 
-#include "./ui/ui.h"
+# include <stddef.h>
 
-int	main(void)
-{
-	t_app app;
+void	rt_memset(BYTE *buf, BYTE pat, size_t len);
+void	rt_memcpy(BYTE *dest, BYTE *res, size_t len);
+void	rt_realloc(BYTE **buf, size_t cur_size, size_t new_size);
 
-	app_init(&app);
-	app_run(&app);
-	return (0);
-}
+#endif
