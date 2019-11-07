@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:52:59 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 14:37:56 by pacovali      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <assert.h>
 
 #include "./algebra/shapes/shape.h"
+#include "./common/common.h"
+#include "./algebra/vector/vector.h"
 #include "./json/json.h"
 
 #include "./ui/ui.h"
@@ -92,5 +94,8 @@ int			main(void)
 
 	json_debug(val);
 	json_free(val);*/
+
+	app_init(&app);
+	app_run(&app);
 	return (0);
 }
