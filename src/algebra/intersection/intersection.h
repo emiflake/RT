@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   constructor.c                                      :+:    :+:            */
+/*   intersection.h                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
+/*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 18:57:11 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 18:58:09 by nmartins      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
+/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#ifndef INTERSECTION_H
+# define INTERSECTION_H
 
-t_vec	vec_mk(REAL x, REAL y, REAL z)
+struct s_object;
+
+typedef struct	s_intersection
 {
-	return ((t_vec){x, y, z});
-}
+	struct s_object		*obj_ptr;
+	REAL				t;
+	t_vec				p;
+	t_vec				normal;
+}				t_intersection;
 
-t_vec	vec_make0(void)
-{
-	t_vec	v;
-
-	v.x = 0;
-	v.y = 0;
-	v.z = 0;
-	return (v);
-}
-
-t_vec	vec_make1(void)
-{
-	t_vec	v;
-
-	v.x = 0;
-	v.y = 0;
-	v.z = 1;
-	return (v);
-}
+#endif

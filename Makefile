@@ -3,6 +3,18 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
+#    By: pacovali <marvin@codam.nl>                   +#+                      #
+#                                                    +#+                       #
+#    Created: 2019/11/05 19:50:44 by pacovali      #+#    #+#                  #
+#    Updated: 2019/11/05 19:50:49 by pacovali      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
 #    By: nmartins <nmartins@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
@@ -65,6 +77,14 @@ STNAMES=		\
 				ui/gfx_init \
 				ui/fps \
 				ui/prim \
+				algebra/ray/duplicate \
+				algebra/ray/make \
+				algebra/shapes/disk_intersect \
+				algebra/shapes/intersect \
+				algebra/shapes/plane_intersect \
+				algebra/shapes/quad_equation \
+				algebra/shapes/sphere_intersect \
+				algebra/shapes/square_intersect \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \
@@ -74,6 +94,14 @@ STNAMES=		\
 				algebra/vector/distance \
 				algebra/vector/constructor \
 				algebra/vector/debug \
+				algebra/vector/angle \
+				algebra/vector/compare \
+				algebra/vector/conversion \
+				algebra/vector/cross \
+				algebra/vector/negate \
+				algebra/vector/reflect \
+				algebra/vector/reflectance \
+				algebra/vector/refract \
 				json/json \
 				json/string \
 				json/number \

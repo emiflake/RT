@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   constructor.c                                      :+:    :+:            */
+/*   vec_reflect.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
+/*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 18:57:11 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/26 18:58:09 by nmartins      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
+/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_vec	vec_mk(REAL x, REAL y, REAL z)
+t_vec	vec_reflect(t_vec *vec, t_vec *norm)
 {
-	return ((t_vec){x, y, z});
+	t_vec	r;
+
+	vec_normalize(norm);
+	r = vec_mults_scalar(*norm, -2.0 * vec_dot(norm, vec));
+	vec_add_mut(&r, vec);
+	return (r);
 }
 
-t_vec	vec_make0(void)
+t_vec	vec_reflects(t_vec vec, t_vec norm)
 {
-	t_vec	v;
-
-	v.x = 0;
-	v.y = 0;
-	v.z = 0;
-	return (v);
-}
-
-t_vec	vec_make1(void)
-{
-	t_vec	v;
-
-	v.x = 0;
-	v.y = 0;
-	v.z = 1;
-	return (v);
+	return (vec_reflect(&vec, &norm));
 }
