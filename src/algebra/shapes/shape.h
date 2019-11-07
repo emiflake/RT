@@ -35,9 +35,9 @@ typedef struct	s_object
 	t_shape		shape;
 }				t_object;
 
-typedef bool(*t_inter_fn)(const t_ray *ray, t_intersection *isect);
+typedef void(*t_inter_fn)(const t_ray *ray, t_intersection *isect);
 
-bool			intersection(
+void			intersection(
 	const t_shape *shape, const t_ray *ray, t_intersection *isect);
 
 typedef bool(*t_is_inter_fn)(
@@ -48,20 +48,20 @@ bool			is_intersect(
 
 bool				is_sphere_intersect(const t_shape *shape,const  t_ray *ray,
 									t_intersection *intrs);
-bool				sphere_intersecton(const t_ray *ray, t_intersection *intrs);
+void				sphere_intersecton(const t_ray *ray, t_intersection *intrs);
 
 bool				is_plane_intersect(const t_shape *shape,const  t_ray *ray,
 									t_intersection *intrs);
-bool				plane_intersection(const t_ray *ray,
+void				plane_intersection(const t_ray *ray,
 									t_intersection *intrs);
 
 bool				is_disk_intersect(const t_shape *shape, const t_ray *ray,
 									t_intersection *intrs);
-bool				disk_intersection(const t_ray *ray, t_intersection *intrs);
+void				disk_intersection(const t_ray *ray, t_intersection *intrs);
 
 bool				is_square_intersect(const t_shape *shape, const t_ray *ray,
 									t_intersection *intrs);
-bool				square_intersection(const t_ray *ray,
+void				square_intersection(const t_ray *ray,
 									t_intersection *intrs);
 
 bool				quad_eq(REAL *discr, REAL *a, REAL *b);

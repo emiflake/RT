@@ -12,13 +12,10 @@
 
 #include "shape.h"
 
-bool	triangle_intersection(const t_ray *ray, t_intersection *intrs)
+void	triangle_intersection(const t_ray *ray, t_intersection *intrs)
 {
-	if (ray == 0)
-		ray = 0;
-	if (intrs == 0)
-		intrs = 0;
-	return (true);
+	(void)intrs;
+	(void)ray;
 }
 
 bool	is_triangle_intersect(const t_shape *shape, const t_ray *ray,

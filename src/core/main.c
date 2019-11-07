@@ -19,7 +19,7 @@
 #include "./json/json.h"
 
 #include "./ui/ui.h"
-
+/*
 void		set_plane(t_plane *plane)
 {
 	plane->origin = (t_vec){0, 0, 1};
@@ -79,23 +79,18 @@ void		shape_debug(void)
 	isect.t = INFINITY;
 	printf("%s", is_intersect(&shape, &ray, &isect) ? "true" : "false");
 }
-
+*/
 int			main(void)
 {
-	shape_debug();
-/*
 	t_app app;
-	 const char *example = " { \"key\": [ {\"num\": 42}, {\"hello\": \"world\", \"otherkey\": 69} ], \"owo\": [ { }, { }, 1, 2, 3, 4, \"lol\" ] }";
+	//shape_debug();
 
-	t_json_value *val = parse_json(example);
+	t_json_value *val = read_json("scenes/exscene.json");
 
 	app_init(&app);
 	app_run(&app);
 
 	json_debug(val);
-	json_free(val);*/
-
-	app_init(&app);
-	app_run(&app);
+	json_free(val);
 	return (0);
 }

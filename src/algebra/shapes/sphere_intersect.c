@@ -12,7 +12,7 @@
 
 # include "shape.h"
 
-bool	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
+void	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
 {
 	t_sphere	*sphere;
 
@@ -21,7 +21,6 @@ bool	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
 	intrs->p = vec_add(&ray->o, &intrs->p);
 	intrs->normal = vec_sub(&intrs->p, &sphere->origin);
 	vec_normalize(&intrs->normal);
-	return (true);
 }
 
 bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,

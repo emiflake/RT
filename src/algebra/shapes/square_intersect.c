@@ -12,13 +12,10 @@
 
 #include "shape.h"
 
-bool	square_intersection(const t_ray *ray, t_intersection *intrs)
+void	square_intersection(const t_ray *ray, t_intersection *intrs)
 {
-	if (ray == 0)
-		ray = 0;
-	if (intrs == 0)
-		intrs = 0;
-	return (true);
+	(void)ray;
+	(void)intrs;
 }
 
 bool	is_square_intersect(const t_shape *shape, const t_ray *ray,

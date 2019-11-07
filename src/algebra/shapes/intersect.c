@@ -12,6 +12,17 @@
 
 #include "shape.h"
 
+void	intersection(
+			const t_shape *shape, const t_ray *ray, t_intersection *isect)
+{
+	const t_inter_fn	fns[] = {
+		&sphere_intersecton, &plane_intersection, &disk_intersection,
+		&square_intersection
+	};
+
+	return(fns[shape->type](ray, isect));
+}
+
 bool	is_intersect(
 			const t_shape *shape, const t_ray *ray, t_intersection *isect)
 {
@@ -21,15 +32,4 @@ bool	is_intersect(
 	};
 
 	return(fns[shape->type](shape, ray, isect));
-}
-
-bool	intersection(
-			const t_shape *shape, const t_ray *ray, t_intersection *isect)
-{
-	const t_inter_fn	fns[] = {
-		&sphere_intersecton, &plane_intersection, &disk_intersection,
-		&square_intersection
-	};
-
-	return(fns[shape->type](ray, isect));
 }
