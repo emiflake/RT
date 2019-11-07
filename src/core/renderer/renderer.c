@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 19:22:21 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 19:46:43 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 		while (pixel.x < surf->w)
 		{
 			t_vec	aggregate = vec_make0();
-			for (size_t i = 0; i < 8; i++)
+			for (size_t i = 0; i < 256; i++)
 			{
 				isect.t = INFINITY;
 				camera_cast_ray(&scene->camera, &pixel, &ray);
@@ -110,7 +110,7 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 					vec_add_mut(&aggregate, &idk);
 				}
 			}
-			vec_mult_mut_scalar(&aggregate, 1.0 / 8.0);
+			vec_mult_mut_scalar(&aggregate, 1.0 / 256);
 			vec_color_clamp_mut(&aggregate);
 			// isect.t = INFINITY;
 			// camera_cast_ray(&scene->camera, &pixel, &ray);

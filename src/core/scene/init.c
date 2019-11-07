@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:50:22 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 19:18:45 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 19:46:17 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ void	scene_init(t_scene *scene)
 	obj = make_object();
 	obj->shape.type = SHAPE_SPHERE;
 	obj->material.color = vec_mk(0,0,0);
-	obj->material.emission = vec_mk(255,255,255);
+	obj->material.emission = vec_mk(0,0,0);
 	set_sphere(&obj->shape.val.as_sphere);
 	container_push_object(&scene->obj_container, obj);
 	obj = make_object();
 	obj->shape.type = SHAPE_SPHERE;
 	obj->material.color = vec_mk(0,0,0);
-	obj->material.emission = vec_mk(0,0,0);
+	obj->material.emission = vec_mk(555,200,200);
 	set_sphere(&obj->shape.val.as_sphere);
 	obj->shape.val.as_sphere.origin.x -= 2;
 	container_push_object(&scene->obj_container, obj);
 	obj = make_object();
 	obj->shape.type = SHAPE_SPHERE;
 	obj->material.color = vec_mk(0,0,0);
-	obj->material.emission = vec_mk(0,0,0);
+	obj->material.emission = vec_mk(200,200,555);
 	set_sphere(&obj->shape.val.as_sphere);
 	obj->shape.val.as_sphere.origin.x += 2;
 	container_push_object(&scene->obj_container, obj);
