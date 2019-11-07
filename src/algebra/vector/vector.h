@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 19:56:00 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 16:16:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ t_vec			vec_reflect(t_vec *v, t_vec *n);
 REAL			vec_reflectance(t_vec *vec, t_vec *norm, REAL k1, REAL k2);
 
 t_vec			vec_refracts(t_vec vec, t_vec norm, REAL k1, REAL k2);
+t_vec			vec_max(const t_vec *a, const t_vec *b);
+t_vec			vec_min(const t_vec *a, const t_vec *b);
 
 #endif

@@ -5,24 +5,11 @@
 #                                                      +:+                     #
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/11/05 19:50:44 by pacovali      #+#    #+#                  #
-#    Updated: 2019/11/07 16:10:15 by pacovali      ########   odam.nl          #
+#    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
+#    Updated: 2019/11/07 16:17:04 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: nmartins <nmartins@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/11/06 15:12:09 by nmartins      ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
-
-#### Imports
 
 include colors.mk
 
@@ -103,6 +90,13 @@ STNAMES=		\
 				algebra/vector/reflect \
 				algebra/vector/reflectance \
 				algebra/vector/refract \
+				algebra/vector/minmax \
+				algebra/mmath/min \
+				algebra/mmath/max \
+				algebra/mmath/clamp \
+				algebra/bbox/center \
+				algebra/bbox/merge \
+				algebra/bbox/extend \
 				json/json \
 				json/string \
 				json/number \
