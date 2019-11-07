@@ -30,11 +30,6 @@ typedef struct	s_shape
 	}	type;
 }				t_shape;
 
-typedef struct	s_object
-{
-	t_shape		shape;
-}				t_object;
-
 typedef void(*t_inter_fn)(const t_ray *ray, t_intersection *isect);
 
 void			intersection(

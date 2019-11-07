@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali      #+#    #+#                  #
-#    Updated: 2019/11/05 19:50:49 by pacovali      ########   odam.nl          #
+#    Updated: 2019/11/07 16:10:15 by pacovali      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC_DIR=		./src
 
 STNAMES=		\
 				core/main \
+				core/camera/camera \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \

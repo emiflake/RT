@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   point2.h                                           :+:    :+:            */
+/*   object.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
+/*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 17:11:11 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 17:12:24 by nmartins      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
+/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT2_H
-# define POINT2_H
+#ifndef OBJECT_H
+# define OBJECT_H
 
-# include "compdef.h"
+# include "algebra/shapes/shape.h"
+# include "./material.h"
 
-typedef struct	s_point2
+typedef struct	s_object
 {
-	REAL	x;
-	REAL	y;
-}				t_point2;
+	t_shape		shape;
+	t_material	material;
+}				t_object;
 
 #endif

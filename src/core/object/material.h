@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
-# include "../shapes/shape.h"
-/*
-typedef struct	s_object
+typedef struct	s_material
 {
-	t_shape		shape;
-}				t_object;
-*/
+	t_vec	color;
+}				t_material;
+
+t_vec			emission(const t_material *material);
+
 #endif

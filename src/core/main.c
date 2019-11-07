@@ -19,6 +19,8 @@
 #include "./json/json.h"
 
 #include "./ui/ui.h"
+#include "core/camera/camera.h"
+#include "core/object/object.h"
 /*
 void		set_plane(t_plane *plane)
 {
