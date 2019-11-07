@@ -77,6 +77,14 @@ STNAMES=		\
 				ui/gfx_init \
 				ui/fps \
 				ui/prim \
+				algebra/ray/duplicate \
+				algebra/ray/make \
+				algebra/shapes/disk_intersect \
+				algebra/shapes/intersect \
+				algebra/shapes/plane_intersect \
+				algebra/shapes/quad_equation \
+				algebra/shapes/sphere_intersect \
+				algebra/shapes/square_intersect \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \

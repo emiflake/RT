@@ -10,20 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "ray.h"
+
+static void			ft_bzero(void *s, size_t n)
+{
+	char *ptr;
+
+	ptr = (char*)s;
+	while (n > 0)
+	{
+		n--;
+		ptr[n] = '\0';
+	}
+}
 
 t_ray				ray_duplicate(t_ray *ray)
 {
 	t_ray		new;
 
 	if (!ray)
-		return (ft_bzero(&new));
-	new.origin = ray->origin;
-	new.direct = ray->direct;
-	new.obj_norm = ray->obj_norm;
-	new.clr = ray->clr;
-	new.len = ray->len;
-	new.depth = depth;
+	{
+		ft_bzero(&new, sizeof(t_ray));
+		return (new);
+	}
+	new.o = ray->o;
+	new.d = ray->d;
+	new.depth = ray->depth;
+	return (new);
 }
 
 t_ray				ray_duplicates(t_ray ray)

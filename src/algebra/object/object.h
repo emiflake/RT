@@ -14,10 +14,10 @@
 # define OBJECT_H
 
 # include "../shapes/shape.h"
-
+/*
 typedef struct	s_object
 {
 	t_shape		shape;
 }				t_object;
-
+*/
 #endif

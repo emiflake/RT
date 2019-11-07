@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ray.h                                              :+:    :+:            */
+/*   quad_equation.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -10,24 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+# include "shape.h"
 
-# include "../vector/vector.h"
-# include <stdlib.h>
-
-typedef struct		s_ray
+bool	quad_eq(REAL *discr, REAL *a, REAL *b)
 {
-	t_vec			o;
-	t_vec			d;
-	unsigned char	depth;
-}					t_ray;
+	REAL	square_root;
+	REAL	result[2];
+	REAL	smallest_root;
 
-t_ray				ray_make0();
-t_ray				ray_make(t_vec *origin, t_vec *direction);
-t_ray				ray_makes(t_vec origin, t_vec direction);
-
-t_ray				ray_duplicate(t_ray *ray);
-t_ray				ray_duplicates(t_ray ray);
-
-#endif
+	smallest_root = -1.0;
+	square_root = sqrt(*discr);
+	result[0] = (-(*b) - square_root) / (2 * (*a));
+	result[1] = (-(*b) + square_root) / (2 * (*a));
+	if (result[0] > 0)
+		smallest_root = result[0];
+	if (result[1] > 0 && result[1] < result[0])
+		smallest_root = result[1];
+	return (smallest_root);
+}

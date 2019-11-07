@@ -14,22 +14,56 @@
 # define SHAPE_H
 
 # include <stdbool.h>
+# include "shapes.h"
+# include "../intersection/intersection.h"
 
 typedef struct	s_shape
 {
 	union {
 		t_sphere	as_sphere;
+		t_plane		as_plane;
+		t_disk		as_disk;
+		t_square	as_square;
 	}	val;
 	enum {
-		SHAPE_SPHERE,
+		SHAPE_SPHERE, SHAPE_PLANE, SHAPE_DISK, SHAPE_SQUARE
 	}	type;
 }				t_shape;
 
-void			calc_normal(const t_shape *shape, t_intersection *isect);
+typedef struct	s_object
+{
+	t_shape		shape;
+}				t_object;
 
-typedef bool(t_inter_fn *)(const t_ray *ray, const t_shape *shape, t_intersection *isect);
+typedef bool(*t_inter_fn)(const t_ray *ray, t_intersection *isect);
 
-bool			intersect(
-	const t_ray *ray, const t_shape *shape, t_intersection *isect);
+bool			intersection(
+	const t_shape *shape, const t_ray *ray, t_intersection *isect);
+
+typedef bool(*t_is_inter_fn)(
+	const t_shape *shape, const t_ray *ray, t_intersection *isect);
+
+bool			is_intersect(
+	const t_shape *shape, const t_ray *ray, t_intersection *isect);
+
+bool				is_sphere_intersect(const t_shape *shape,const  t_ray *ray,
+									t_intersection *intrs);
+bool				sphere_intersecton(const t_ray *ray, t_intersection *intrs);
+
+bool				is_plane_intersect(const t_shape *shape,const  t_ray *ray,
+									t_intersection *intrs);
+bool				plane_intersection(const t_ray *ray,
+									t_intersection *intrs);
+
+bool				is_disk_intersect(const t_shape *shape, const t_ray *ray,
+									t_intersection *intrs);
+bool				disk_intersection(const t_ray *ray, t_intersection *intrs);
+
+bool				is_square_intersect(const t_shape *shape, const t_ray *ray,
+									t_intersection *intrs);
+bool				square_intersection(const t_ray *ray,
+									t_intersection *intrs);
+
+bool				quad_eq(REAL *discr, REAL *a, REAL *b);
 
 #endif

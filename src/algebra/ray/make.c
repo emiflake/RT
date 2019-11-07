@@ -10,40 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "ray.h"
+
+static void			ft_bzero(void *s, size_t n)
+{
+	char *ptr;
+
+	ptr = (char*)s;
+	while (n > 0)
+	{
+		n--;
+		ptr[n] = '\0';
+	}
+}
 
 t_ray				ray_make0(void)
 {
 	t_ray		ray;
 
-	ft_bzero(&ray);
+	ft_bzero(&ray, sizeof(t_ray));
 	return (ray);
 }
 
-t_ray				ray_make(t_vec *origin, t_vec *direction)
+t_ray				ray_make(t_vec *o, t_vec *d)
 {
 	t_ray		ray;
 
-	if (!origin)
-		ft_bzero(&ray.origin);
-	else
-		ray.origin = *origin;
-	if (!direction)
-		ft_bzero(&ray.direction);
-	else
-		ray.direction = *direction;
-	if (!color)
-		ft_bzero(&ray.color);
-	else
-		ray.color = *color;
-	ft_bzero(&ray.color);
-	ft_bzero(&ray.obj_norm);
-	len = INFINITY;
-	depth = 0;
+	ft_bzero(&ray, sizeof(t_ray));
+	if (o)
+		ray.o = *o;
+	if (d)
+		ray.d = *d;
+	ray.depth = 0;
 	return (ray);
 }
 
 t_ray				ray_makes(t_vec origin, t_vec direction)
 {
-	return (ray_make(t_vec &origin, t_vec &direction));
+	return (ray_make(&origin, &direction));
 }
