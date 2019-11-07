@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:43:58 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 17:46:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 19:22:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				window_init(t_window *win)
 		return (FAILURE);
 	win->win_ptr = SDL_CreateWindow(
 		"RT", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-		1920, 1080, SDL_WINDOW_SHOWN);
+		1280, 720, SDL_WINDOW_SHOWN);
 	if (!win->win_ptr)
 		return (FAILURE);
 	win->win_srf = SDL_GetWindowSurface(win->win_ptr);

@@ -6,10 +6,11 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/07 16:17:04 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/07 18:12:24 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+#### Imports
 
 include colors.mk
 
@@ -57,6 +58,10 @@ SRC_DIR=		./src
 STNAMES=		\
 				core/main \
 				core/camera/camera \
+				core/container/push_obj \
+				core/container/intersect \
+				core/renderer/renderer \
+				core/scene/init \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \
@@ -65,6 +70,7 @@ STNAMES=		\
 				ui/gfx_init \
 				ui/fps \
 				ui/prim \
+				ui/putpixel \
 				algebra/ray/duplicate \
 				algebra/ray/make \
 				algebra/shapes/disk_intersect \
@@ -91,9 +97,12 @@ STNAMES=		\
 				algebra/vector/reflectance \
 				algebra/vector/refract \
 				algebra/vector/minmax \
+				algebra/vector/to_int \
+				algebra/vector/clamp \
 				algebra/mmath/min \
 				algebra/mmath/max \
 				algebra/mmath/clamp \
+				algebra/mmath/rand \
 				algebra/bbox/center \
 				algebra/bbox/merge \
 				algebra/bbox/extend \

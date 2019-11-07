@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   object.h                                           :+:    :+:            */
+/*   material.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/07 17:24:53 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 typedef struct	s_material
 {
 	t_vec	color;
+	t_vec	emission;
 }				t_material;
-
-t_vec			emission(const t_material *material);
 
 #endif

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   to_int.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/07 17:32:42 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/07 17:34:03 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
 
-#include "ui.h"
-#include "core/scene/scene.h"
-
-int				app_init(t_app *app)
+int	vec_to_int(const t_vec *v)
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
+	return ((int)v->x << 16 | (int)v->y << 8 | (int)v->z);
+}
+
+int	vec_to_ints(const t_vec v)
+{
+	return (vec_to_int(&v));
 }

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 17:58:16 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 16:48:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 ** Actual rendering is done elsewhere (probably in `core`)
 */
 
+# include "core/scene/scene.h"
 # include "keystate.h"
 # include "text.h"
 
@@ -45,6 +46,8 @@ typedef struct	s_app
 
 	t_gfx_context	gfx_ctx;
 
+	t_scene			scene;
+
 	bool			running;
 }				t_app;
 
@@ -62,4 +65,7 @@ long			get_current_epoch(void);
 int				ui_get_fps(int do_tick);
 
 void			prim_clear(SDL_Surface *surface, uint32_t color);
+
+void			ui_put_pixel(
+	SDL_Surface *surface, size_t x, size_t y, uint32_t color);
 #endif

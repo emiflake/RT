@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   clamp.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/07 17:36:43 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/07 17:38:37 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "vector.h"
+#include "algebra/mmath/mmath.h"
 
-#include "ui.h"
-#include "core/scene/scene.h"
-
-int				app_init(t_app *app)
+void	vec_color_clamp_mut(t_vec *aggregate_color)
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
+	aggregate_color->x = clamp(aggregate_color->x, 0.0, 255.0);
+	aggregate_color->y = clamp(aggregate_color->y, 0.0, 255.0);
+	aggregate_color->z = clamp(aggregate_color->z, 0.0, 255.0);
 }

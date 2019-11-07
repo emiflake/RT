@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vec_cross.c                                        :+:    :+:            */
+/*   cross.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/07 18:11:41 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_vec	vec_cross(t_vec *a, t_vec *b)
+t_vec	vec_cross(const t_vec *a, const t_vec *b)
 {
 	t_vec	v;
 
