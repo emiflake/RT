@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   putpixel.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/07 16:45:19 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/07 16:45:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-
 #include "ui.h"
-#include "core/scene/scene.h"
 
-int				app_init(t_app *app)
+void		ui_put_pixel(
+	SDL_Surface *surface, size_t x, size_t y, uint32_t color)
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
+	uint32_t *pixels_arr;
+	uint32_t *loc;
+
+	pixels_arr = (uint32_t*)surface->pixels;
+	if (x >= (size_t)surface->w && y >= (size_t)surface->h)
+		return ;
+	loc = &pixels_arr[x + y * surface->w];
+	*loc = color;
 }

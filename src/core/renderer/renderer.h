@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   object.h                                           :+:    :+:            */
+/*   renderer.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: pacovali <marvin@codam.nl>                   +#+                     */
+/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/07 16:37:39 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef RENDERER_H
+# define RENDERER_H
 
-# include "../shapes/shape.h"
-/*
-typedef struct	s_object
-{
-	t_shape		shape;
-}				t_object;
-*/
+# include <SDL2/SDL.h>
+
+# include "core/scene/scene.h"
+
+void	render_image(const t_scene *scene, SDL_Surface *surf);
+
 #endif

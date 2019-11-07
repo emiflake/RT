@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   scene.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/07 16:51:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#ifndef SCENE_H
+# define SCENE_H
 
-#include "ui.h"
-#include "core/scene/scene.h"
+# include "core/container/container.h"
+# include "core/camera/camera.h"
 
-int				app_init(t_app *app)
+typedef struct	s_scene
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
-}
+	t_object_container	obj_container;
+	t_camera			camera;
+}				t_scene;
+
+void			scene_init(t_scene	*scene);
+
+#endif

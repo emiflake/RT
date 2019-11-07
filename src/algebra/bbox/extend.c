@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   extend.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 18:31:08 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 18:31:50 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "bbox.h"
 
-#include "ui.h"
-#include "core/scene/scene.h"
-
-int				app_init(t_app *app)
+t_bbox	bbox_extends(const t_bbox a, const t_vec vec)
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
+	return ((t_bbox){
+		.min = vec_min(&a.min, &vec),
+		.max = vec_max(&a.max, &vec)
+	});
+}
+
+void	bbox_extend_mut(t_bbox *a, const t_vec vec)
+{
+	a->max = vec_max(&a->max, &vec);
+	a->min = vec_min(&a->min, &vec);
 }

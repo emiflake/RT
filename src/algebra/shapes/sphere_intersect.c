@@ -5,11 +5,14 @@
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/07 19:03:58 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ft_printf.h>
+
+# include "core/object/object.h"
 # include "shape.h"
 
 void	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
@@ -41,8 +44,10 @@ bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,
 	if (discr < 0)
 		return (false);
 	root = quad_eq(&discr, &abc.x, &abc.y);
-	if (root < 0)
-		return (false);
-	intrs->t = root;
-	return (true);
+	if (root <= intrs->t && root > 0)
+	{
+		intrs->t = root;
+		return (true);
+	}
+	return (false);
 }

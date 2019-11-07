@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 18:00:34 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 19:19:52 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <SDL2/SDL.h>
 #include <ft_printf.h>
 
+#include "core/renderer/renderer.h"
 #include "ui.h"
 
 void	app_run(t_app *app)
@@ -36,13 +37,16 @@ void	app_run(t_app *app)
 			if (evt.type == SDL_KEYUP)
 				keystate_set_up(&app->keys, evt.key.keysym.scancode);
 		}
-
 		prim_clear(app->window.win_srf, 0x000000);
+		camera_recompute(&app->scene.camera,
+			app->window.win_srf->w, app->window.win_srf->h);
+		render_image(&app->scene, app->window.win_srf);
 		ft_asprintf(&fps_text, "FPS %d\n", ui_get_fps(1));
-		ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 10}, fps_text);
+		ui_put_text_free(&app->gfx_ctx.font, &app->window,
+			(t_point2){10, 10}, fps_text);
 		ft_asprintf(&fps_text, "Welcome to our amazing RT");
-		ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 40}, fps_text);
+		ui_put_text_free(&app->gfx_ctx.font,
+			&app->window, (t_point2){10, 40}, fps_text);
 		SDL_UpdateWindowSurface(app->window.win_ptr);
-		// app_tick(app);
 	}
 }

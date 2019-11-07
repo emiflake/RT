@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/05 19:56:00 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 18:12:10 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				vec_isnulls(t_vec a);
 REAL			deg_to_rad(REAL degrees);
 REAL			rad_to_deg(REAL radians);
 
-t_vec			vec_cross(t_vec *a, t_vec *b);
+t_vec			vec_cross(const t_vec *a, const t_vec *b);
 t_vec			vec_cross_s(t_vec a, t_vec b);
 
 t_vec			vec_negate(t_vec *v);
@@ -85,5 +85,12 @@ t_vec			vec_reflect(t_vec *v, t_vec *n);
 REAL			vec_reflectance(t_vec *vec, t_vec *norm, REAL k1, REAL k2);
 
 t_vec			vec_refracts(t_vec vec, t_vec norm, REAL k1, REAL k2);
+t_vec			vec_max(const t_vec *a, const t_vec *b);
+t_vec			vec_min(const t_vec *a, const t_vec *b);
+
+int				vec_to_int(const t_vec *v);
+int				vec_to_ints(const t_vec v);
+
+void			vec_color_clamp_mut(t_vec *aggregate_color);
 
 #endif

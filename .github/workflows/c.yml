@@ -6,11 +6,10 @@ jobs:
   build:
 
     runs-on: macOS-10.14
-    
+
     steps:
+    - name: install SDL2 + SDL2 TTF
+      run: brew install sdl2 sdl2_ttf
     - uses: actions/checkout@v1
-      with:
-        submodules: recursive
-        token: ${{ secrets.GitHub_PAT }}
     - name: make
       run: make

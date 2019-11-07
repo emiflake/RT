@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   point2.h                                           :+:    :+:            */
+/*   material.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
+/*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 17:11:11 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 17:12:24 by nmartins      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/07 17:24:53 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT2_H
-# define POINT2_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
-# include "compdef.h"
-
-typedef struct	s_point2
+typedef struct	s_material
 {
-	REAL	x;
-	REAL	y;
-}				t_point2;
+	t_vec	color;
+	t_vec	emission;
+}				t_material;
 
 #endif

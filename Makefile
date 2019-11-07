@@ -5,20 +5,8 @@
 #                                                      +:+                     #
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/11/05 19:50:44 by pacovali      #+#    #+#                  #
-#    Updated: 2019/11/05 19:50:49 by pacovali      ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
-
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: nmartins <nmartins@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2019/10/26 16:28:41 by nmartins       #+#    #+#                 #
-#    Updated: 2019/11/06 15:12:09 by nmartins      ########   odam.nl          #
+#    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
+#    Updated: 2019/11/07 18:12:24 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +57,11 @@ SRC_DIR=		./src
 
 STNAMES=		\
 				core/main \
+				core/camera/camera \
+				core/container/push_obj \
+				core/container/intersect \
+				core/renderer/renderer \
+				core/scene/init \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \
@@ -77,6 +70,7 @@ STNAMES=		\
 				ui/gfx_init \
 				ui/fps \
 				ui/prim \
+				ui/putpixel \
 				algebra/ray/duplicate \
 				algebra/ray/make \
 				algebra/shapes/disk_intersect \
@@ -102,6 +96,16 @@ STNAMES=		\
 				algebra/vector/reflect \
 				algebra/vector/reflectance \
 				algebra/vector/refract \
+				algebra/vector/minmax \
+				algebra/vector/to_int \
+				algebra/vector/clamp \
+				algebra/mmath/min \
+				algebra/mmath/max \
+				algebra/mmath/clamp \
+				algebra/mmath/rand \
+				algebra/bbox/center \
+				algebra/bbox/merge \
+				algebra/bbox/extend \
 				json/json \
 				json/string \
 				json/number \

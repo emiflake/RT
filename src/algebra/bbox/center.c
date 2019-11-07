@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   center.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:13:41 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:15:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "bbox.h"
+#include "../vector/vector.h"
 
-#include "ui.h"
-#include "core/scene/scene.h"
-
-int				app_init(t_app *app)
+t_vec	bbox_center(const t_bbox *bbox)
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
+	return ((t_vec){
+		(bbox->max.x + bbox->min.x) / 2,
+		(bbox->max.y + bbox->min.y) / 2,
+		(bbox->max.z + bbox->min.z) / 2
+	});
 }

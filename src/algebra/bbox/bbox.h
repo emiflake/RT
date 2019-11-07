@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_init.c                                         :+:    :+:            */
+/*   bbox.h                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:41:50 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/05 16:02:05 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/05 16:05:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#ifndef BBOX_H
+# define BBOX_H
 
-#include "ui.h"
-#include "core/scene/scene.h"
+# include "../vector/vector.h"
+# include "compdef.h"
 
-int				app_init(t_app *app)
+typedef struct	s_bbox
 {
-	ft_printf("- Welcome to RT! -\n");
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
-	app->running = true;
-	keystate_init(&app->keys);
-	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene);
-	srand(time(NULL));
-	return (SUCCESS);
-}
+	t_vec	min;
+	t_vec	max;
+}				t_bbox;
+
+t_vec	bbox_center(const t_bbox *bbox);
+
+t_bbox	bbox_merges(const t_bbox a, const t_bbox b);
+void	bbox_merge_mut(t_bbox *a, const t_bbox b);
+
+t_bbox	bbox_extends(const t_bbox a, const t_vec vec);
+void	bbox_extend_mut(t_bbox *a, const t_vec vec);
+
+#endif

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/07 18:48:06 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ typedef struct	s_shape
 		t_square	as_square;
 	}	val;
 	enum {
-		SHAPE_SPHERE, SHAPE_PLANE, SHAPE_DISK, SHAPE_SQUARE
+		SHAPE_SPHERE,
+		SHAPE_PLANE,
+		SHAPE_DISK,
+		SHAPE_SQUARE
 	}	type;
 }				t_shape;
-
-typedef struct	s_object
-{
-	t_shape		shape;
-}				t_object;
 
 typedef void(*t_inter_fn)(const t_ray *ray, t_intersection *isect);
 
@@ -64,6 +62,6 @@ bool				is_square_intersect(const t_shape *shape, const t_ray *ray,
 void				square_intersection(const t_ray *ray,
 									t_intersection *intrs);
 
-bool				quad_eq(REAL *discr, REAL *a, REAL *b);
+REAL				quad_eq(REAL *discr, REAL *a, REAL *b);
 
 #endif

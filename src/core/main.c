@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 14:37:56 by pacovali      ########   odam.nl         */
+/*   Updated: 2019/11/07 16:16:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "./json/json.h"
 
 #include "./ui/ui.h"
+#include "core/camera/camera.h"
+#include "core/object/object.h"
 /*
 void		set_plane(t_plane *plane)
 {
@@ -83,14 +85,8 @@ void		shape_debug(void)
 int			main(void)
 {
 	t_app app;
-	//shape_debug();
-
-	t_json_value *val = read_json("scenes/exscene.json");
 
 	app_init(&app);
 	app_run(&app);
-
-	json_debug(val);
-	json_free(val);
 	return (0);
 }
