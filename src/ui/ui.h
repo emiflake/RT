@@ -23,6 +23,8 @@
 ** UI is responsible for handling window management.
 ** Actual rendering is done elsewhere (probably in `core`)
 */
+# define SUPERSAMPLE 256
+# define SQRT_SUPERS 16
 
 # include "core/scene/scene.h"
 # include "keystate.h"
@@ -62,7 +64,6 @@ void			app_run(t_app *app);
 int				gfx_init(t_gfx_context *app);
 
 long			get_current_epoch(void);
-int				ui_get_fps(int do_tick);
 
 void			prim_clear(SDL_Surface *surface, uint32_t color);
 

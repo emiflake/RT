@@ -17,6 +17,7 @@
 
 # include "core/scene/scene.h"
 
-void	render_image(const t_scene *scene, SDL_Surface *surf);
+REAL			ui_get_fps(int do_tick);
+void			render_image(const t_scene *scene, SDL_Surface *surf);
 
 #endif

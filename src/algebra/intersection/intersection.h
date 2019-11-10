@@ -13,8 +13,6 @@
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
 
-struct s_object;
-
 typedef struct	s_intersection
 {
 	struct s_object		*obj_ptr;

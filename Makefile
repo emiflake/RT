@@ -61,6 +61,7 @@ STNAMES=		\
 				core/container/push_obj \
 				core/container/intersect \
 				core/renderer/renderer \
+				core/renderer/fps \
 				core/scene/init \
 				ui/window_init \
 				ui/app_init \
@@ -68,17 +69,19 @@ STNAMES=		\
 				ui/keystate \
 				ui/text \
 				ui/gfx_init \
-				ui/fps \
 				ui/prim \
 				ui/putpixel \
 				algebra/ray/duplicate \
 				algebra/ray/make \
+				algebra/shapes/cone_intersect \
+				algebra/shapes/cylinder_intersect \
 				algebra/shapes/disk_intersect \
 				algebra/shapes/intersect \
 				algebra/shapes/plane_intersect \
 				algebra/shapes/quad_equation \
 				algebra/shapes/sphere_intersect \
 				algebra/shapes/square_intersect \
+				algebra/shapes/triangle_intersect \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \

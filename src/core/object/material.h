@@ -17,6 +17,9 @@ typedef struct	s_material
 {
 	t_vec	color;
 	t_vec	emission;
+	REAL	reflect;
+	REAL	refract;
+	REAL	transp;
 }				t_material;
 
 #endif

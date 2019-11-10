@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include "shapes.h"
+# include "../point2/point2.h"
 # include "../intersection/intersection.h"
 
 typedef struct	s_shape
@@ -24,12 +25,18 @@ typedef struct	s_shape
 		t_plane		as_plane;
 		t_disk		as_disk;
 		t_square	as_square;
+		t_triangle	as_triangle;
+		t_cylinder	as_cylinder;
+		t_cone		as_cone;
 	}	val;
 	enum {
 		SHAPE_SPHERE,
 		SHAPE_PLANE,
 		SHAPE_DISK,
-		SHAPE_SQUARE
+		SHAPE_SQUARE,
+		SHAPE_TRIANGLE,
+		SHAPE_CYLINDER,
+		SHAPE_CONE
 	}	type;
 }				t_shape;
 
@@ -62,6 +69,21 @@ bool				is_square_intersect(const t_shape *shape, const t_ray *ray,
 void				square_intersection(const t_ray *ray,
 									t_intersection *intrs);
 
-REAL				quad_eq(REAL *discr, REAL *a, REAL *b);
+bool				is_triangle_intersect(const t_shape *shape,
+									const t_ray *ray, t_intersection *intrs);
+void				triangle_intersection(const t_ray *ray,
+									t_intersection *intrs);
+
+bool				is_cylinder_intersect(const t_shape *shape,
+									const t_ray *ray, t_intersection *intrs);
+void				cylinder_intersection(const t_ray *ray,
+									t_intersection *intrs);
+
+bool				is_cone_intersect(const t_shape *shape,
+									const t_ray *ray, t_intersection *intrs);
+void				cone_intersection(const t_ray *ray,
+									t_intersection *intrs);
+
+t_point2			quad_eq(REAL discr, REAL a, REAL b);
 
 #endif

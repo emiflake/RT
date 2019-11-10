@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ui.h"
+#include "renderer.h"
 
 #include <time.h>
 
@@ -26,21 +26,19 @@ long	get_current_epoch(void)
 	return (s * 1000 + ns / 1000000);
 }
 
-int		ui_get_fps(int do_tick)
+REAL	ui_get_fps(int do_tick)
 {
-	static int	frames;
-	static int	preserved_frames;
-	static long	last_time;
+	static REAL	seconds_elapsed;
+	static long	last_time = 0;
 	long		curr_time;
 
+	if (last_time == 0)
+		last_time = get_current_epoch();
 	if (do_tick)
-		frames++;
-	curr_time = get_current_epoch();
-	if (last_time + 1000 < curr_time)
 	{
-		preserved_frames = frames;
-		frames = 0;
+		curr_time = get_current_epoch();
+		seconds_elapsed = (curr_time - last_time) / 1000.0;
 		last_time = curr_time;
 	}
-	return (preserved_frames);
+	return (seconds_elapsed + 0.0001);
 }

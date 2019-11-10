@@ -38,7 +38,7 @@ typedef struct	s_camera
 void			camera_recompute(t_camera *camera, size_t w, size_t h);
 
 void			camera_cast_ray(
-	const t_camera *cam,
-	const t_point2 *pos, t_ray *ray_out);
+	const t_camera *cam, const t_point2 *pos, t_ray *ray_out, \
+								int sample_number);
 
 #endif

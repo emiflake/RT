@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-
 # include "core/object/object.h"
 # include "shape.h"
 
@@ -31,7 +29,7 @@ bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,
 {
 	t_vec			abc;
 	REAL			discr;
-	REAL			root;
+	t_point2		root;
 	t_vec			distance;
 	const t_sphere	*sphere;
 
@@ -43,10 +41,10 @@ bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,
 	discr = (abc.y * abc.y) - (4 * abc.x * abc.z);
 	if (discr < 0)
 		return (false);
-	root = quad_eq(&discr, &abc.x, &abc.y);
-	if (root <= intrs->t && root > 0)
+	root = quad_eq(discr, abc.x, abc.y);
+	if (root.x <= intrs->t && root.x > 0)
 	{
-		intrs->t = root;
+		intrs->t = root.x;
 		return (true);
 	}
 	return (false);
