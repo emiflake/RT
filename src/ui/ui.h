@@ -23,8 +23,8 @@
 ** UI is responsible for handling window management.
 ** Actual rendering is done elsewhere (probably in `core`)
 */
-# define SUPERSAMPLE 256
-# define SQRT_SUPERS 16
+# define SUPERSAMPLE 1
+# define SQRT_SUPERS 1
 
 # include "core/scene/scene.h"
 # include "keystate.h"

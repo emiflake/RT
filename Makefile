@@ -73,15 +73,29 @@ STNAMES=		\
 				ui/putpixel \
 				algebra/ray/duplicate \
 				algebra/ray/make \
+				algebra/shapes/quad_equation \
+				algebra/shapes/intersect \
 				algebra/shapes/cone_intersect \
+				algebra/shapes/cube_intersect \
 				algebra/shapes/cylinder_intersect \
 				algebra/shapes/disk_intersect \
-				algebra/shapes/intersect \
 				algebra/shapes/plane_intersect \
-				algebra/shapes/quad_equation \
+				algebra/shapes/pyramid_intersect \
 				algebra/shapes/sphere_intersect \
 				algebra/shapes/square_intersect \
+				algebra/shapes/tetrahedron_intersect \
 				algebra/shapes/triangle_intersect \
+				algebra/shapes/move \
+				algebra/shapes/cone_move \
+				algebra/shapes/cube_move \
+				algebra/shapes/cylinder_move \
+				algebra/shapes/disk_move \
+				algebra/shapes/plane_move \
+				algebra/shapes/pyramid_move \
+				algebra/shapes/sphere_move \
+				algebra/shapes/square_move \
+				algebra/shapes/tetrahedron_move \
+				algebra/shapes/triangle_move \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \
@@ -99,6 +113,7 @@ STNAMES=		\
 				algebra/vector/reflect \
 				algebra/vector/reflectance \
 				algebra/vector/refract \
+				algebra/vector/vec_rotate \
 				algebra/vector/minmax \
 				algebra/vector/to_int \
 				algebra/vector/clamp \

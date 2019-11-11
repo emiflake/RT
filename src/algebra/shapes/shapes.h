@@ -74,14 +74,35 @@ typedef struct		s_cone
 	REAL			neg_height;
 }					t_cone;
 
-typedef struct		s_box
+typedef struct		s_cube
 {
-	t_vec			center;
+	t_vec			origin;
 	t_vec			size;
 	t_vec			up_axis;
-	t_vec			right_axis;
 	t_vec			front_axis;
-	t_vec			min_bound;
-	t_vec			max_bound;
-}					t_box;
+	t_vec			right_axis;
+	t_square		side[6];
+}					t_cube;
+
+typedef struct		s_pyramid
+{
+	t_vec			origin;
+	t_vec			size;
+	t_vec			up_axis;
+	t_vec			front_axis;
+	t_vec			right_axis;
+	t_triangle		side[4];
+	t_square		base;
+}					t_pyramid;
+
+typedef struct		s_tetrahedron
+{
+	t_vec			origin;
+	t_vec			size;
+	t_vec			up_axis;
+	t_vec			front_axis;
+	t_vec			right_axis;
+	t_triangle		side[4];
+}					t_tetrahedron;
+
 #endif

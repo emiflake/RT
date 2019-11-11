@@ -73,6 +73,9 @@ int				vec_isnulls(t_vec a);
 REAL			deg_to_rad(REAL degrees);
 REAL			rad_to_deg(REAL radians);
 
+t_vec			vec_deg_to_rad(t_vec *rotation_degrees);
+t_vec			vec_rad_to_deg(t_vec *rotation_radians);
+
 t_vec			vec_cross(const t_vec *a, const t_vec *b);
 t_vec			vec_cross_s(t_vec a, t_vec b);
 
@@ -92,5 +95,9 @@ int				vec_to_int(const t_vec *v);
 int				vec_to_ints(const t_vec v);
 
 void			vec_color_clamp_mut(t_vec *aggregate_color);
+
+void			vec_rotate_one(t_vec *v, REAL angle_rad, int axis_id);
+void			vec_rotate_xyz(t_vec *v, t_vec *rotation_rad);
+void			vec_rotate_zyx(t_vec *v, t_vec *rotation_rad);
 
 #endif
