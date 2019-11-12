@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:13:07 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 17:57:04 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/12 18:40:14 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			ui_put_text(
 {
 	SDL_Surface	*surf;
 	SDL_Rect	render_quad;
-	SDL_Rect	src_quad;
 	t_point2	dimensions;
 
 	surf = TTF_RenderText_Blended(font->font, text,
@@ -44,7 +43,6 @@ void			ui_put_text(
 	}
 	dimensions.x = surf->w;
 	dimensions.y = surf->h;
-	src_quad = (SDL_Rect){0, 0, dimensions.x, dimensions.y};
 	render_quad = (SDL_Rect){pos.x, pos.y, dimensions.x, dimensions.y};
 	SDL_BlitSurface(surf,
 		NULL,

@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/07 18:12:24 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/12 18:19:28 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,9 @@ STNAMES=		\
 				algebra/shapes/square_intersect \
 				algebra/shapes/tetrahedron_intersect \
 				algebra/shapes/triangle_intersect \
+				algebra/shapes/init \
+				algebra/shapes/sphere_init \
+				algebra/shapes/plane_init \
 				algebra/shapes/move \
 				algebra/shapes/cone_move \
 				algebra/shapes/cube_move \
@@ -135,6 +138,8 @@ STNAMES=		\
 				json/free \
 				json/io \
 				json/read_json \
+				json/comb \
+				json/vec_def \
 				hashmap/bucket \
 				hashmap/clean \
 				hashmap/common \
@@ -145,6 +150,7 @@ STNAMES=		\
 				common/memcpy \
 				common/memset \
 				common/realloc \
+				common/strcmp \
 
 # Garbage location
 # .obj/

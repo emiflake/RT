@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   scene.h                                            :+:    :+:            */
+/*   sphere_init.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 16:20:06 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/12 18:14:10 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/12 20:24:02 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include <ft_printf.h>
 
-# include "core/container/container.h"
-# include "core/camera/camera.h"
+#include "shape.h"
 
-typedef struct	s_scene
+bool					sphere_init(
+	t_shape *shape_out, const t_json_value *value)
 {
-	t_object_container	obj_container;
-	t_camera			camera;
-}				t_scene;
+	t_sphere	*sphere;
 
-void			scene_init(t_scene	*scene, const char *scene_filename);
-
-#endif
+	shape_out->type = SHAPE_SPHERE;
+	sphere = &shape_out->val.as_sphere;
+	sphere->radius = dict_def_double(value, "radius", 0);
+	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &sphere->origin);
+	return (true);
+}

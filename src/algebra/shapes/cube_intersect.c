@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cube_intersect.c                                             :+:    :+:  */
+/*   cube_intersect.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/01 00:42:00 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/01 00:42:01 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/01 00:42:00 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/12 18:38:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	is_cube_intersect(const t_shape *shape, const t_ray *ray,
 	i = 0;
 	while (i < 6)
 	{
-		shape2.val.as_square = (t_square)shape->val.as_cube.side[i];
+		shape2.val.as_square = shape->val.as_cube.side[i];
 		if (is_square_intersect(&shape2, ray, intrs))
 			found = true;
 		i++;

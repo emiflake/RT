@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/06 14:31:03 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/12 17:22:26 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdbool.h>
+# include "algebra/vector/vector.h" 
 # include "compdef.h"
 # include "hashmap/ashmap.h"
 
@@ -102,5 +103,14 @@ void			do_json_debug(const t_json_value *val, size_t indentation);
 void			json_debug(const t_json_value *val);
 void			json_free(t_json_value *val);
 void			do_dict_debug(const t_json_dict *dict, size_t indentation);
+
+/*
+** Combinators
+*/
+
+t_json_value	*dict_get(const t_json_value *val, char *key);
+double			dict_def_double(const t_json_value *val, char *key, double def);
+char			*dict_def_string(const t_json_value *val, char *key, char *str);
+void			dict_def_vec(const t_json_value *val, char *key, const t_vec def, t_vec *out);
 
 #endif

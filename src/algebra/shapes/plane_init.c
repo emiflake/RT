@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   scene.h                                            :+:    :+:            */
+/*   plane_init.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 16:20:06 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/12 18:18:05 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/12 20:23:47 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include <ft_printf.h>
+#include "shape.h"
 
-# include "core/container/container.h"
-# include "core/camera/camera.h"
-
-typedef struct	s_scene
+bool					plane_init(
+	t_shape *shape_out, const t_json_value *value)
 {
-	t_object_container	obj_container;
-	t_camera			camera;
-}				t_scene;
+	t_plane	*plane;
 
-void			scene_init(t_scene	*scene, const char *scene_filename);
-
-#endif
+	shape_out->type = SHAPE_PLANE;
+	plane = &shape_out->val.as_plane;
+	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &plane->origin);
+	dict_def_vec(value, "normal", (t_vec){0, 0, 0}, &plane->normal);
+	return (true);
+}

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   material.h                                         :+:    :+:            */
+/*   strcmp.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: pacovali <marvin@codam.nl>                   +#+                     */
+/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/12 16:00:10 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/12 18:08:06 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/12 18:13:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "common.h"
 
-typedef struct	s_material
+int		rt_strcmp(const char *a, const char *b)
 {
-	t_vec	color;
-	t_vec	emission;
-	REAL	blurriness;
-	REAL	reflect;
-	REAL	ior;
-	REAL	transp;
-}				t_material;
+	size_t i;
 
-#endif
+	i = 0;
+	while (a[i] && b[i])
+	{
+		if (a[i] != b[i])
+			return (a[i] - b[i]);
+		i++;
+	}
+	if (a[i] != b[i])
+		return (a[i] - b[i]);
+	return (0);
+}

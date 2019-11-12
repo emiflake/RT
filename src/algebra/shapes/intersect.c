@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/07 17:14:56 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/12 18:38:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	intersection(
 		&cone_intersection, &cube_intersection
 	};
 
-	return(fns[shape->type](ray, isect));
+	fns[shape->type](ray, isect);
 }
 
 bool	is_intersect(
@@ -35,5 +35,5 @@ bool	is_intersect(
 		&is_cone_intersect, &is_cube_intersect
 	};
 
-	return(fns[shape->type](shape, ray, isect));
+	return (fns[shape->type](shape, ray, isect));
 }
