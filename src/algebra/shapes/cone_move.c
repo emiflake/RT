@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   intersection.h                                     :+:    :+:            */
+/*   cone_move.c                                                  :+:    :+:  */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/01 00:42:00 by pacovali      #+#    #+#                 */
+/*   Updated: 2019/01/01 00:42:01 by pacovali      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERSECTION_H
-# define INTERSECTION_H
+#include "shape.h"
 
-typedef struct	s_intersection
+bool	cone_move(t_shape *shape, t_vec *direction, REAL distance)
 {
-	struct s_object		*obj_ptr;
-	REAL				t;
-	t_vec				p;
-	t_vec				normal;
-}				t_intersection;
-
-#endif
+	vec_mult_mut_scalar(direction, distance);
+	vec_add_mut(&shape->val.as_cone.origin, direction);
+	return (true);
+}

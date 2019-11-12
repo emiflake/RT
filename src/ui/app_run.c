@@ -21,6 +21,7 @@ void	app_run(t_app *app)
 {
 	SDL_Event	evt;
 	char		*fps_text;
+	REAL		sec_per_frame;
 
 	while (app->running)
 	{
@@ -40,8 +41,10 @@ void	app_run(t_app *app)
 		prim_clear(app->window.win_srf, 0x000000);
 		camera_recompute(&app->scene.camera,
 			app->window.win_srf->w, app->window.win_srf->h);
+		sec_per_frame = ui_get_fps(0);
 		render_image(&app->scene, app->window.win_srf);
-		ft_asprintf(&fps_text, "FPS %d\n", ui_get_fps(1));
+		ft_asprintf(&fps_text,
+				"FPS:%7.3f\t\tSPF:%7.3f\n", 1.0 / sec_per_frame, sec_per_frame);
 		ui_put_text_free(&app->gfx_ctx.font, &app->window,
 			(t_point2){10, 10}, fps_text);
 		ft_asprintf(&fps_text, "Welcome to our amazing RT");

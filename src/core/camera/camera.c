@@ -30,16 +30,31 @@ void			camera_recompute(t_camera *camera, size_t w, size_t h)
 	camera->dim.y = h;
 }
 
-void			camera_cast_ray(
-		const t_camera *cam, const t_point2 *pos, t_ray *ray_out)
+t_point2		supersample(REAL delta, int cur_pos)
 {
-	REAL	px;
-	REAL	py;
-	t_vec	dir;
+	t_point2	super_pixel;
+	static REAL	super_delta = 0;
 
-	px = (2.0 * (((REAL)pos->x + 0.5) / cam->dim.x) - 1.0)
+	if (!super_delta)
+		super_delta = delta / SQRT_SUPERS;
+	super_pixel.x = super_delta * (cur_pos % SQRT_SUPERS);
+	super_pixel.y = super_delta * (cur_pos / SQRT_SUPERS);
+	return (super_pixel);
+}
+
+void			camera_cast_ray(
+		const t_camera *cam, const t_point2 *pos, t_ray *ray_out, \
+							int sample_number)
+{
+	REAL		px;
+	REAL		py;
+	t_vec		dir;
+	t_point2	super;
+
+	super = supersample(cam->delta, sample_number);
+	px = (2.0 * (((REAL)pos->x + 0.5 + super.x) / cam->dim.x) - 1.0)
 		* cam->aspect_ratio * cam->delta;
-	py = (1.0 - 2.0 * ((REAL)pos->y + 0.5) / cam->dim.y) * cam->delta;
+	py = (1.0 - 2.0 * ((REAL)pos->y + 0.5 + super.y) / cam->dim.y) * cam->delta;
 	dir = vec_mk(px, py, 1.0);
 	vec_normalize(&dir);
 	// ft_printf("delta: %lf\n", cam->delta);
@@ -49,3 +64,4 @@ void			camera_cast_ray(
 	ray_out->d = dir;
 	ray_out->depth = 5;
 }
+

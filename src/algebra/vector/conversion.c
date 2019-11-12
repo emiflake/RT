@@ -25,3 +25,13 @@ REAL		rad_to_deg(REAL radians)
 		radians += (radians < 0) ? M_2_PI : -M_2_PI;
 	return (radians * 180 / M_PI);
 }
+
+t_vec		vec_deg_to_rad(t_vec *v)
+{
+	return ((t_vec){deg_to_rad(v->x), deg_to_rad(v->y), deg_to_rad(v->z)});
+}
+
+t_vec		vec_rad_to_deg(t_vec *v)
+{
+	return ((t_vec){rad_to_deg(v->x), rad_to_deg(v->y), rad_to_deg(v->z)});
+}

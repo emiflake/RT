@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   disk_intersect.c                                             :+:    :+:  */
+/*   tetrahedron_move.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,34 +12,19 @@
 
 #include "shape.h"
 
-void	disk_intersection(const t_ray *ray, t_intersection *intrs)
+bool	tetrahedron_move(t_shape *shape, t_vec *direction, REAL distance)
 {
-	(void)ray;
-	(void)intrs;
-}
+	int		i;
 
-bool	is_disk_intersect(const t_shape *shape, const t_ray *ray,
-						t_intersection *intrs)
-{
-	t_vec			orig_to_inters;
-	const t_disk	*disk;
-	t_shape			shape2;
-	t_intersection	tmp_intrs;
-	REAL			distance;
-
-	disk = &shape->val.as_disk;
-	shape2.val.as_plane = disk->plane;
-	tmp_intrs = *intrs;
-	if (is_plane_intersect(&shape2, ray, &tmp_intrs))
+	vec_mult_mut_scalar(direction, distance);
+	vec_add_mut(&shape->val.as_tetrahedron.origin, direction);
+	i = 0;
+	while (i < 4)
 	{
-		orig_to_inters = vec_sub(&tmp_intrs.p, &(disk->plane.origin));
-		distance = vec_dot(&orig_to_inters, &orig_to_inters);
-		if (distance <= disk->outer_radius * disk->outer_radius &&
-			distance >= disk->inner_radius * disk->inner_radius)
-		{
-			*intrs = tmp_intrs;
-			return (true);
-		}
+		vec_add_mut(&shape->val.as_tetrahedron.side[i].plane.origin, direction);
+		vec_add_mut(&shape->val.as_tetrahedron.side[i].point_b, direction);
+		vec_add_mut(&shape->val.as_tetrahedron.side[i].point_c, direction);
+		i++;
 	}
-	return (false);
+	return (true);
 }

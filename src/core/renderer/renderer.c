@@ -100,17 +100,17 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 		while (pixel.x < surf->w)
 		{
 			t_vec	aggregate = vec_make0();
-			for (size_t i = 0; i < 256; i++)
+			for (size_t i = 0; i < SUPERSAMPLE; i++)
 			{
 				isect.t = INFINITY;
-				camera_cast_ray(&scene->camera, &pixel, &ray);
+				camera_cast_ray(&scene->camera, &pixel, &ray, i);
 				if (container_is_intersect(&scene->obj_container, &ray, &isect))
 				{
 					t_vec idk = trace(scene, &ray, &isect);
 					vec_add_mut(&aggregate, &idk);
 				}
 			}
-			vec_mult_mut_scalar(&aggregate, 1.0 / 256);
+			vec_mult_mut_scalar(&aggregate, 1.0 / SUPERSAMPLE);
 			vec_color_clamp_mut(&aggregate);
 			// isect.t = INFINITY;
 			// camera_cast_ray(&scene->camera, &pixel, &ray);
@@ -124,4 +124,5 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 		}
 		pixel.y++;
 	}
+	ui_get_fps(1);
 }

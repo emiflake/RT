@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   intersect.c                                        :+:    :+:            */
+/*   move.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -14,26 +14,13 @@
 
 #include "shape.h"
 
-void	intersection(
-			const t_shape *shape, const t_ray *ray, t_intersection *isect)
+bool	move_shape(t_shape *shape, t_vec *direction, REAL amount)
 {
-	const t_inter_fn	fns[] = {
-		&sphere_intersecton, &plane_intersection, &disk_intersection,
-		&square_intersection, &triangle_intersection, &cylinder_intersection,
-		&cone_intersection, &cube_intersection
+	t_move_fn	fns[] = {
+		&sphere_move, &plane_move, &disk_move,
+		&square_move, &triangle_move, &cylinder_move,
+		&cone_move, &cube_move/*, &tetra_move, &pyra_move */
 	};
-
-	return(fns[shape->type](ray, isect));
-}
-
-bool	is_intersect(
-			const t_shape *shape, const t_ray *ray, t_intersection *isect)
-{
-	const t_is_inter_fn	fns[] = {
-		&is_sphere_intersect, &is_plane_intersect, &is_disk_intersect,
-		&is_square_intersect, &is_triangle_intersect, &is_cylinder_intersect,
-		&is_cone_intersect, &is_cube_intersect
-	};
-
-	return(fns[shape->type](shape, ray, isect));
+	vec_normalize(direction);
+	return (fns[shape->type](shape, direction, amount));
 }
