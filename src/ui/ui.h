@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 16:48:44 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/12 20:33:57 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 ** UI is responsible for handling window management.
 ** Actual rendering is done elsewhere (probably in `core`)
 */
-# define SUPERSAMPLE 1
-# define SQRT_SUPERS 1
 
 # include "core/scene/scene.h"
 # include "keystate.h"
@@ -55,7 +53,7 @@ typedef struct	s_app
 
 int				window_init(t_window *win);
 
-int				app_init(t_app *app);
+int				app_init(t_app *app, int argc, char **argv);
 
 int				app_free(t_app *app);
 

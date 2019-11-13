@@ -6,12 +6,13 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:55:37 by nmartins       #+#    #+#                */
-/*   Updated: 2019/10/31 20:22:06 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/12 20:06:22 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "json.h"
 #include <stdlib.h>
+#include <ft_printf.h>
 
 static t_json_value		*mk_number(double num)
 {
@@ -59,9 +60,12 @@ t_json_value			*do_parse_number(const char **str)
 	i = 0;
 	walker = *str;
 	skip_whitespace(&walker);
-	if (!(*walker >= '0' && *walker <= '9'))
+	if (!((*walker >= '0' && *walker <= '9')
+		|| *walker == '-' || *walker == '+'))
 		return (NULL);
 	val = ft_atoi(walker);
+	if (*walker == '-' || *walker == '+')
+		walker++;
 	while (walker[i] >= '0' && walker[i] <= '9')
 	{
 		if (walker[i] == '\0')

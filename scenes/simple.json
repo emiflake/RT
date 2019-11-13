@@ -1,0 +1,32 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [0, 0, -20]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"origin": [-10, 0, 10],
+			"radius": 5,
+			"emission": [0, 0, 255]
+		},
+		{
+			"type": "sphere",
+			"origin": [10, 0, 10],
+			"radius": 5,
+			"emission": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"origin": [0, 0, 10],
+			"radius": 5,
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, -5, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 255, 255]
+		}
+	]
+}

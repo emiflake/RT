@@ -1,0 +1,46 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [0, 18, -75]
+	},
+	"objects": [
+		{
+			"type": "square",
+			"origin": [-15, 40, -20],
+			"normal": [0, -1, 0],
+			"side_a": [0, 0, 30],
+			"side_b": [30, 0, 0],
+			"emission": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 20],
+			"normal": [0, 0, -1],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [20, 0, 0],
+			"normal": [-1, 0, 0],
+			"color": [100, 255, 100]
+		},
+		{
+			"type": "plane",
+			"origin": [-20, 0, 0],
+			"normal": [1, 0, 0],
+			"color": [255, 100, 100]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 40, 0],
+			"normal": [0, -1, 0],
+			"color": [255, 255, 255]
+		}
+	]
+}

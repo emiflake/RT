@@ -6,13 +6,14 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/07 18:48:06 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:10:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPE_H
 # define SHAPE_H
 
+# include "json/json.h"
 # include <stdbool.h>
 # include "shapes.h"
 # include "../point2/point2.h"
@@ -46,13 +47,13 @@ typedef struct			s_shape
 	}	type;
 }						t_shape;
 
-typedef 				void(*t_inter_fn)(const t_ray *ray,
+typedef void(*t_inter_fn)(const t_ray *ray,
 										t_intersection *isect);
 
 void					intersection(
 	const t_shape *shape, const t_ray *ray, t_intersection *isect);
 
-typedef 				bool(*t_is_inter_fn)(
+typedef bool(*t_is_inter_fn)(
 	const t_shape *shape, const t_ray *ray, t_intersection *isect);
 
 bool					is_intersect(
@@ -111,34 +112,68 @@ bool					is_tetrahedron_intersect(const t_shape *shape,
 t_point2				quad_eq(REAL discr, REAL a, REAL b);
 
 /*
+** Initialize objects
+*/
+
+typedef bool(*t_init_fn)(
+	t_shape *shape_out, const t_json_value *value);
+
+typedef	struct			s_shape_init_kvp
+{
+	const char	*key;
+	t_init_fn	fn;
+}						t_shape_init_kvp;
+
+bool					init_shape(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					sphere_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					plane_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					square_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					cube_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					disk_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					triangle_init(
+	t_shape *shape_out, const t_json_value *value);
+
+/*
 ** Moving objects
 */
 
-typedef 			bool(*t_move_fn)(t_shape *shape, t_vec *direction,
+typedef bool(*t_move_fn)(t_shape *shape, t_vec *direction,
 							REAL distance);
 
-bool				move_shape(t_shape *shape, t_vec *direction,
+bool					move_shape(t_shape *shape, t_vec *direction,
 							REAL distance);
 
-bool				cube_move(t_shape *shape, t_vec *direction,
+bool					cube_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				cone_move(t_shape *shape, t_vec *direction,
+bool					cone_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				cylinder_move(t_shape *shape, t_vec *direction,
+bool					cylinder_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				sphere_move(t_shape *shape, t_vec *direction,
+bool					sphere_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				plane_move(t_shape *shape, t_vec *direction,
+bool					plane_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				square_move(t_shape *shape, t_vec *direction,
+bool					square_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				disk_move(t_shape *shape, t_vec *direction,
+bool					disk_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				pyramid_move(t_shape *shape, t_vec *direction,
+bool					pyramid_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				tetrahedron_move(t_shape *shape, t_vec *direction,
+bool					tetrahedron_move(t_shape *shape, t_vec *direction,
 							REAL distance);
-bool				triangle_move(t_shape *shape, t_vec *direction,
+bool					triangle_move(t_shape *shape, t_vec *direction,
 							REAL distance);
 
 #endif

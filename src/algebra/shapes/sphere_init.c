@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   sphere_init.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 01:27:28 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/12 18:14:10 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/12 20:24:02 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include <ft_printf.h>
 
-# include <SDL2/SDL.h>
+#include "shape.h"
 
-# include "core/scene/scene.h"
-
-typedef struct	s_render_segm
+bool					sphere_init(
+	t_shape *shape_out, const t_json_value *value)
 {
-	SDL_Surface		*surface;
-	const t_scene	*scene;
+	t_sphere	*sphere;
 
-	t_point2		start_position;
-	t_point2		end_position;
-}				t_render_segm;
-
-REAL			ui_get_fps(int do_tick);
-void			render_image(const t_scene *scene, SDL_Surface *surf);
-
-#endif
+	shape_out->type = SHAPE_SPHERE;
+	sphere = &shape_out->val.as_sphere;
+	sphere->radius = dict_def_double(value, "radius", 0);
+	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &sphere->origin);
+	return (true);
+}

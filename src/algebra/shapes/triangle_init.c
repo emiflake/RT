@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   material.h                                         :+:    :+:            */
+/*   triangle_init.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: pacovali <marvin@codam.nl>                   +#+                     */
+/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/12 16:00:10 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/13 01:10:30 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/13 01:13:12 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "shape.h"
 
-typedef struct	s_material
+bool					triangle_init(
+	t_shape *shape_out, const t_json_value *value)
 {
-	t_vec	color;
-	t_vec	emission;
-	REAL	blurriness;
-	REAL	reflect;
-	REAL	ior;
-	REAL	transp;
-}				t_material;
+	t_triangle	*tri;
 
-#endif
+	shape_out->type = SHAPE_TRIANGLE;
+	tri = &shape_out->val.as_triangle;
+	(void)shape_out;
+	(void)value;
+	return (true);
+}
