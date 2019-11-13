@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/13 01:12:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct		s_square
 	t_vec			side_b;
 	REAL			dot_b;
 }					t_square;
+
+// TODO: defo reimplement this using just 3 `t_vec`s
 
 typedef struct		s_triangle
 {

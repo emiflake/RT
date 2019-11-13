@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 17:20:19 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:37:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ t_point2		supersample(REAL delta, int cur_pos)
 	static REAL	super_delta = 0;
 
 	if (!super_delta)
-		super_delta = delta / SQRT_SUPERS;
-	super_pixel.x = super_delta * (cur_pos % SQRT_SUPERS);
-	super_pixel.y = super_delta * (cur_pos / SQRT_SUPERS);
+		super_delta = delta / sqrt(SUPERSAMPLE);
+	super_pixel.x = super_delta * (cur_pos % (int)sqrt(SUPERSAMPLE));
+	super_pixel.y = super_delta * (cur_pos / sqrt(SUPERSAMPLE));
 	return (super_pixel);
 }
 

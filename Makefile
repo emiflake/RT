@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/12 18:19:28 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/13 01:03:26 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,9 @@ STNAMES=		\
 				algebra/shapes/init \
 				algebra/shapes/sphere_init \
 				algebra/shapes/plane_init \
+				algebra/shapes/square_init \
+				algebra/shapes/cube_init \
+				algebra/shapes/disk_init \
 				algebra/shapes/move \
 				algebra/shapes/cone_move \
 				algebra/shapes/cube_move \
@@ -193,4 +196,4 @@ re:
 dev:
 	@$(MAKE) -j10 -s
 	@echo "$(TIME) $(CNORM) $(CRED)Running $(CCYAN)$(NAME)$(CDEF)"
-	@./$(NAME)
+	@./$(NAME) $(SCENE)

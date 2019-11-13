@@ -6,12 +6,13 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 19:46:43 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:50:12 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <ft_printf.h>
+#include <pthread.h>
 
 #include "algebra/mmath/mmath.h"
 #include "renderer.h"
@@ -69,60 +70,87 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 			hemi.x * sys.nb.y + hemi.y * isect->normal.y + hemi.z * sys.nt.y,
 			hemi.x * sys.nb.z + hemi.y * isect->normal.z + hemi.z * sys.nt.z);
 		new_ray.o = isect->p;
-		// new_ray.o = vec_adds(ray->o, vec_mults_scalar(isect->normal, EPS));
 		new_ray.depth = ray->depth - 1;
 		new_isect.t = INFINITY;
-		// ft_printf("ro: %lf %lf %lf, rd: %lf %lf %lf, depth: %hhu\n", 
-		// 	new_ray.o.x, new_ray.o.y, new_ray.o.z,
-		// 	new_ray.d.x, new_ray.d.y, new_ray.d.z,
-		// 	new_ray.depth
-		// );
 		if (container_is_intersect(&scene->obj_container, &new_ray, &new_isect))
 		{
 			hemi = trace(scene, &new_ray, &new_isect);
+			t_vec temp = vec_mults_scalar(isect->obj_ptr->material.color, 1.0 / 255.0);
+			vec_mult_mut(&hemi, &temp);
 			vec_add_mut(&aggregate_color, &hemi);
 		}
 	}
-	vec_color_clamp_mut(&aggregate_color);
 	return (aggregate_color);
 }
 
-void	render_image(const t_scene *scene, SDL_Surface *surf)
+
+void	*render_segm(void *data)
 {
+	const t_render_segm	*segm = data;
+
 	t_intersection	isect;
 	t_ray			ray;
 	t_point2		pixel;
 
 	pixel = (t_point2){0, 0};
-	while (pixel.y < surf->h)
+	while (pixel.y < segm->end_position.y)
 	{
 		pixel.x = 0;
-		while (pixel.x < surf->w)
+		while (pixel.x < segm->end_position.x)
 		{
 			t_vec	aggregate = vec_make0();
 			for (size_t i = 0; i < SUPERSAMPLE; i++)
 			{
 				isect.t = INFINITY;
-				camera_cast_ray(&scene->camera, &pixel, &ray, i);
-				if (container_is_intersect(&scene->obj_container, &ray, &isect))
+				camera_cast_ray(&segm->scene->camera, &pixel, &ray, i);
+				if (container_is_intersect(&segm->scene->obj_container, &ray, &isect))
 				{
-					t_vec idk = trace(scene, &ray, &isect);
+					t_vec idk = trace(segm->scene, &ray, &isect);
 					vec_add_mut(&aggregate, &idk);
 				}
 			}
 			vec_mult_mut_scalar(&aggregate, 1.0 / SUPERSAMPLE);
 			vec_color_clamp_mut(&aggregate);
-			// isect.t = INFINITY;
-			// camera_cast_ray(&scene->camera, &pixel, &ray);
-			// if (container_is_intersect(&scene->obj_container, &ray, &isect))
-			// 	ui_put_pixel(surf,
-			// 		(size_t)pixel.x,
-			// 			(size_t)pixel.y, vec_to_ints(trace(scene, &ray, &isect)));
-			// else
-			ui_put_pixel(surf, (size_t)pixel.x, (size_t)pixel.y, vec_to_int(&aggregate));
+			ui_put_pixel(segm->surface, (size_t)pixel.x, (size_t)pixel.y, vec_to_int(&aggregate));
 			pixel.x++;
 		}
 		pixel.y++;
 	}
+	return (NULL);
+}
+
+#define THREAD_COUNT 8
+
+#define MULTITHREAD
+
+void	render_image(const t_scene *scene, SDL_Surface *surf)
+{
+	t_render_segm	segments[THREAD_COUNT];
+	pthread_t		threads[THREAD_COUNT];
+	size_t			i;
+
+	i = 0;
+	while (i < THREAD_COUNT)
+	{
+		segments[i].surface = surf;
+		segments[i].scene = scene;
+		segments[i].start_position = (t_point2){0, i * surf->h / THREAD_COUNT};
+		segments[i].end_position = (t_point2){surf->w, (i + 1) * surf->h / THREAD_COUNT};
+#ifdef MULTITHREAD
+		pthread_create(&threads[i], NULL, render_segm, &segments[i]);
+#else
+		(void)threads;
+		render_segm(&segments[i]);
+#endif
+		i++;
+	}
+#ifdef MULTITHREAD
+	i = 0;
+	while (i < THREAD_COUNT)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
+#endif
 	ui_get_fps(1);
 }

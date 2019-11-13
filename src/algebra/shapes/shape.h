@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/12 18:05:52 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:10:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,18 @@ bool					sphere_init(
 	t_shape *shape_out, const t_json_value *value);
 
 bool					plane_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					square_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					cube_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					disk_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					triangle_init(
 	t_shape *shape_out, const t_json_value *value);
 
 /*

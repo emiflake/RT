@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/12 18:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 20:09:52 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:02:45 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 const static t_shape_init_kvp	g_shape_init_map[] = {
 	{ "sphere", sphere_init },
 	{ "plane", plane_init },
+	{ "square", square_init },
+	{ "cube", cube_init },
+	{ "disk", disk_init },
 };
 
 static char				*get_type(const t_json_value *value)

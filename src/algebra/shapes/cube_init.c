@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   cube_init.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 01:27:28 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/13 00:05:41 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/13 01:00:56 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "shape.h"
 
-# include <SDL2/SDL.h>
+// typedef struct		s_cube
+// {
+// 	t_vec			origin;
+// 	t_vec			size;
+// 	t_vec			up_axis;
+// 	t_vec			front_axis;
+// 	t_vec			right_axis;
+// 	t_square		side[6];
+// }					t_cube;
 
-# include "core/scene/scene.h"
-
-typedef struct	s_render_segm
+bool					cube_init(
+	t_shape *shape_out, const t_json_value *value)
 {
-	SDL_Surface		*surface;
-	const t_scene	*scene;
+	t_cube	*cube;
 
-	t_point2		start_position;
-	t_point2		end_position;
-}				t_render_segm;
-
-REAL			ui_get_fps(int do_tick);
-void			render_image(const t_scene *scene, SDL_Surface *surf);
-
-#endif
+	(void)value;
+	shape_out->type = SHAPE_CUBE;
+	cube = &shape_out->val.as_cube;
+	/* TODO */
+	return (true);
+}
