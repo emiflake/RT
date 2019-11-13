@@ -18,7 +18,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [0, 0, 10],
+			"origin": [0, 5, 10],
 			"radius": 5,
 			"color": [255, 255, 255]
 		},
