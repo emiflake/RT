@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:17:16 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 12:49:26 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 14:33:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_work
 
 typedef struct	s_worker
 {
-	t_work					*curr_work;
+	volatile t_work			*curr_work;
 	pthread_t				thread;
 	volatile t_work_status	work_status;
 	size_t					id;

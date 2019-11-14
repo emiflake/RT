@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 12:52:10 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 14:45:37 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,9 @@ void		thread_work(void *stuff)
 
 int			main(int argc, char **argv)
 {
-	t_threadpool	*pool;
-	t_task			tasks[PRIMES];
-	t_work			work[PRIMES];
+	t_app app;
 
-	(void)argc;
-	(void)argv;
-	pool = threadpool_init(50);
-	if (!pool)
-		return (1);
-	for (size_t i = 0; i < PRIMES; i++)
-	{
-		tasks[i].is_prime = false;
-		tasks[i].num = i + 100000000;
-		work[i].argument = &tasks[i];
-		work[i].fn = &thread_work;
-		threadpool_push_work(pool, &work[i]);
-	}
-	threadpool_wait(pool);
-	threadpool_free(pool);
-	ft_printf("Freed pool\n");
-	for (size_t i = 0; i < PRIMES; i++)
-	{
-		if (tasks[i].is_prime)
-			ft_printf("%d\n", tasks[i].num);
-	}
-	// t_app app;
-
-	// app_init(&app, argc, argv);
-	// app_run(&app);
+	app_init(&app, argc, argv);
+	app_run(&app);
 	return (0);
 }

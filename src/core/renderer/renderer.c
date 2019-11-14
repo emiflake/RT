@@ -6,14 +6,16 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 01:50:12 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 16:30:17 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <ft_printf.h>
 #include <pthread.h>
+#include <unistd.h>
 
+#include "threadpool/threadpool.h"
 #include "algebra/mmath/mmath.h"
 #include "renderer.h"
 #include "ui/ui.h"
@@ -84,7 +86,7 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 }
 
 
-void	*render_segm(void *data)
+void	render_segm(void *data)
 {
 	const t_render_segm	*segm = data;
 
@@ -92,10 +94,10 @@ void	*render_segm(void *data)
 	t_ray			ray;
 	t_point2		pixel;
 
-	pixel = (t_point2){0, 0};
+	pixel = (t_point2){segm->start_position.x, segm->start_position.y};
 	while (pixel.y < segm->end_position.y)
 	{
-		pixel.x = 0;
+		pixel.x = segm->start_position.x;
 		while (pixel.x < segm->end_position.x)
 		{
 			t_vec	aggregate = vec_make0();
@@ -116,41 +118,37 @@ void	*render_segm(void *data)
 		}
 		pixel.y++;
 	}
-	return (NULL);
 }
 
-#define THREAD_COUNT 8
+#define SEGMENT_COUNT 1000
 
 #define MULTITHREAD
 
 void	render_image(const t_scene *scene, SDL_Surface *surf)
 {
-	t_render_segm	segments[THREAD_COUNT];
-	pthread_t		threads[THREAD_COUNT];
+	t_render_segm	segments[SEGMENT_COUNT];
+	t_work			work[SEGMENT_COUNT];
+	t_threadpool	*pool;
 	size_t			i;
 
+	pool = threadpool_init(50);
+	if (!pool)
+	{
+		exit(FAILURE);
+	}
 	i = 0;
-	while (i < THREAD_COUNT)
+	while (i < SEGMENT_COUNT)
 	{
 		segments[i].surface = surf;
 		segments[i].scene = scene;
-		segments[i].start_position = (t_point2){0, i * surf->h / THREAD_COUNT};
-		segments[i].end_position = (t_point2){surf->w, (i + 1) * surf->h / THREAD_COUNT};
-#ifdef MULTITHREAD
-		pthread_create(&threads[i], NULL, render_segm, &segments[i]);
-#else
-		(void)threads;
-		render_segm(&segments[i]);
-#endif
+		segments[i].start_position = (t_point2){0, i * surf->h / SEGMENT_COUNT};
+		segments[i].end_position = (t_point2){surf->w, (i + 1) * surf->h / SEGMENT_COUNT};
+		work[i].argument = &segments[i];
+		work[i].fn = render_segm;
+		threadpool_push_work(pool, &work[i]);
 		i++;
 	}
-#ifdef MULTITHREAD
-	i = 0;
-	while (i < THREAD_COUNT)
-	{
-		pthread_join(threads[i], NULL);
-		i++;
-	}
-#endif
+	threadpool_wait(pool);
+	threadpool_free(pool);
 	ui_get_fps(1);
 }

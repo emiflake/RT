@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:30:44 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 12:50:51 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 14:33:42 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ t_threadpool	*threadpool_init(size_t worker_count)
 	pool->queue = NULL;
 	pool->workers = NULL;
 	allocate_workers(&pool->workers, worker_count);
-	if (pthread_mutex_lock(&pool->lock))
 	if (pthread_mutex_init(&pool->lock, NULL))
 	{
 		ft_printf("Could not initialize mutex\n");

@@ -6,10 +6,11 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 23:06:01 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 12:49:13 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 16:24:17 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <unistd.h>
 #include "threadpool.h"
 
@@ -20,6 +21,19 @@
 
 void	threadpool_wait(t_threadpool *pool)
 {
-	while (pool->queue)
-		usleep(100);
+	bool	should_quit;
+
+	should_quit = false;
+	while (!should_quit)
+	{
+		usleep(1);
+		pthread_mutex_lock(&pool->lock);
+		if (pool->queue == NULL)
+		{
+			usleep(100000);
+			if (pool->queue == NULL)
+				should_quit = true;
+		}
+		pthread_mutex_unlock(&pool->lock);
+	}
 }
