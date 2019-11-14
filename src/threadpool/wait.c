@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 23:06:01 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 16:24:17 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 18:42:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	threadpool_wait(t_threadpool *pool)
 		pthread_mutex_lock(&pool->lock);
 		if (pool->queue == NULL)
 		{
-			usleep(100000);
+			usleep(1000);
 			if (pool->queue == NULL)
 				should_quit = true;
 		}

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 16:30:17 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 19:05:29 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 
 void	render_segm(void *data)
 {
-	const t_render_segm	*segm = data;
+	t_render_segm	*segm = data;
 
 	t_intersection	isect;
 	t_ray			ray;
@@ -118,9 +118,10 @@ void	render_segm(void *data)
 		}
 		pixel.y++;
 	}
+	segm->done = true;
 }
 
-#define SEGMENT_COUNT 1000
+#define SEGMENT_COUNT 100
 
 #define MULTITHREAD
 
@@ -141,6 +142,7 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 	{
 		segments[i].surface = surf;
 		segments[i].scene = scene;
+		segments[i].done = false;
 		segments[i].start_position = (t_point2){0, i * surf->h / SEGMENT_COUNT};
 		segments[i].end_position = (t_point2){surf->w, (i + 1) * surf->h / SEGMENT_COUNT};
 		work[i].argument = &segments[i];
@@ -148,7 +150,17 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 		threadpool_push_work(pool, &work[i]);
 		i++;
 	}
-	threadpool_wait(pool);
+	bool should_die = false;
+	while (!should_die)
+	{
+		should_die = true;
+		for (size_t i = 0; i < SEGMENT_COUNT; i++)
+		{
+			if (!segments[i].done)
+				should_die = false;
+		}
+		usleep(1);
+	}
 	threadpool_free(pool);
 	ui_get_fps(1);
 }

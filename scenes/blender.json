@@ -1,0 +1,46 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [0, 18, -75]
+	},
+	"objects": [
+		{
+			"type": "square",
+			"origin": [1.0, 10, -20],
+			"normal": [1, 0, 0],
+			"side_a": [0, 0, 10],
+			"side_b": [0, 10, 0],
+			"emission": [1000, 2500, 5000]
+		},
+		{
+			"type": "square",
+			"origin": [0.0, 10, -20],
+			"normal": [1, 0, 0],
+			"side_a": [0, 0, 10],
+			"side_b": [0, 10, 0],
+			"color": [50, 50, 50]
+		},
+		{
+			"type": "square",
+			"origin": [15, 5, -20],
+			"normal": [1, 0, 0],
+			"side_a": [0, 0, 10],
+			"side_b": [0, 10, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-1.0, 10, -20],
+			"normal": [1, 0, 0],
+			"side_a": [0, 0, 10],
+			"side_b": [0, 10, 0],
+			"emission": [5000, 1000, 1000]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 255, 255]
+		}
+	]
+}

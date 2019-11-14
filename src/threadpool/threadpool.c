@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:30:44 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 14:33:42 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 19:08:01 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ t_threadpool	*threadpool_init(size_t worker_count)
 {
 	t_threadpool	*pool;
 
-	ft_printf("Creating Threadpool with %llu workers\n", worker_count);
 	pool = (t_threadpool*)malloc(sizeof(t_threadpool));
 	pool->worker_count = worker_count;
 	pool->pool_status = IS_IDLE;
