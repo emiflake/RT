@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:30:44 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 20:44:48 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 12:50:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@ static int		start_workers_and_manager(t_threadpool *pool)
 	return (SUCCESS);
 }
 
-void			*threadpool_worker(void *work_data)
-{
-	t_worker	*worker;
-
-	worker = work_data;
-	while (worker->work_status != IS_TERMINATING)
-	{
-		worker->work_status = IS_IDLE;
-		while (worker->work_status == IS_IDLE || worker->curr_work == NULL)
-		{
-			if (worker->work_status == IS_TERMINATING)
-				break ;
-			usleep(1);
-		}
-		if (worker->work_status == IS_TERMINATING)
-			break ;
-		worker->curr_work->fn(worker->curr_work->argument);
-		worker->curr_work = NULL;
-	}
-	pthread_exit(NULL);
-	return (NULL);
-}
-
 void		debug_workers(t_worker_node *workers)
 {
 	t_worker_node	*node;
@@ -128,52 +105,9 @@ void		debug_work(t_work_node *work, t_worker_node *workers)
 	ft_printf("-> Total work:     %llu\n", i + w);
 }
 
-static int		assign_work(t_worker_node *workers, t_work *work)
-{
-	t_worker_node	*worker_node;
 
-	(void)debug_work;
-	worker_node = workers;
-	while (worker_node)
-	{
-		if (worker_node->worker.work_status == IS_IDLE)
-		{
-			worker_node->worker.work_status = IS_WORKING;
-			worker_node->worker.curr_work = work;
-			return (SUCCESS);
-		}
-		worker_node = worker_node->next;
-	}
-	return (FAILURE);
-}
 
-void			*threadpool_manager(void *threadpool)
-{
-	t_threadpool	*pool;
-	t_work_node		*work_node;
 
-	pool = (t_threadpool*)threadpool;
-	while (pool->pool_status != IS_TERMINATING)
-	{
-		// debug_workers(pool->workers);
-		if (pool->queue)
-		{
-			pthread_mutex_lock(&pool->lock);
-			work_node = pool->queue;
-			pool->queue = pool->queue->next;
-			while (pool->pool_status != IS_TERMINATING)
-			{
-				usleep(1);
-				if (assign_work(pool->workers, &work_node->work) == SUCCESS)
-					break ;
-			}
-			pthread_mutex_unlock(&pool->lock);
-		}
-		usleep(1);
-	}
-	pthread_exit(NULL);
-	return (NULL);
-}
 
 t_threadpool	*threadpool_init(size_t worker_count)
 {
@@ -184,8 +118,10 @@ t_threadpool	*threadpool_init(size_t worker_count)
 	pool->worker_count = worker_count;
 	pool->pool_status = IS_IDLE;
 	pool->queue = NULL;
+	pool->workers = NULL;
 	allocate_workers(&pool->workers, worker_count);
-	if (!pthread_mutex_lock(&pool->lock))
+	if (pthread_mutex_lock(&pool->lock))
+	if (pthread_mutex_init(&pool->lock, NULL))
 	{
 		ft_printf("Could not initialize mutex\n");
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:17:16 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 20:21:07 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 12:49:26 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct	s_work
 
 typedef struct	s_worker
 {
-	t_work			*curr_work;
-	pthread_t		thread;
-	t_work_status	work_status;
-	size_t			id;
+	t_work					*curr_work;
+	pthread_t				thread;
+	volatile t_work_status	work_status;
+	size_t					id;
 }				t_worker;
 
 typedef struct	s_worker_node
@@ -46,7 +46,7 @@ typedef struct	s_worker_node
 
 typedef struct	s_work_node
 {
-	t_work				work;
+	t_work				*work;
 	struct s_work_node	*next;
 }				t_work_node;
 
@@ -62,7 +62,8 @@ typedef struct	s_threadpool
 
 t_threadpool	*threadpool_init(size_t	worker_count);
 void			threadpool_free(t_threadpool *pool);
-int				threadpool_push_work(t_threadpool *pool, t_work work);
+int				threadpool_push_work(t_threadpool *pool, t_work *work);
+void			threadpool_wait(t_threadpool *pool);
 
 /*
 ** Threads

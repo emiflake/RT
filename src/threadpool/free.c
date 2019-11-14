@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 19:47:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 20:54:34 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 12:09:45 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void		free_queue(t_work_node *node)
 	if (!node)
 		return ;
 	free_queue(node->next);
-	ft_printf("Freeing Work (%p)\n", node->work);
 	free(node);
 }
 
