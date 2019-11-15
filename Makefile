@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/13 01:03:26 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/14 12:50:20 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,6 +154,12 @@ STNAMES=		\
 				common/memset \
 				common/realloc \
 				common/strcmp \
+				threadpool/threadpool \
+				threadpool/push_work \
+				threadpool/worker \
+				threadpool/manager \
+				threadpool/wait \
+				threadpool/free \
 
 # Garbage location
 # .obj/

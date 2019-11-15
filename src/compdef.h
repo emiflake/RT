@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 01:38:24 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/14 19:26:08 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** By doing it this way, we are able to
 ** switch from floats to doubles.
 */
-# define SUPERSAMPLE 1
+# define SUPERSAMPLE 1024
 
 # define SUCCESS 0
 # define FAILURE 1
