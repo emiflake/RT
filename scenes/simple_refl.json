@@ -1,0 +1,44 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [-5, 0, -20]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"origin": [-20, 0, 10],
+			"radius": 5,
+			"color": [100, 255, 100]
+		},
+		{
+			"type": "sphere",
+			"origin": [-10, 0, 10],
+			"radius": 5,
+			"emission": [255, 255, 255]
+		},
+		{
+			"type": "sphere",
+			"origin": [10, 0, 10],
+			"radius": 5,
+			"emission": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"origin": [0, 0, 10],
+			"radius": 5,
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, -5, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 15],
+			"normal": [0, 0, -1],
+			"color": [255, 255, 255]
+		}
+	]
+}

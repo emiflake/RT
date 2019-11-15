@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 19:05:29 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 14:50:49 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 	t_ray					new_ray;
 	t_intersection			new_isect;
 
-	(void)scene;
-	(void)ray;
 	intersection(&isect->obj_ptr->shape, ray, isect);
 	aggregate_color = vec_make0();
 	vec_add_mut(&aggregate_color, &isect->obj_ptr->material.emission);
@@ -85,15 +83,14 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 	return (aggregate_color);
 }
 
-
 void	render_segm(void *data)
 {
-	t_render_segm	*segm = data;
-
+	t_render_segm	*segm;
 	t_intersection	isect;
 	t_ray			ray;
 	t_point2		pixel;
 
+	segm = data;
 	pixel = (t_point2){segm->start_position.x, segm->start_position.y};
 	while (pixel.y < segm->end_position.y)
 	{
@@ -131,8 +128,9 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 	t_work			work[SEGMENT_COUNT];
 	t_threadpool	*pool;
 	size_t			i;
+	bool			should_die;
 
-	pool = threadpool_init(50);
+	pool = threadpool_init(4);
 	if (!pool)
 	{
 		exit(FAILURE);
@@ -150,7 +148,7 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 		threadpool_push_work(pool, &work[i]);
 		i++;
 	}
-	bool should_die = false;
+	should_die = false;
 	while (!should_die)
 	{
 		should_die = true;
@@ -159,7 +157,7 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 			if (!segments[i].done)
 				should_die = false;
 		}
-		usleep(1);
+		usleep(10);
 	}
 	threadpool_free(pool);
 	ui_get_fps(1);

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   bounds.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 14:30:41 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/15 19:20:05 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/15 19:20:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "bbox.h"
 
-# include <SDL2/SDL.h>
-
-# include "core/scene/scene.h"
-
-typedef struct	s_render_segm
+t_vec	bounds(t_bbox bbox, bool want_max)
 {
-	SDL_Surface		*surface;
-	const t_scene	*scene;
-
-	volatile bool	done;
-
-	t_point2		start_position;
-	t_point2		end_position;
-}				t_render_segm;
-
-REAL			ui_get_fps(int do_tick);
-void			render_image(const t_scene *scene, SDL_Surface *surf);
-
-#endif
+	if (want_max)
+		return (bbox.max);
+	else
+		return (bbox.min);
+}

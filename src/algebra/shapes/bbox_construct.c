@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   bbox_construct.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 14:30:41 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/15 16:33:28 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/15 16:39:55 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "shape.h"
 
-# include <SDL2/SDL.h>
-
-# include "core/scene/scene.h"
-
-typedef struct	s_render_segm
+t_bbox					bbox_construct(const t_shape *shape)
 {
-	SDL_Surface		*surface;
-	const t_scene	*scene;
+	const t_bbox_fn	fns[] = {
+		&sphere_bbox,
+	};
+		// &plane_bbox,
+		// &disk_bbox,
+		// &square_bbox,
+		// &triangle_bbox,
+		// &cylinder_bbox,
+		// &cone_bbox,
+		// &cube_bbox
 
-	volatile bool	done;
-
-	t_point2		start_position;
-	t_point2		end_position;
-}				t_render_segm;
-
-REAL			ui_get_fps(int do_tick);
-void			render_image(const t_scene *scene, SDL_Surface *surf);
-
-#endif
+	return (fns[shape->type](shape));
+}

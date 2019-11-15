@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/14 12:50:20 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/15 19:14:19 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ all: $(NAME)
 CFLAGS=		\
 			-Werror -Wall -Wextra \
 			-O3 \
+			-pedantic \
 
 CC=			clang
 
@@ -60,6 +61,7 @@ STNAMES=		\
 				core/camera/camera \
 				core/container/push_obj \
 				core/container/intersect \
+				core/container/construct \
 				core/renderer/renderer \
 				core/renderer/fps \
 				core/scene/init \
@@ -102,6 +104,8 @@ STNAMES=		\
 				algebra/shapes/square_move \
 				algebra/shapes/tetrahedron_move \
 				algebra/shapes/triangle_move \
+				algebra/shapes/bbox_construct \
+				algebra/shapes/sphere_bbox \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \

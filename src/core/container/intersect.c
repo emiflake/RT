@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:20:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 18:32:11 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 19:04:59 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ bool	container_is_intersect(
 		curr_node = curr_node->next;
 	}
 	return (did_find);
+}
+
+bool			bvh_is_intersect(
+	const t_bvh_node *node, const t_ray *ray, t_intersection *isect)
+{
+	(void)node;
+	(void)ray;
+	(void)isect;
+	return (true);
 }
