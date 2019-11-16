@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 21:21:43 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/16 21:30:31 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/16 21:40:23 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "scene.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
-
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUPERSAMPLE 1
-
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL double
-
-#endif
+void	scene_free(t_scene *scene)
+{
+	container_free(scene->obj_container.root);
+	bvh_free(scene->bvh);
+}

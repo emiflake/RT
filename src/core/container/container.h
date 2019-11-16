@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/05 15:59:15 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 00:41:03 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 21:34:39 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_object_container
 void			container_push_object(
 	t_object_container *container, t_object *obj);
 
+void			container_free(t_object_container_node *nd);
+
 bool	container_is_intersect(
 	const t_object_container *container,
 	const t_ray *ray, t_intersection *isect);
@@ -60,5 +62,6 @@ t_bvh_node		*bvh_construct_rec(t_object_container_node *shapes,
 bool			bvh_is_intersect(
 	const t_bvh_node *node, const t_ray *ray, t_intersection *isect);
 void			bvh_debug(const t_bvh_node *node);
+void			bvh_free(t_bvh_node *node);
 
 #endif

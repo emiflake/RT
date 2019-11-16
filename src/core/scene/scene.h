@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 22:19:05 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 21:31:15 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct	s_scene
 }				t_scene;
 
 void			scene_init(t_scene	*scene, const char *scene_filename);
+void			scene_free(t_scene *scene);
 
 #endif

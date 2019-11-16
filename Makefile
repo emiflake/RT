@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/16 00:35:16 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/16 21:33:13 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,16 +62,20 @@ STNAMES=		\
 				core/container/push_obj \
 				core/container/intersect \
 				core/container/construct \
+				core/container/free \
 				core/renderer/renderer \
 				core/renderer/tracer \
 				core/renderer/fps \
 				core/scene/init \
+				core/scene/free \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \
+				ui/app_free \
 				ui/keystate \
 				ui/text \
 				ui/gfx_init \
+				ui/gfx_free \
 				ui/prim \
 				ui/putpixel \
 				algebra/ray/duplicate \

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:50:22 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 23:55:01 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 21:40:36 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ void		scene_init(t_scene *scene, const char *scene_filename)
 	scene->obj_container.root = NULL;
 	objects_init(&scene->obj_container, dict_get(json_root, "objects"));
 	scene->bvh = bvh_construct(scene->obj_container.root);
+	json_free(json_root);
 }

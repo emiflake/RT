@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 20:33:57 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 21:28:27 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int				window_init(t_window *win);
 
 int				app_init(t_app *app, int argc, char **argv);
 
-int				app_free(t_app *app);
+void			app_free(t_app *app);
 
 void			app_run(t_app *app);
 
 int				gfx_init(t_gfx_context *app);
+void			gfx_free(t_gfx_context *app);
 
 long			get_current_epoch(void);
 
