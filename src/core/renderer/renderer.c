@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 14:50:49 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 23:48:59 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_vec		trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 		new_ray.o = isect->p;
 		new_ray.depth = ray->depth - 1;
 		new_isect.t = INFINITY;
-		if (container_is_intersect(&scene->obj_container, &new_ray, &new_isect))
+		if (bvh_is_intersect(scene->bvh, &new_ray, &new_isect))
 		{
 			hemi = trace(scene, &new_ray, &new_isect);
 			t_vec temp = vec_mults_scalar(isect->obj_ptr->material.color, 1.0 / 255.0);
@@ -102,8 +102,9 @@ void	render_segm(void *data)
 			{
 				isect.t = INFINITY;
 				camera_cast_ray(&segm->scene->camera, &pixel, &ray, i);
-				if (container_is_intersect(&segm->scene->obj_container, &ray, &isect))
+				if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 				{
+					// aggregate = vec_adds(aggregate, (t_vec){255.0,255.0,255.0});
 					t_vec idk = trace(segm->scene, &ray, &isect);
 					vec_add_mut(&aggregate, &idk);
 				}

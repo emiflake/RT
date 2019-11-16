@@ -63,12 +63,6 @@
 			"origin": [70, 0, 10],
 			"radius": 5,
 			"emission": [255, 0, 0]
-		},
-		{
-			"type": "sphere",
-			"origin": [70, 0, 10],
-			"radius": 5,
-			"emission": [255, 0, 0]
 		}
 	]
 }

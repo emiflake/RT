@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 19:11:31 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 01:07:27 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ void			app_run(t_app *app)
 		ft_asprintf(&fps_text, "Welcome to our amazing RT");
 		ui_put_text_free(&app->gfx_ctx.font,
 			&app->window, (t_point2){10, 40}, fps_text);
+		ft_asprintf(&fps_text, "Camera Position: %.2lf %.2lf %.2lf\n", 
+			app->scene.camera.origin.x,
+			app->scene.camera.origin.y,
+			app->scene.camera.origin.z);
+		ui_put_text_free(&app->gfx_ctx.font,
+			&app->window, (t_point2){10, 70}, fps_text);
+		ft_asprintf(&fps_text, "Camera rotation: %.2lf %.2lf %.2lf\n", 
+			app->scene.camera.rotation.x,
+			app->scene.camera.rotation.y,
+			app->scene.camera.rotation.z);
+		ui_put_text_free(&app->gfx_ctx.font,
+			&app->window, (t_point2){10, 100}, fps_text);
 		SDL_UpdateWindowSurface(app->window.win_ptr);
 	}
 }

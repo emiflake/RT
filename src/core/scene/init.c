@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:50:22 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 17:06:19 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 23:55:01 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void		objects_init(t_object_container *cont, const t_json_value *val)
 		node = node->next;
 		i++;
 	}
-	t_bvh_node *tree = bvh_construct(cont->root);
-	bvh_debug(tree);
 	ft_printf("[INFO] Allocated %llu objects\n", i);
 }
 
@@ -124,4 +122,5 @@ void		scene_init(t_scene *scene, const char *scene_filename)
 	camera_init(&scene->camera, dict_get(json_root, "camera"));
 	scene->obj_container.root = NULL;
 	objects_init(&scene->obj_container, dict_get(json_root, "objects"));
+	scene->bvh = bvh_construct(scene->obj_container.root);
 }

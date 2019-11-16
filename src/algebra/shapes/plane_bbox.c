@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   bounds.c                                           :+:    :+:            */
+/*   plane_bbox.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/15 19:20:05 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 22:05:01 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/15 23:33:33 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/15 23:36:23 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bbox.h"
+#include "shape.h"
 
-t_vec	bbox_bounds(const t_bbox *bbox, bool want_max)
+t_bbox					plane_bbox(const t_shape *shape)
 {
-	if (want_max)
-		return (bbox->max);
-	else
-		return (bbox->min);
+	const t_plane *s = &shape->val.as_plane;
+
+	return ((t_bbox){
+		.min = vec_subs(s->origin, (t_vec){1000.0, 1000.0, 1000.0}),
+		.max = vec_adds(s->origin, (t_vec){1000.0, 1000.0, 1000.0}),
+	});
 }

@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/15 19:14:19 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/16 00:35:16 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,8 @@ STNAMES=		\
 				algebra/shapes/triangle_move \
 				algebra/shapes/bbox_construct \
 				algebra/shapes/sphere_bbox \
+				algebra/shapes/plane_bbox \
+				algebra/shapes/square_bbox \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \
@@ -134,6 +136,10 @@ STNAMES=		\
 				algebra/bbox/center \
 				algebra/bbox/merge \
 				algebra/bbox/extend \
+				algebra/bbox/bounds \
+				algebra/bbox/intersect \
+				algebra/bbox/debug \
+				algebra/bbox/compare_centers \
 				json/json \
 				json/string \
 				json/number \

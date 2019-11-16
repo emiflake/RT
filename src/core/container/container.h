@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/05 15:59:15 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 17:06:44 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 00:41:03 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct	s_bvh_node
 	t_object			*object;
 }				t_bvh_node;
 
-t_bvh_node		*bvh_construct(const t_object_container_node *shapes);
-t_bvh_node		*bvh_construct_rec(const t_object_container_node *shapes,
+t_bvh_node		*bvh_construct(t_object_container_node *shapes);
+t_bvh_node		*bvh_construct_rec(t_object_container_node *shapes,
 	size_t count,
 	size_t dimension);
 bool			bvh_is_intersect(

@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   bounds.c                                           :+:    :+:            */
+/*   compare_centers.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/15 19:20:05 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 22:05:01 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/16 00:31:19 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/16 00:42:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "core/object/object.h"
 #include "bbox.h"
 
-t_vec	bbox_bounds(const t_bbox *bbox, bool want_max)
+int		bbox_cmp_center(struct s_object *a, struct s_object *b, size_t dim)
 {
-	if (want_max)
-		return (bbox->max);
-	else
-		return (bbox->min);
+	t_bbox	ab;
+	t_bbox	bb;
+	t_vec	ac;
+	t_vec	bc;
+
+	ab = bbox_construct(&a->shape);
+	bb = bbox_construct(&b->shape);
+	ac = bbox_center(&ab);
+	bc = bbox_center(&bb);
+	if (dim == 0)
+		return (ac.x > bc.x ? 1 : -1);
+	if (dim == 1)
+		return (ac.y > bc.y ? 1 : -1);
+	if (dim == 2)
+		return (ac.z > bc.z ? 1 : -1);
+	return (0);
 }

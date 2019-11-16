@@ -6,16 +6,17 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 16:30:12 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 17:25:39 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 00:43:01 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "container.h"
 #include <ft_printf.h>
+#include <assert.h>
 
-t_bvh_node		*bvh_construct(const t_object_container_node *shapes)
+t_bvh_node		*bvh_construct(t_object_container_node *shapes)
 {
-	const t_object_container_node	*w;
+	t_object_container_node	*w;
 	size_t							i;
 
 	i = 0;
@@ -49,6 +50,7 @@ static t_bvh_node		*build_branch(t_bvh_node *left, t_bvh_node *right)
 	node = malloc(sizeof(t_bvh_node));
 	if (!node)
 		return (NULL);
+	assert(left != NULL && right != NULL);
 	node->bounding_box = bbox_merges(left->bounding_box, right->bounding_box);
 	node->left = left;
 	node->right = right;
@@ -56,26 +58,54 @@ static t_bvh_node		*build_branch(t_bvh_node *left, t_bvh_node *right)
 	return (node);
 }
 
-t_bvh_node		*bvh_construct_rec(const t_object_container_node *shapes,
+static void		bvh_sort(t_object_container_node *shapes, size_t count, size_t dimension)
+{
+	t_object_container_node	*i;
+	t_object_container_node	*j;
+	t_object				*tmp;
+	size_t					x;
+	size_t					y;
+
+	
+	i = shapes;
+	x = 0;
+	while (i && x < count)
+	{
+		y = x;
+		j = i;
+		while (j && y < count)
+		{
+			if (bbox_cmp_center(i->val, j->val, dimension) > 0)
+			{
+				tmp = i->val;
+				i->val = j->val;
+				j->val = tmp;
+			}
+			j = j->next;
+			y++;
+		}
+		i = i->next;
+		x++;
+	}
+}
+
+t_bvh_node		*bvh_construct_rec(t_object_container_node *shapes,
 	size_t count,
 	size_t dimension)
 {
 	t_bbox							aggregate_bbox;
-	const t_object_container_node	*node;
+	t_object_container_node	*node;
 	size_t							i;
 
-	(void)dimension;
 	aggregate_bbox = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
 							(t_vec){-INFINITY, -INFINITY, -INFINITY}};
 	if (count == 0)
 		return (NULL);
 	else if (count == 1)
-	{
-		ft_printf("Built leaf\n");
 		return (build_leaf(shapes->val));
-	}
 	else
 	{
+		bvh_sort(shapes, count, dimension);
 		i = 0;
 		node = shapes;
 		while (i < count / 2)
@@ -84,31 +114,7 @@ t_bvh_node		*bvh_construct_rec(const t_object_container_node *shapes,
 			node = node->next;
 		}
 		return (build_branch(
-			bvh_construct_rec(shapes, (count + 1) / 2, 0),
-			bvh_construct_rec(node, count / 2, 0)));
+			bvh_construct_rec(shapes, count / 2, (dimension + 1) % 3),
+			bvh_construct_rec(node, (count + 1) / 2, (dimension + 1) % 3)));
 	}
-}
-
-void			bvh_debug_c(const t_bvh_node *node, size_t indent)
-{
-	if (!node)
-	{
-		ft_printf("%*sNULL\n", indent, "");
-	}
-	else if (node->object)
-	{
-		ft_printf("%*sobject\n", indent, "");
-	}
-	else
-	{
-		ft_printf("%*s{\n", indent, "");
-		bvh_debug_c(node->left, indent + 4);
-		bvh_debug_c(node->right, indent + 4);
-		ft_printf("%*s}\n", indent, "");
-	}
-}
-
-void			bvh_debug(const t_bvh_node *node)
-{
-	bvh_debug_c(node, 0);
 }
