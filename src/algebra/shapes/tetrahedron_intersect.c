@@ -27,15 +27,12 @@ bool	is_tetrahedron_intersect(const t_shape *shape, const t_ray *ray,
 	
 	found = false;
 	i = 0;
-	while (i < 4)
+	while (i < 8)
 	{
-		shape2.val.as_triangle = shape->val.as_pyramid.side[i];
+		shape2.val.as_triangle = shape->val.as_tetrahedron.side[i];
 		if (is_triangle_intersect(&shape2, ray, intrs))
 			found = true;
 		i++;
 	}
-	shape2.val.as_square = shape->val.as_pyramid.base;
-	if (is_square_intersect(&shape2, ray, intrs))
-		found = true;
 	return (found);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   disk_init.c                                        :+:    :+:            */
+/*   cone_bbox.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -11,17 +11,21 @@
 /* ************************************************************************** */
 
 #include "shape.h"
+#include "../bbox/bbox.h"
 
-bool					disk_init(
-	t_shape *shape_out, const t_json_value *value)
+t_bbox		cone_bbox(const t_shape *shape)
 {
-	t_disk	*disk;
+    const t_cone	*s = &shape->val.as_cone;
+	REAL			length;
+    t_bbox			aggr;
 
-	shape_out->type = SHAPE_DISK;
-	disk = &shape_out->val.as_disk;
-	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &disk->plane.origin);
-	dict_def_vec(value, "normal", (t_vec){0, 0, 0}, &disk->plane.normal);
-	disk->inner_radius = dict_def_double(value, "inner_radius", 0.0);
-	disk->outer_radius = dict_def_double(value, "outer_radius", 0.0);
-	return (true);
+	length = ((s->pos_height - s->neg_height) +
+			(s->pos_height - s->neg_height) * tan(deg_to_rad(s->angle_deg)));
+	aggr = (t_bbox){(t_vec){s->origin.x - length,
+							s->origin.y - length,
+							s->origin.z - length},
+					(t_vec){s->origin.x + length,
+							s->origin.y + length,
+							s->origin.z + length}};
+	return (aggr);
 }

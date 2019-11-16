@@ -20,9 +20,14 @@
 const static t_shape_init_kvp	g_shape_init_map[] = {
 	{ "sphere", sphere_init },
 	{ "plane", plane_init },
-	{ "square", square_init },
-	{ "cube", cube_init },
 	{ "disk", disk_init },
+	{ "square", square_init },
+	{ "triangle", triangle_init },
+	{ "cylinder", cylinder_init },
+	{ "cone", cone_init },
+	{ "cube", cube_init },
+	{ "pyramid", pyramid_init },
+	{ "tetrahedron", tetrahedron_init }
 };
 
 static char				*get_type(const t_json_value *value)

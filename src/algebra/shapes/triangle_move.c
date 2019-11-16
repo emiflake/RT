@@ -15,8 +15,8 @@
 bool	triangle_move(t_shape *shape, t_vec *direction, REAL distance)
 {
 	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&shape->val.as_triangle.plane.origin, direction);
-	vec_add_mut(&shape->val.as_triangle.point_b, direction);
-	vec_add_mut(&shape->val.as_triangle.point_c, direction);
+	vec_add_mut(&shape->val.as_triangle.point[0], direction);
+	vec_add_mut(&shape->val.as_triangle.point[1], direction);
+	vec_add_mut(&shape->val.as_triangle.point[2], direction);
 	return (true);
 }

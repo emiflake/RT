@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   disk_init.c                                        :+:    :+:            */
+/*   cylinder_init.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -12,16 +12,16 @@
 
 #include "shape.h"
 
-bool					disk_init(
-	t_shape *shape_out, const t_json_value *value)
+bool	cylinder_init(t_shape *shape_out, const t_json_value *value)
 {
-	t_disk	*disk;
+	t_cylinder	*cylinder;
 
-	shape_out->type = SHAPE_DISK;
-	disk = &shape_out->val.as_disk;
-	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &disk->plane.origin);
-	dict_def_vec(value, "normal", (t_vec){0, 0, 0}, &disk->plane.normal);
-	disk->inner_radius = dict_def_double(value, "inner_radius", 0.0);
-	disk->outer_radius = dict_def_double(value, "outer_radius", 0.0);
+	shape_out->type = SHAPE_CYLINDER;
+	cylinder = &shape_out->val.as_cylinder;
+	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &cylinder->origin);
+	dict_def_vec(value, "axis", (t_vec){0, 0, 0}, &cylinder->axis);
+	cylinder->radius = dict_def_double(value, "radius", 0.0);
+	cylinder->pos_height = dict_def_double(value, "pos_height", 0.0);
+	cylinder->neg_height = dict_def_double(value, "neg_height", 0.0);
 	return (true);
 }

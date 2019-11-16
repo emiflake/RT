@@ -14,15 +14,11 @@
 
 bool	cube_move(t_shape *shape, t_vec *direction, REAL distance)
 {
-	int		i;
+	t_cube	*cube;
 
+	cube = &shape->val.as_cube;
 	vec_mult_mut_scalar(direction, distance);
 	vec_add_mut(&shape->val.as_cube.origin, direction);
-	i = 0;
-	while (i < 6)
-	{
-		vec_add_mut(&shape->val.as_cube.side[i].plane.origin, direction);
-		i++;
-	}
+	cube_set_sides(cube);
 	return (true);
 }

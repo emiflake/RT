@@ -43,7 +43,7 @@ static bool		find_normal(const t_ray *ray, t_cone *cone,
 	t_vec		origin_to_intersection;
 	REAL		length;
 
-	if (distance < 0)
+	if (distance < 0 || distance > intrs->t)
 		return (false);
 	surf_point = vec_adds(ray->o, vec_mults_scalar(ray->d, distance));
 	origin_to_intersection = vec_sub(&surf_point, &cone->origin);
@@ -65,19 +65,20 @@ bool			is_cone_intersect(const t_shape *shape, const t_ray *ray,
 	REAL		discr;
 	t_point2	root;
 	t_cone		*cone;
+	bool		res;
 
+	res = false;
 	cone = (t_cone*)&shape->val.as_cone;
 	find_abc(&abc, ray, cone);
 	discr = abc.y * abc.y - (4 * abc.x * abc.z);
 	if (discr < 0)
-		return (false);
+		return (res);
 	root = quad_eq(discr, abc.x, abc.y);
-	if (find_normal(ray, cone, intrs, root.y))
-		return (true);
+	res = find_normal(ray, cone, intrs, root.y);
 	if (find_normal(ray, cone, intrs, root.x))
 	{
 		vec_negate(&intrs->normal);
-		return (true);
+		res = true;
 	}
-	return (false);
+	return (res);
 }

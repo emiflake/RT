@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   disk_init.c                                        :+:    :+:            */
+/*   cone_init.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -12,16 +12,17 @@
 
 #include "shape.h"
 
-bool					disk_init(
-	t_shape *shape_out, const t_json_value *value)
+bool		cone_init(t_shape *shape_out, const t_json_value *value)
 {
-	t_disk	*disk;
+	t_cone	*cone;
 
-	shape_out->type = SHAPE_DISK;
-	disk = &shape_out->val.as_disk;
-	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &disk->plane.origin);
-	dict_def_vec(value, "normal", (t_vec){0, 0, 0}, &disk->plane.normal);
-	disk->inner_radius = dict_def_double(value, "inner_radius", 0.0);
-	disk->outer_radius = dict_def_double(value, "outer_radius", 0.0);
+	shape_out->type = SHAPE_CONE;
+	cone = &shape_out->val.as_cone;
+	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &cone->origin);
+	dict_def_vec(value, "axis", (t_vec){0, 0, 0}, &cone->axis);
+	cone->angle_deg = dict_def_double(value, "angle_deg", 0.0);
+	cone->pos_height = dict_def_double(value, "pos_height", 0.0);
+	cone->neg_height = dict_def_double(value, "neg_height", 0.0);
+	cone->cos_angle = cos(deg_to_rad(cone->angle_deg));
 	return (true);
 }

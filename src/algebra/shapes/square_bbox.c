@@ -22,6 +22,7 @@ t_bbox					square_bbox(const t_shape *shape)
 	bbox_extend_mut(&aggr, s->plane.origin);
 	bbox_extend_mut(&aggr, vec_adds(s->plane.origin, s->side_a));
 	bbox_extend_mut(&aggr, vec_adds(s->plane.origin, s->side_b));
-	bbox_extend_mut(&aggr, vec_adds(vec_adds(s->plane.origin, s->side_b), s->side_a));
+	bbox_extend_mut(&aggr, vec_adds(vec_adds(s->plane.origin, s->side_b),
+									s->side_a));
 	return (aggr);
 }

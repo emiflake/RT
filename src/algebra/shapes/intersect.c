@@ -20,7 +20,8 @@ void	intersection(
 	const t_inter_fn	fns[] = {
 		&sphere_intersecton, &plane_intersection, &disk_intersection,
 		&square_intersection, &triangle_intersection, &cylinder_intersection,
-		&cone_intersection, &cube_intersection
+		&cone_intersection, &cube_intersection, &pyramid_intersection,
+		&tetrahedron_intersection
 	};
 
 	fns[shape->type](ray, isect);
@@ -32,7 +33,8 @@ bool	is_intersect(
 	const t_is_inter_fn	fns[] = {
 		&is_sphere_intersect, &is_plane_intersect, &is_disk_intersect,
 		&is_square_intersect, &is_triangle_intersect, &is_cylinder_intersect,
-		&is_cone_intersect, &is_cube_intersect
+		&is_cone_intersect, &is_cube_intersect, &is_pyramid_intersect,
+		&is_tetrahedron_intersect
 	};
 
 	return (fns[shape->type](shape, ray, isect));
