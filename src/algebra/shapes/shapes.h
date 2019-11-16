@@ -19,6 +19,7 @@
 typedef struct		s_sphere
 {
 	t_vec			origin;
+	t_vec			axis[3];
 	REAL			radius;
 }					t_sphere;
 
@@ -44,17 +45,11 @@ typedef struct		s_square
 	REAL			dot_b;
 }					t_square;
 
-// TODO: defo reimplement this using just 3 `t_vec`s
-
 typedef struct		s_triangle
 {
-	t_plane			plane;
-	t_vec			side_a_c;
-	t_vec			side_a_b;
-	t_vec			side_b_c;
-	t_vec			side_c_a;
-	t_vec			point_b;
-	t_vec			point_c;
+	t_vec			point[3];
+	t_vec			normal[3];
+	t_vec			side[2];
 }					t_triangle;
 
 typedef struct		s_cylinder
@@ -80,31 +75,22 @@ typedef struct		s_cube
 {
 	t_vec			origin;
 	t_vec			size;
-	t_vec			up_axis;
-	t_vec			front_axis;
-	t_vec			right_axis;
+	t_vec			axis[3];
 	t_square		side[6];
 }					t_cube;
 
 typedef struct		s_pyramid
 {
 	t_vec			origin;
-	t_vec			size;
-	t_vec			up_axis;
-	t_vec			front_axis;
-	t_vec			right_axis;
-	t_triangle		side[4];
+	t_vec			point[4];
+	t_triangle		side[8];
 	t_square		base;
 }					t_pyramid;
 
 typedef struct		s_tetrahedron
 {
-	t_vec			origin;
-	t_vec			size;
-	t_vec			up_axis;
-	t_vec			front_axis;
-	t_vec			right_axis;
-	t_triangle		side[4];
+	t_vec			point[4];
+	t_triangle		side[8];
 }					t_tetrahedron;
 
 #endif

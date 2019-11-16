@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   disk_init.c                                        :+:    :+:            */
+/*   pyramid_bbox.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -11,17 +11,22 @@
 /* ************************************************************************** */
 
 #include "shape.h"
+#include "../bbox/bbox.h"
 
-bool					disk_init(
-	t_shape *shape_out, const t_json_value *value)
+t_bbox		pyramid_bbox(const t_shape *shape)
 {
-	t_disk	*disk;
+    const t_pyramid		*s = &shape->val.as_pyramid;
+    t_bbox				aggr;
+	int					i;
 
-	shape_out->type = SHAPE_DISK;
-	disk = &shape_out->val.as_disk;
-	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &disk->plane.origin);
-	dict_def_vec(value, "normal", (t_vec){0, 0, 0}, &disk->plane.normal);
-	disk->inner_radius = dict_def_double(value, "inner_radius", 0.0);
-	disk->outer_radius = dict_def_double(value, "outer_radius", 0.0);
-	return (true);
+    aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
+		(t_vec){-INFINITY, -INFINITY, -INFINITY}};
+	bbox_extend_mut(&aggr, s->origin);
+	i = 0;
+	while (i < 4)
+	{
+		bbox_extend_mut(&aggr, s->point[i]);
+		i++;
+	}
+	return (aggr);
 }

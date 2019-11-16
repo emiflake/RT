@@ -15,15 +15,10 @@
 t_bbox					bbox_construct(const t_shape *shape)
 {
 	const t_bbox_fn	fns[] = {
-		&sphere_bbox,
-		&plane_bbox,
-		&square_bbox, //!!!!!
-		&square_bbox,
+		&sphere_bbox, &plane_bbox, &disk_bbox,
+		&square_bbox, &triangle_bbox, &cylinder_bbox,
+		&cone_bbox, &cube_bbox, &pyramid_bbox, &tetrahedron_bbox
 	};
-		// &triangle_bbox,
-		// &cylinder_bbox,
-		// &cone_bbox,
-		// &cube_bbox
 
 	return (fns[shape->type](shape));
 }

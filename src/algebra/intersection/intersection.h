@@ -13,11 +13,14 @@
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
 
+#include "../point2/point2.h"
+
 typedef struct	s_intersection
 {
 	struct s_object		*obj_ptr;
 	REAL				t;
 	t_vec				p;
+	t_point2			uv;
 	t_vec				normal;
 }				t_intersection;
 

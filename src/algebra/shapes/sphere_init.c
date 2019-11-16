@@ -23,5 +23,13 @@ bool					sphere_init(
 	sphere = &shape_out->val.as_sphere;
 	sphere->radius = dict_def_double(value, "radius", 0);
 	dict_def_vec(value, "origin", (t_vec){0, 0, 0}, &sphere->origin);
+	dict_def_vec(value, "axis", (t_vec){0, 0, 0}, &sphere->axis[0]);
+	vec_normalize(&sphere->axis[0]);
+	sphere->axis[1] = (t_vec){-0.147, 0.864, 0.333};
+	vec_normalize(&sphere->axis[1]);
+	sphere->axis[2] = vec_cross(&sphere->axis[0], &sphere->axis[1]);
+	vec_normalize(&sphere->axis[2]);
+	sphere->axis[1] = vec_cross(&sphere->axis[0], &sphere->axis[2]);
+	vec_normalize(&sphere->axis[1]);
 	return (true);
 }

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   triangle_bbox.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 01:17:12 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/13 01:00:23 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/13 01:04:02 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "shape.h"
+#include "../bbox/bbox.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+t_bbox		triangle_bbox(const t_shape *shape)
+{
+    const t_triangle		*s = &shape->val.as_triangle;
+    t_bbox					aggr;
+	int						i;
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUPERSAMPLE 1024
-
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL double
-
-#endif
+    aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
+		(t_vec){-INFINITY, -INFINITY, -INFINITY}};
+	i = 0;
+	while (i < 3)
+	{
+		bbox_extend_mut(&aggr, s->point[i]);
+		i++;
+	}
+	return (aggr);
+}

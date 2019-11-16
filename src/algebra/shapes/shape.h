@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/15 23:36:19 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/13 01:10:44 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,23 +128,55 @@ typedef	struct			s_shape_init_kvp
 bool					init_shape(
 	t_shape *shape_out, const t_json_value *value);
 
-bool					sphere_init(
-	t_shape *shape_out, const t_json_value *value);
-
-bool					plane_init(
-	t_shape *shape_out, const t_json_value *value);
-
-bool					square_init(
+bool					cone_init(
 	t_shape *shape_out, const t_json_value *value);
 
 bool					cube_init(
 	t_shape *shape_out, const t_json_value *value);
 
+bool					cylinder_init(
+	t_shape *shape_out, const t_json_value *value);
+
 bool					disk_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					plane_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					pyramid_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					sphere_init(
+	t_shape *shape_out, const t_json_value *value);
+
+
+bool					square_init(
+	t_shape *shape_out, const t_json_value *value);
+
+bool					tetrahedron_init(
 	t_shape *shape_out, const t_json_value *value);
 
 bool					triangle_init(
 	t_shape *shape_out, const t_json_value *value);
+
+/*
+** Auxiliar functions
+*/
+
+void	cube_set_sides(
+	t_cube *cube);
+
+void					pyramid_normals(
+	t_pyramid *pyr);
+
+void					square_set(
+	t_square *square, t_vec origin, t_vec point_a, t_vec point_b);
+
+void					square_set_side(
+	t_square *square, t_vec *origin, t_vec *side_a, t_vec *side_b);
+
+void					triangle_set(
+	t_triangle *tri, t_vec a_pos, t_vec b_pos, t_vec c_pos);
 
 /*
 ** Moving objects
@@ -189,6 +221,7 @@ t_bbox					plane_bbox(const t_shape *shape);
 t_bbox					square_bbox(const t_shape *shape);
 t_bbox					cone_bbox(const t_shape *shape);
 t_bbox					cube_bbox(const t_shape *shape);
+t_bbox					cylinder_bbox(const t_shape *shape);
 t_bbox					disk_bbox(const t_shape *shape);
 t_bbox					pyramid_bbox(const t_shape *shape);
 t_bbox					tetrahedron_bbox(const t_shape *shape);

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tetrahedron_move.c                                 :+:    :+:            */
+/*   tetrahedron_init.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: pacovali <marvin@codam.nl>                   +#+                     */
+/*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/01 00:42:00 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/01 00:42:01 by pacovali      ########   odam.nl         */
+/*   Created: 2019/11/13 01:10:30 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/13 01:13:12 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
 
-bool	tetrahedron_move(t_shape *shape, t_vec *direction, REAL distance)
+bool		tetrahedron_init(t_shape *shape_out, const t_json_value *value)
 {
 	t_tetrahedron	*tet;
 
-	tet = &shape->val.as_tetrahedron;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&tet->point[0], direction);
-	vec_add_mut(&tet->point[1], direction);
-	vec_add_mut(&tet->point[2], direction);
-	vec_add_mut(&tet->point[3], direction);
+	shape_out->type = SHAPE_TETRAHEDRON;
+	tet = &shape_out->val.as_tetrahedron;
+	dict_def_vec(value, "a_pos", (t_vec){0, 0, 0}, &tet->point[0]);
+	dict_def_vec(value, "b_pos", (t_vec){0, 0, 0}, &tet->point[1]);
+	dict_def_vec(value, "c_pos", (t_vec){0, 0, 0}, &tet->point[2]);
+	dict_def_vec(value, "d_pos", (t_vec){0, 0, 0}, &tet->point[3]);
 	triangle_set(&tet->side[0], tet->point[2], tet->point[3], tet->point[1]);
 	triangle_set(&tet->side[1], tet->point[3], tet->point[0], tet->point[2]);
 	triangle_set(&tet->side[2], tet->point[1], tet->point[0], tet->point[3]);

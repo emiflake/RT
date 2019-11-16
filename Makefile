@@ -88,11 +88,16 @@ STNAMES=		\
 				algebra/shapes/tetrahedron_intersect \
 				algebra/shapes/triangle_intersect \
 				algebra/shapes/init \
-				algebra/shapes/sphere_init \
-				algebra/shapes/plane_init \
-				algebra/shapes/square_init \
+				algebra/shapes/cone_init \
 				algebra/shapes/cube_init \
+				algebra/shapes/cylinder_init \
 				algebra/shapes/disk_init \
+				algebra/shapes/plane_init \
+				algebra/shapes/pyramid_init \
+				algebra/shapes/sphere_init \
+				algebra/shapes/square_init \
+				algebra/shapes/tetrahedron_init \
+				algebra/shapes/triangle_init \
 				algebra/shapes/move \
 				algebra/shapes/cone_move \
 				algebra/shapes/cube_move \
@@ -105,9 +110,16 @@ STNAMES=		\
 				algebra/shapes/tetrahedron_move \
 				algebra/shapes/triangle_move \
 				algebra/shapes/bbox_construct \
-				algebra/shapes/sphere_bbox \
+				algebra/shapes/cone_bbox \
+				algebra/shapes/cube_bbox \
+				algebra/shapes/cylinder_bbox \
+				algebra/shapes/disk_bbox \
 				algebra/shapes/plane_bbox \
+				algebra/shapes/pyramid_bbox \
+				algebra/shapes/sphere_bbox \
 				algebra/shapes/square_bbox \
+				algebra/shapes/tetrahedron_bbox \
+				algebra/shapes/triangle_bbox \
 				algebra/vector/addition \
 				algebra/vector/subtraction \
 				algebra/vector/multiplication \
