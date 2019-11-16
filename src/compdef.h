@@ -23,7 +23,7 @@
 ** By doing it this way, we are able to
 ** switch from floats to doubles.
 */
-# define SUPERSAMPLE 1024
+# define SUPERSAMPLE 16
 
 # define SUCCESS 0
 # define FAILURE 1

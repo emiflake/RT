@@ -63,6 +63,7 @@ STNAMES=		\
 				core/container/intersect \
 				core/container/construct \
 				core/renderer/renderer \
+				core/renderer/tracer \
 				core/renderer/fps \
 				core/scene/init \
 				ui/window_init \
@@ -145,6 +146,7 @@ STNAMES=		\
 				algebra/mmath/max \
 				algebra/mmath/clamp \
 				algebra/mmath/rand \
+				algebra/mmath/vector_randomizer \
 				algebra/bbox/center \
 				algebra/bbox/merge \
 				algebra/bbox/extend \

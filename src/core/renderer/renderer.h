@@ -30,5 +30,9 @@ typedef struct	s_render_segm
 
 REAL			ui_get_fps(int do_tick);
 void			render_image(const t_scene *scene, SDL_Surface *surf);
+void			render_segm(void *data);
+void			render_image(const t_scene *scene, SDL_Surface *surf);
+t_vec			trace(
+				const t_scene *scene, const t_ray *ray, t_intersection *isect);
 
 #endif
