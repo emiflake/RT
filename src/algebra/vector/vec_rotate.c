@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 18:56:23 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/23 17:53:36 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/15 14:53:24 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			vec_rotate_one(t_vec *v, REAL angle_rad, int axis_id)
 ** rotate in global coordinates
 */
 
-void			vec_rotate_xyz(t_vec *v, t_vec *rotation_rad)
+void			vec_rotate_xyz(t_vec *v, const t_vec *rotation_rad)
 {
 	if (rotation_rad->x)
 		vec_rotate_one(v, rotation_rad->x, 1);
@@ -77,7 +77,7 @@ void			vec_rotate_xyz(t_vec *v, t_vec *rotation_rad)
 ** rotate in local (object's) coordinates - mostly for camera
 */
 
-void			vec_rotate_zyx(t_vec *v, t_vec *rotation_rad)
+void			vec_rotate_zyx(t_vec *v, const t_vec *rotation_rad)
 {
 	if (rotation_rad->z)
 		vec_rotate_one(v, rotation_rad->z, 3);

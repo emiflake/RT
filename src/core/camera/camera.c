@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 19:24:45 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 14:51:47 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,8 @@ void			camera_cast_ray(
 	py = (1.0 - 2.0 * ((REAL)pos->y + 0.5 + super.y) / cam->dim.y) * cam->delta;
 	dir = vec_mk(px, py, 1.0);
 	vec_normalize(&dir);
-	// ft_printf("delta: %lf\n", cam->delta);
-	// ft_printf("dim: %lf, %lf\n", cam->dim.x, cam->dim.y);
-	// ft_printf("Generated ray: %lf, %lf, %lf\n", dir.x, dir.y, dir.z);
+	vec_rotate_xyz(&dir, &cam->rotation);
 	ray_out->o = cam->origin;
 	ray_out->d = dir;
 	ray_out->depth = 5;
 }
-

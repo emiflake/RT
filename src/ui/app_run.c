@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 19:19:52 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/16 01:07:27 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,36 @@
 #include "core/renderer/renderer.h"
 #include "ui.h"
 
-void	app_run(t_app *app)
+static void	camera_move(t_camera *camera, const t_vec *delta)
+{
+	camera->origin.x +=
+		cos(camera->rotation.y) * delta->x - sin(camera->rotation.y) * delta->z;
+	camera->origin.y += delta->y;
+	camera->origin.z -=
+		-cos(camera->rotation.y)
+		* delta->z - sin(camera->rotation.y) * delta->x;
+}
+
+static void		update(t_app *app)
+{
+	const REAL 		speed = keystate_is_down(&app->keys, SDL_SCANCODE_LSHIFT) ? 2.0 : 0.5;
+	t_vec			delta;
+
+	delta = (t_vec){0.0, 0.0, 0.0};
+	delta.x += keystate_is_down(&app->keys, SDL_SCANCODE_D) * speed;
+	delta.x -= keystate_is_down(&app->keys, SDL_SCANCODE_A) * speed;
+	delta.y += keystate_is_down(&app->keys, SDL_SCANCODE_E) * speed;
+	delta.y -= keystate_is_down(&app->keys, SDL_SCANCODE_Q) * speed;
+	delta.z += keystate_is_down(&app->keys, SDL_SCANCODE_W) * speed;
+	delta.z -= keystate_is_down(&app->keys, SDL_SCANCODE_S) * speed;
+	camera_move(&app->scene.camera, &delta);
+	app->scene.camera.rotation.y += keystate_is_down(&app->keys, SDL_SCANCODE_LEFT) * speed * 0.1;
+	app->scene.camera.rotation.y -= keystate_is_down(&app->keys, SDL_SCANCODE_RIGHT) * speed * 0.1;
+	app->scene.camera.rotation.x += keystate_is_down(&app->keys, SDL_SCANCODE_DOWN) * speed * 0.1;
+	app->scene.camera.rotation.x -= keystate_is_down(&app->keys, SDL_SCANCODE_UP) * speed * 0.1;
+}
+
+void			app_run(t_app *app)
 {
 	SDL_Event	evt;
 	char		*fps_text;
@@ -38,6 +67,7 @@ void	app_run(t_app *app)
 			if (evt.type == SDL_KEYUP)
 				keystate_set_up(&app->keys, evt.key.keysym.scancode);
 		}
+		update(app);
 		prim_clear(app->window.win_srf, 0x000000);
 		camera_recompute(&app->scene.camera,
 			app->window.win_srf->w, app->window.win_srf->h);
@@ -50,6 +80,18 @@ void	app_run(t_app *app)
 		ft_asprintf(&fps_text, "Welcome to our amazing RT");
 		ui_put_text_free(&app->gfx_ctx.font,
 			&app->window, (t_point2){10, 40}, fps_text);
+		ft_asprintf(&fps_text, "Camera Position: %.2lf %.2lf %.2lf\n", 
+			app->scene.camera.origin.x,
+			app->scene.camera.origin.y,
+			app->scene.camera.origin.z);
+		ui_put_text_free(&app->gfx_ctx.font,
+			&app->window, (t_point2){10, 70}, fps_text);
+		ft_asprintf(&fps_text, "Camera rotation: %.2lf %.2lf %.2lf\n", 
+			app->scene.camera.rotation.x,
+			app->scene.camera.rotation.y,
+			app->scene.camera.rotation.z);
+		ui_put_text_free(&app->gfx_ctx.font,
+			&app->window, (t_point2){10, 100}, fps_text);
 		SDL_UpdateWindowSurface(app->window.win_ptr);
 	}
 }

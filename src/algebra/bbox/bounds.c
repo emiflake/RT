@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   scene.h                                            :+:    :+:            */
+/*   bounds.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 22:19:05 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/15 19:20:05 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/15 22:05:01 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "bbox.h"
 
-# include "core/container/container.h"
-# include "core/camera/camera.h"
-
-typedef struct	s_scene
+t_vec	bbox_bounds(const t_bbox *bbox, bool want_max)
 {
-	t_object_container	obj_container;
-	t_bvh_node			*bvh;
-	t_camera			camera;
-}				t_scene;
-
-void			scene_init(t_scene	*scene, const char *scene_filename);
-
-#endif
+	if (want_max)
+		return (bbox->max);
+	else
+		return (bbox->min);
+}

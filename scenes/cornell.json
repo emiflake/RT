@@ -6,40 +6,56 @@
 	"objects": [
 		{
 			"type": "square",
-			"origin": [-15, 40, -20],
+			"origin": [-15, 39.9, -15],
 			"normal": [0, -1, 0],
 			"side_a": [0, 0, 30],
 			"side_b": [30, 0, 0],
 			"emission": [255, 255, 255]
 		},
 		{
-			"type": "plane",
-			"origin": [0, 0, 20],
-			"normal": [0, 0, -1],
+			"type": "square",
+			"origin": [-20, 40, -20],
+			"normal": [0, -1, 0],
+			"side_a": [0, 0, 40],
+			"side_b": [40, 0, 0],
 			"color": [255, 255, 255]
 		},
 		{
-			"type": "plane",
-			"origin": [20, 0, 0],
-			"normal": [-1, 0, 0],
-			"color": [100, 255, 100]
+			"type": "square",
+			"origin": [-20, 0, 20],
+			"normal": [0, 0, -1],
+			"side_a": [40, 0, 0],
+			"side_b": [0, 40, 0],
+			"color": [255, 255, 255]
 		},
 		{
-			"type": "plane",
-			"origin": [-20, 0, 0],
+			"type": "square",
+			"origin": [-20, 0, -20],
 			"normal": [1, 0, 0],
+			"side_a": [0, 0, 40],
+			"side_b": [0, 40, 0],
 			"color": [255, 100, 100]
 		},
 		{
-			"type": "plane",
-			"origin": [0, 0, 0],
+			"type": "square",
+			"origin": [20, 0, -20],
+			"normal": [-1, 0, 0],
+			"side_a": [0, 0, 40],
+			"side_b": [0, 40, 0],
+			"color": [100, 255, 100]
+		},
+		{
+			"type": "square",
+			"origin": [-20, 0, -20],
 			"normal": [0, 1, 0],
+			"side_a": [0, 0, 40],
+			"side_b": [40, 0, 0],
 			"color": [255, 255, 255]
 		},
 		{
-			"type": "plane",
-			"origin": [0, 40, 0],
-			"normal": [0, -1, 0],
+			"type": "sphere",
+			"origin": [0, 5, 10],
+			"radius": 5,
 			"color": [255, 255, 255]
 		}
 	]

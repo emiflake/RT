@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/14 19:04:18 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 14:30:41 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_render_segm
 	SDL_Surface		*surface;
 	const t_scene	*scene;
 
-	bool			done;
+	volatile bool	done;
 
 	t_point2		start_position;
 	t_point2		end_position;

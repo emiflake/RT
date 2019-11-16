@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   scene.h                                            :+:    :+:            */
+/*   bbox_construct.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/07 16:36:19 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 22:19:05 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/15 16:33:28 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/15 23:41:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "shape.h"
 
-# include "core/container/container.h"
-# include "core/camera/camera.h"
-
-typedef struct	s_scene
+t_bbox					bbox_construct(const t_shape *shape)
 {
-	t_object_container	obj_container;
-	t_bvh_node			*bvh;
-	t_camera			camera;
-}				t_scene;
+	const t_bbox_fn	fns[] = {
+		&sphere_bbox,
+		&plane_bbox,
+		&square_bbox, //!!!!!
+		&square_bbox,
+	};
+		// &triangle_bbox,
+		// &cylinder_bbox,
+		// &cone_bbox,
+		// &cube_bbox
 
-void			scene_init(t_scene	*scene, const char *scene_filename);
-
-#endif
+	return (fns[shape->type](shape));
+}

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:19:53 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 18:12:10 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 14:53:56 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				vec_to_ints(const t_vec v);
 void			vec_color_clamp_mut(t_vec *aggregate_color);
 
 void			vec_rotate_one(t_vec *v, REAL angle_rad, int axis_id);
-void			vec_rotate_xyz(t_vec *v, t_vec *rotation_rad);
-void			vec_rotate_zyx(t_vec *v, t_vec *rotation_rad);
+void			vec_rotate_zyx(t_vec *v, const t_vec *rotation_rad);
+void			vec_rotate_xyz(t_vec *v, const t_vec *rotation_rad);
 
 #endif

@@ -1,0 +1,49 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [-88, 44, -87.5],
+		"rotation": [0.4, -0.80, 0.0]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"origin": [-20, 0, 10],
+			"radius": 5,
+			"color": [100, 255, 100]
+		},
+		{
+			"type": "sphere",
+			"origin": [-10, 0, 10],
+			"radius": 5,
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "sphere",
+			"origin": [10, 0, 10],
+			"radius": 5,
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"origin": [0, 0, 10],
+			"radius": 5,
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-25, 40, -25],
+			"normal": [0, -1, 0],
+			"side_a": [0, 0, 50],
+			"side_b": [50, 0, 0],
+			"emission": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-50, -5, -50],
+			"normal": [0, 1, 0],
+			"side_a": [0, 0, 100],
+			"side_b": [100, 0, 0],
+			"color": [255, 255, 255]
+		}
+	]
+}

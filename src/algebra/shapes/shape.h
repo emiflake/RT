@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/13 01:10:44 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/15 23:36:19 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "json/json.h"
 # include <stdbool.h>
 # include "shapes.h"
+# include "algebra/bbox/bbox.h"
 # include "../point2/point2.h"
 # include "../intersection/intersection.h"
 
@@ -175,5 +176,22 @@ bool					tetrahedron_move(t_shape *shape, t_vec *direction,
 							REAL distance);
 bool					triangle_move(t_shape *shape, t_vec *direction,
 							REAL distance);
+
+/*
+** Constructing BBOXs
+*/
+
+typedef t_bbox(*t_bbox_fn)(const t_shape *shape);
+
+t_bbox					bbox_construct(const t_shape *shape);
+t_bbox					sphere_bbox(const t_shape *shape);
+t_bbox					plane_bbox(const t_shape *shape);
+t_bbox					square_bbox(const t_shape *shape);
+t_bbox					cone_bbox(const t_shape *shape);
+t_bbox					cube_bbox(const t_shape *shape);
+t_bbox					disk_bbox(const t_shape *shape);
+t_bbox					pyramid_bbox(const t_shape *shape);
+t_bbox					tetrahedron_bbox(const t_shape *shape);
+t_bbox					triangle_bbox(const t_shape *shape);
 
 #endif
