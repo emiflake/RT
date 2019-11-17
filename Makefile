@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/17 16:14:35 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/17 17:53:11 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,19 @@ PRINTF_INC=		-I$(PRINTF_DIR)
 $(PRINTF):
 	@$(MAKE) -s -C $(PRINTF_DIR)
 
-DEPS=			$(PRINTF)
+IMG_DIR=		$(DEP_DIR)/libimg
+IMG=			$(IMG_DIR)/libimg.a
+IMG_INC=		-I$(IMG_DIR)
+$(IMG):
+	@$(MAKE) -s -C $(IMG_DIR)
+
+DEPS=			\
+				$(PRINTF) \
+				$(IMG) \
 
 DEP_FLAGS=		\
 				-L$(PRINTF_DIR) -lftprintf \
+				-L$(IMG_DIR) -limg \
 				$(shell sdl2-config --libs) \
 				-lSDL2_ttf \
 
@@ -196,6 +205,10 @@ STNAMES=		\
 				threadpool/manager \
 				threadpool/wait \
 				threadpool/free \
+				texture/get_texture \
+				texture/load_texture_file \
+				texture/texture_init \
+				texture/uv_texel \
 
 # Garbage location
 # .obj/
