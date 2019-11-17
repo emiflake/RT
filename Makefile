@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/17 17:53:11 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/17 18:32:41 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ STNAMES=		\
 				ui/app_run \
 				ui/app_free \
 				ui/keystate \
+				ui/keystate_any \
 				ui/text \
 				ui/gfx_init \
 				ui/gfx_free \

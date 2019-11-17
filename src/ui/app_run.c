@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 14:23:10 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 18:34:18 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ft_printf.h>
 
 #include "core/renderer/renderer.h"
+#include "algebra/mmath/mmath.h"
 #include "ui.h"
 
 static void		camera_move(t_camera *camera, const t_vec *delta)
@@ -46,6 +47,8 @@ static void		update(t_app *a)
 	cam->rotation.y -= keystate_is_down(&a->keys, SDL_SCANCODE_RIGHT) * s * 0.1;
 	cam->rotation.x += keystate_is_down(&a->keys, SDL_SCANCODE_DOWN) * s * 0.1;
 	cam->rotation.x -= keystate_is_down(&a->keys, SDL_SCANCODE_UP) * s * 0.1;
+	if (keystate_any(&a->keys))
+		rb_clear(a->realbuf);
 }
 
 void			dbg_text(t_app *app)
@@ -97,7 +100,9 @@ void			app_run(t_app *app)
 		update(app);
 		camera_recompute(&app->scene.camera,
 			app->window.win_srf->w, app->window.win_srf->h);
-		render_image(&app->scene, app->window.win_srf);
+		render_image(&app->scene, app->realbuf);
+		rb_compress(app->realbuf, app->window.win_srf);
+		rb_inc_sample(app->realbuf);
 		dbg_text(app);
 		SDL_UpdateWindowSurface(app->window.win_ptr);
 	}

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/17 15:49:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:06:27 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 18:12:00 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void			rb_add_sample(
 	assert(y >= 0);
 	assert(x < buf->width);
 	assert(y < buf->height);
-	vec_add_mut(&buf->buf[x + buf->height * y], contrib);
+	vec_add_mut(&buf->buf[x + buf->width * y], contrib);
 }

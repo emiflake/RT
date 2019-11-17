@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:54:01 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 14:23:16 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 18:32:24 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void				keystate_set_up(t_keystate *ks, t_key key);
 bool				keystate_is_down(const t_keystate *ks, t_key key);
 void				keystate_init(t_keystate *ks);
 void				keystate_debug(const t_keystate *ks);
+bool				keystate_any(t_keystate *ks);
 
 #endif

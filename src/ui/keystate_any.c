@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   rb_clear.c                                         :+:    :+:            */
+/*   keystate_any.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/17 15:45:52 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 18:34:52 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 18:30:15 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 18:34:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <assert.h>
+#include <stddef.h>
 
-#include "realbuffer.h"
+#include "keystate.h"
 
-void			rb_clear(t_realbuffer *buf)
+bool	keystate_any(t_keystate *ks)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
-	while (i < buf->height * buf->width)
+	while (i < sizeof(ks->keys) / sizeof(ks->keys[0]))
 	{
-		assert(buf->buf);
-		buf->buf[i].x = 0.0;
-		buf->buf[i].y = 0.0;
-		buf->buf[i].z = 0.0;
+		if (ks->keys[i])
+			return (true);
 		i++;
 	}
-	buf->samples = 1;
+	return (false);
 }
