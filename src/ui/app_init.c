@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 16:39:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 16:26:28 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			usage(int argc, char **argv)
 	return (FAILURE);
 }
 
-int				app_init(t_app *app, int argc, char **argv)
+int			app_init(t_app *app, int argc, char **argv)
 {
 	if (window_init(&app->window) != SUCCESS)
 		return (FAILURE);
@@ -34,8 +34,20 @@ int				app_init(t_app *app, int argc, char **argv)
 	ft_printf("- Welcome to RT! -\n");
 	app->running = true;
 	keystate_init(&app->keys);
+	if (settings_init(&app->settings) == FAILURE ||
+		scene_init(&app->scene, argv[1]) == FAILURE)
+	{
+		SDL_DestroyWindow(app->window.win_ptr);
+		return (FAILURE);
+	}
+	app->realbuf = rb_create(1280, 720);
+	if (!app->realbuf)
+	{
+		SDL_DestroyWindow(app->window.win_ptr);
+		scene_free(&app->scene);
+		return (FAILURE);
+	}
 	gfx_init(&app->gfx_ctx);
-	scene_init(&app->scene, argv[1]);
 	srand(time(NULL));
 	return (SUCCESS);
 }

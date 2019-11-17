@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   rb_free.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:49:04 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 16:06:04 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#include "realbuffer.h"
 
-void	app_free(t_app *app)
+void	rb_free(t_realbuffer *buf)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
+	free(buf->buf);
+	free(buf);
 }

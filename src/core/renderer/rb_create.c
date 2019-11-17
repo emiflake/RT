@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   rb_create.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:38:07 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 16:31:31 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#include "realbuffer.h"
 
-void	app_free(t_app *app)
+t_realbuffer	*rb_create(size_t w, size_t h)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
+	t_realbuffer	*buf;
+
+	buf = (t_realbuffer*)malloc(sizeof(t_realbuffer));
+	if (!buf)
+		return (NULL);
+	buf->width = w;
+	buf->height = h;
+	buf->samples = 1;
+	buf->buf = malloc(sizeof(t_vec) * (buf->width * buf->height));
+	if (!buf->buf)
+	{
+		free(buf);
+		return (NULL);
+	}
+	rb_clear(buf);
+	return (buf);
 }

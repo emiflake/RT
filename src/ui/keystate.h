@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:54:01 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/04 16:58:58 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:23:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-typedef uint32_t 	t_key;
+typedef uint32_t	t_key;
 
 typedef struct		s_keystate
 {

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   rb_samp.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:49:43 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 16:06:27 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#include <assert.h>
 
-void	app_free(t_app *app)
+#include "realbuffer.h"
+
+void			rb_inc_sample(t_realbuffer *buf)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
+	buf->samples++;
+}
+
+void			rb_add_sample(
+	t_realbuffer *buf, size_t x, size_t y, const t_vec *contrib)
+{
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(x < buf->width);
+	assert(y < buf->height);
+	vec_add_mut(&buf->buf[x + buf->height * y], contrib);
 }

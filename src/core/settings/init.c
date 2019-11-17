@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   init.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 14:45:58 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 14:50:50 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#include <ft_printf.h>
 
-void	app_free(t_app *app)
+#include "settings.h"
+#include "json/json.h"
+
+int			settings_init(t_settings *settings)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
+	t_json_value	*json_root;
+
+	json_root = read_json("settings.json");
+	if (!json_root)
+	{
+		ft_printf("Settings file could not be loaded.\n");
+		return (FAILURE);
+	}
+	settings->spp = dict_def_double(json_root, "spp", 1);
+	settings->sqrt_spp = sqrt(settings->spp);
+	return (SUCCESS);
 }

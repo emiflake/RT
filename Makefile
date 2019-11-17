@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/16 21:33:13 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/17 16:14:35 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,14 @@ STNAMES=		\
 				core/renderer/renderer \
 				core/renderer/tracer \
 				core/renderer/fps \
+				core/renderer/rb_create \
+				core/renderer/rb_clear \
+				core/renderer/rb_free \
+				core/renderer/rb_samp \
+				core/renderer/rb_compress \
 				core/scene/init \
 				core/scene/free \
+				core/settings/init \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \
@@ -182,6 +188,8 @@ STNAMES=		\
 				common/memset \
 				common/realloc \
 				common/strcmp \
+				common/is \
+				common/strtold10 \
 				threadpool/threadpool \
 				threadpool/push_work \
 				threadpool/worker \

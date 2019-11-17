@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 21:28:27 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 16:24:03 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 */
 
 # include "core/scene/scene.h"
+# include "core/settings/settings.h"
 # include "keystate.h"
 # include "text.h"
+# include "core/renderer/realbuffer.h"
 
 typedef struct	s_gfx_context
 {
@@ -47,6 +49,10 @@ typedef struct	s_app
 	t_gfx_context	gfx_ctx;
 
 	t_scene			scene;
+
+	t_settings		settings;
+
+	t_realbuffer	*realbuf;
 
 	bool			running;
 }				t_app;

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   settings.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 14:44:12 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 14:50:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#ifndef SETTINGS_H
+# define SETTINGS_H
 
-void	app_free(t_app *app)
+# include <stddef.h>
+
+typedef struct	s_settings
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
-}
+	size_t		spp;
+	size_t		sqrt_spp;
+}				t_settings;
+
+int			settings_init(t_settings *settings);
+
+#endif

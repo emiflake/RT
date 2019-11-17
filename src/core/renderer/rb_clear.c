@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   rb_clear.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:32:17 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:45:52 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 16:31:48 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "ui.h"
+#include <ft_printf.h>
+#include <assert.h>
 
-void	app_free(t_app *app)
+#include "realbuffer.h"
+
+void			rb_clear(t_realbuffer *buf)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
+	size_t	i;
+
+	i = 0;
+	while (i < buf->height * buf->width)
+	{
+		assert(buf->buf);
+		buf->buf[i].x = 0.0;
+		buf->buf[i].y = 0.0;
+		buf->buf[i].z = 0.0;
+		i++;
+	}
 }

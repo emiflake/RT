@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:50:22 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 21:40:36 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:47:16 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		objects_init(t_object_container *cont, const t_json_value *val)
 	ft_printf("[INFO] Allocated %llu objects\n", i);
 }
 
-void		scene_init(t_scene *scene, const char *scene_filename)
+int			scene_init(t_scene *scene, const char *scene_filename)
 {
 	t_json_value	*json_root;
 
@@ -117,11 +117,12 @@ void		scene_init(t_scene *scene, const char *scene_filename)
 	if (!json_root)
 	{
 		ft_printf("Scene file could not be loaded.\n");
-		exit(FAILURE); // TODO: fix leaks caused by early exit
+		return (FAILURE);
 	}
 	camera_init(&scene->camera, dict_get(json_root, "camera"));
 	scene->obj_container.root = NULL;
 	objects_init(&scene->obj_container, dict_get(json_root, "objects"));
 	scene->bvh = bvh_construct(scene->obj_container.root);
 	json_free(json_root);
+	return (SUCCESS);
 }

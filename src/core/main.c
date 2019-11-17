@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 21:41:23 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:39:41 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ int			main(int argc, char **argv)
 {
 	t_app app;
 
-	app_init(&app, argc, argv);
-	app_run(&app);
-	app_free(&app);
+	if (app_init(&app, argc, argv) == SUCCESS)
+	{
+		app_run(&app);
+		app_free(&app);
+	}
+	else
+	{
+		ft_printf("Oh no, something went wrong, shutting down...\n");
+	}
 	return (0);
 }
