@@ -13,14 +13,17 @@
 #ifndef MATERIAL_H
 # define MATERIAL_H
 
+# include "refration.h"
+
 typedef struct	s_material
 {
 	t_vec	color;
 	t_vec	emission;
+	bool	is_parallel;
 	REAL	blurriness;
-	REAL	reflect;
-	REAL	ior;
-	REAL	transp;
+	REAL	reflective;
+	REAL	refraction;
+	REAL	transparent;
 }				t_material;
 
 #endif

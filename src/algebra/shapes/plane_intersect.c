@@ -30,7 +30,7 @@ bool	is_plane_intersect(const t_shape *shape, const t_ray *ray,
 	ray_to_origin = vec_sub(&plane->origin, &ray->o);
 	distance = -vec_dot(&ray_to_origin, &plane->normal) / \
 				-vec_dot(&plane->normal, &ray->d);
-	if (distance > 0 && distance < intrs->t)
+	if (distance > EPS && distance < intrs->t)
 	{
 		intrs->t = distance;
 		intrs->normal = plane->normal;

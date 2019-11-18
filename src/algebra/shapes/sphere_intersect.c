@@ -42,7 +42,7 @@ bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,
 	if (discr < 0)
 		return (false);
 	root = quad_eq(discr, abc.x, abc.y);
-	if (root.x <= intrs->t && root.x > 0)
+	if (root.x <= intrs->t && root.x > EPS)
 	{
 		intrs->t = root.x;
 		return (true);

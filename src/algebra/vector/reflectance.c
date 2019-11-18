@@ -26,16 +26,18 @@ REAL			vec_reflectance(t_vec *vec, t_vec *norm, REAL k1, REAL k2)
 {
 	t_vec	refracted;
 	t_vec	neg_norm;
+	t_vec	tmp_norm;
 	REAL	cos_v;
 	REAL	cos_r;
 
 	vec_normalize(vec);
 	vec_normalize(norm);
-	neg_norm = vec_negate(norm);
-	refracted = vec_refracts(*vec, *norm, k1, k2);
+	tmp_norm = (vec_dot(vec, norm) > 0) ? *norm : vec_negate(norm);
+	neg_norm = vec_negate(&tmp_norm);
+	refracted = vec_refracts(*vec, tmp_norm, k1, k2);
 	if (vec_isnull(&refracted))
 		return (1);
-	cos_v = vec_dot(vec, norm) / vec_dot(vec, vec);
+	cos_v = vec_dot(vec, &tmp_norm) / vec_dot(vec, vec);
 	cos_v = (cos_v < 0) ? -cos_v : cos_v;
 	cos_r = vec_dot(&refracted, &neg_norm) / vec_dot(&refracted, &refracted);
 	cos_r = (cos_r < 0) ? -cos_r : cos_r;

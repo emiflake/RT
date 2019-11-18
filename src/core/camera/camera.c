@@ -58,5 +58,5 @@ void			camera_cast_ray(
 	vec_rotate_xyz(&dir, &cam->rotation);
 	ray_out->o = cam->origin;
 	ray_out->d = dir;
-	ray_out->depth = 5;
+	ray_out->depth = cam->recursion;
 }
