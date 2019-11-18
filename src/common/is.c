@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   is.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 14:24:35 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 14:24:48 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "common.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+bool			rt_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL float
-
-#endif
+bool			rt_isspace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n');
+}

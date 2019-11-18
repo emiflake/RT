@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 19:01:04 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 20:33:02 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:32:59 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_json_value		*do_parse_list(const char **str)
 		skip_whitespace(&walker);
 	}
 	skip_whitespace(&walker);
-	// TODO fix leak
 	if (*walker != ']')
 		return (NULL);
 	*str = &walker[1];

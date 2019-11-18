@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/16 21:32:49 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/16 21:36:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "container.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+void			container_free(t_object_container_node *nd)
+{
+	if (!nd)
+		return ;
+	container_free(nd->next);
+	free(nd->val);
+	free(nd);
+}
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL float
-
-#endif
+void			bvh_free(t_bvh_node *node)
+{
+	if (!node)
+		return ;
+	if (node->left)
+		bvh_free(node->left);
+	if (node->right)
+		bvh_free(node->right);
+	free(node);
+}

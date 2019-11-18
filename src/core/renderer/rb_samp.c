@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   rb_samp.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:49:43 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 18:12:00 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include <assert.h>
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+#include "realbuffer.h"
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
+void			rb_inc_sample(t_realbuffer *buf)
+{
+	buf->samples++;
+}
 
-# define BYTE char
-# define REAL float
-
-#endif
+void			rb_add_sample(
+	t_realbuffer *buf, size_t x, size_t y, const t_vec *contrib)
+{
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(x < buf->width);
+	assert(y < buf->height);
+	vec_add_mut(&buf->buf[x + buf->width * y], contrib);
+}

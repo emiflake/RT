@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   rb_clear.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:45:52 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 18:34:52 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include <ft_printf.h>
+#include <assert.h>
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+#include "realbuffer.h"
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
+void			rb_clear(t_realbuffer *buf)
+{
+	size_t	i;
 
-# define BYTE char
-# define REAL float
-
-#endif
+	i = 0;
+	while (i < buf->height * buf->width)
+	{
+		assert(buf->buf);
+		buf->buf[i].x = 0.0;
+		buf->buf[i].y = 0.0;
+		buf->buf[i].z = 0.0;
+		i++;
+	}
+	buf->samples = 1;
+}

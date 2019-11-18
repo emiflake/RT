@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/17 17:29:04 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/11/17 18:32:41 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,9 @@ IMG_INC=		-I$(IMG_DIR)
 $(IMG):
 	@$(MAKE) -s -C $(IMG_DIR)
 
-DEPS=			$(PRINTF) \
-				$(IMG)
+DEPS=			\
+				$(PRINTF) \
+				$(IMG) \
 
 DEP_FLAGS=		\
 				-L$(PRINTF_DIR) -lftprintf \
@@ -70,16 +71,27 @@ STNAMES=		\
 				core/container/push_obj \
 				core/container/intersect \
 				core/container/construct \
+				core/container/free \
 				core/renderer/renderer \
 				core/renderer/tracer \
 				core/renderer/fps \
+				core/renderer/rb_create \
+				core/renderer/rb_clear \
+				core/renderer/rb_free \
+				core/renderer/rb_samp \
+				core/renderer/rb_compress \
 				core/scene/init \
+				core/scene/free \
+				core/settings/init \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \
+				ui/app_free \
 				ui/keystate \
+				ui/keystate_any \
 				ui/text \
 				ui/gfx_init \
+				ui/gfx_free \
 				ui/prim \
 				ui/putpixel \
 				algebra/ray/duplicate \
@@ -186,6 +198,8 @@ STNAMES=		\
 				common/memset \
 				common/realloc \
 				common/strcmp \
+				common/is \
+				common/strtold10 \
 				threadpool/threadpool \
 				threadpool/push_work \
 				threadpool/worker \
@@ -195,7 +209,7 @@ STNAMES=		\
 				texture/get_texture \
 				texture/load_texture_file \
 				texture/texture_init \
-				texture/uv_texel
+				texture/uv_texel \
 
 # Garbage location
 # .obj/

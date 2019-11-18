@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   gfx_free.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/16 21:27:28 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 14:23:33 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "ui.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
-
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL float
-
-#endif
+void	gfx_free(t_gfx_context *ctx)
+{
+	TTF_CloseFont(ctx->font.font);
+}

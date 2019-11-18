@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   rb_create.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 15:38:07 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 16:31:31 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include "realbuffer.h"
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+t_realbuffer	*rb_create(size_t w, size_t h)
+{
+	t_realbuffer	*buf;
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
-
-# define BYTE char
-# define REAL float
-
-#endif
+	buf = (t_realbuffer*)malloc(sizeof(t_realbuffer));
+	if (!buf)
+		return (NULL);
+	buf->width = w;
+	buf->height = h;
+	buf->samples = 1;
+	buf->buf = malloc(sizeof(t_vec) * (buf->width * buf->height));
+	if (!buf->buf)
+	{
+		free(buf);
+		return (NULL);
+	}
+	rb_clear(buf);
+	return (buf);
+}

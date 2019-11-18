@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   compdef.h                                          :+:    :+:            */
+/*   keystate_any.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/17 18:30:15 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/17 18:34:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPDEF_H
-# define COMPDEF_H
+#include <stddef.h>
 
-/*
-** This file is responsible for handling
-** all compile-time variables that will
-** affect the way the program works.
-*/
+#include "keystate.h"
 
-/*
-** By doing it this way, we are able to
-** switch from floats to doubles.
-*/
-# define SUCCESS 0
-# define FAILURE 1
+bool	keystate_any(t_keystate *ks)
+{
+	size_t i;
 
-# define BYTE char
-# define REAL float
-
-#endif
+	i = 0;
+	while (i < sizeof(ks->keys) / sizeof(ks->keys[0]))
+	{
+		if (ks->keys[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}

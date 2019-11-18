@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/07 16:55:40 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:14:20 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct	s_camera
 void			camera_recompute(t_camera *camera, size_t w, size_t h);
 
 void			camera_cast_ray(
-	const t_camera *cam, const t_point2 *pos, t_ray *ray_out, \
-								int sample_number);
+		const t_camera *cam, const t_point2 *pos, t_ray *ray_out);
 
 #endif

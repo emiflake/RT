@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 23:48:59 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:16:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,15 @@ void	render_segm(void *data)
 		while (pixel.x < segm->end_position.x)
 		{
 			t_vec	aggregate = vec_make0();
-			for (size_t i = 0; i < SUPERSAMPLE; i++)
-			{
 				isect.t = INFINITY;
-				camera_cast_ray(&segm->scene->camera, &pixel, &ray, i);
+				camera_cast_ray(&segm->scene->camera, &pixel, &ray);
 				if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 				{
 					// aggregate = vec_adds(aggregate, (t_vec){255.0,255.0,255.0});
 					t_vec idk = trace(segm->scene, &ray, &isect);
 					vec_add_mut(&aggregate, &idk);
 				}
-			}
-			vec_mult_mut_scalar(&aggregate, 1.0 / SUPERSAMPLE);
-			vec_color_clamp_mut(&aggregate);
-			ui_put_pixel(segm->surface, (size_t)pixel.x, (size_t)pixel.y, vec_to_int(&aggregate));
+			rb_add_sample(segm->buf, (size_t)pixel.x, (size_t)pixel.y, &aggregate);
 			pixel.x++;
 		}
 		pixel.y++;
@@ -60,7 +55,7 @@ void	render_segm(void *data)
 
 #define MULTITHREAD
 
-void	render_image(const t_scene *scene, SDL_Surface *surf)
+void	render_image(const t_scene *scene, t_realbuffer *buf)
 {
 	t_render_segm	segments[SEGMENT_COUNT];
 	t_work			work[SEGMENT_COUNT];
@@ -76,11 +71,11 @@ void	render_image(const t_scene *scene, SDL_Surface *surf)
 	i = 0;
 	while (i < SEGMENT_COUNT)
 	{
-		segments[i].surface = surf;
+		segments[i].buf = buf;
 		segments[i].scene = scene;
 		segments[i].done = false;
-		segments[i].start_position = (t_point2){0, i * surf->h / SEGMENT_COUNT};
-		segments[i].end_position = (t_point2){surf->w, (i + 1) * surf->h / SEGMENT_COUNT};
+		segments[i].start_position = (t_point2){0, i * buf->height / SEGMENT_COUNT};
+		segments[i].end_position = (t_point2){buf->width, (i + 1) * buf->height / SEGMENT_COUNT};
 		work[i].argument = &segments[i];
 		work[i].fn = render_segm;
 		threadpool_push_work(pool, &work[i]);

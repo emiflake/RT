@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 14:51:47 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:16:14 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "./common/common.h"
 #include "./algebra/vector/vector.h"
 #include "./json/json.h"
+#include "algebra/mmath/mmath.h"
 
 #include "./ui/ui.h"
 #include "core/camera/camera.h"
@@ -30,28 +31,25 @@ void			camera_recompute(t_camera *camera, size_t w, size_t h)
 	camera->dim.y = h;
 }
 
-t_point2		supersample(REAL delta, int cur_pos)
+static t_point2		supersample(REAL delta)
 {
 	t_point2	super_pixel;
-	static REAL	super_delta = 0;
 
-	if (!super_delta)
-		super_delta = delta / sqrt(SUPERSAMPLE);
-	super_pixel.x = super_delta * (cur_pos % (int)sqrt(SUPERSAMPLE));
-	super_pixel.y = super_delta * (cur_pos / sqrt(SUPERSAMPLE));
+	super_pixel.x = delta * float_rand() * 2.0 - 1.0;
+	super_pixel.y = delta * float_rand() * 2.0 - 1.0;
 	return (super_pixel);
 }
 
 void			camera_cast_ray(
-		const t_camera *cam, const t_point2 *pos, t_ray *ray_out, \
-							int sample_number)
+		const t_camera *cam, const t_point2 *pos, t_ray *ray_out)
+						
 {
 	REAL		px;
 	REAL		py;
 	t_vec		dir;
 	t_point2	super;
 
-	super = supersample(cam->delta, sample_number);
+	super = supersample(cam->delta);
 	px = (2.0 * (((REAL)pos->x + 0.5 + super.x) / cam->dim.x) - 1.0)
 		* cam->aspect_ratio * cam->delta;
 	py = (1.0 - 2.0 * ((REAL)pos->y + 0.5 + super.y) / cam->dim.y) * cam->delta;

@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/07 19:03:58 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:40:53 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ bool		is_cylinder_intersect(const t_shape *shape, const t_ray *ray,
 	if (discr < 0)
 		return (0);
 	root = quad_eq(discr, abc.x, abc.y);
-	if (find_normal(ray, cylinder, intrs, root.x))
+	if (root.x <= intrs->t && find_normal(ray, cylinder, intrs, root.x))
 		return (true);
-	if (find_normal(ray, cylinder, intrs, root.y))
+	if (root.y <= intrs->t && find_normal(ray, cylinder, intrs, root.y))
 	{
 		vec_negate(&intrs->normal);
 		return (true);

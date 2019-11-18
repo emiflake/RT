@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 15:30:39 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 17:09:08 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/17 14:29:48 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void			*threadpool_manager(void *threadpool)
 			pthread_mutex_lock(&pool->lock);
 			work_node = pool->queue;
 			tmp_work = work_node->work;
-			assert(tmp_work->fn != NULL);
 			pool->queue = work_node->next;
 			free(work_node);
 			pthread_mutex_unlock(&pool->lock);
@@ -66,6 +65,5 @@ void			*threadpool_manager(void *threadpool)
 		}
 		usleep(1);
 	}
-	pthread_exit(NULL);
 	return (NULL);
 }
