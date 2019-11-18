@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/17 14:45:58 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 14:50:50 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 12:52:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int			settings_init(t_settings *settings)
 	}
 	settings->spp = dict_def_double(json_root, "spp", 1);
 	settings->sqrt_spp = sqrt(settings->spp);
+	json_free(json_root);
 	return (SUCCESS);
 }

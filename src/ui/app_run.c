@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 18:34:18 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:03:47 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ void			dbg_text(t_app *app)
 		app->scene.camera.rotation.z);
 	ui_put_text_free(&app->gfx_ctx.font,
 		&app->window, (t_point2){10, 100}, txt);
+	ft_asprintf(&txt, "Samples: %llu\n",
+		app->realbuf->samples);
+	ui_put_text_free(&app->gfx_ctx.font,
+		&app->window, (t_point2){10, 130}, txt);
 }
 
 void			app_run(t_app *app)
@@ -99,7 +103,8 @@ void			app_run(t_app *app)
 		}
 		update(app);
 		camera_recompute(&app->scene.camera,
-			app->window.win_srf->w, app->window.win_srf->h);
+			app->realbuf->width, app->realbuf->height);
+		srand(time(NULL));
 		render_image(&app->scene, app->realbuf);
 		rb_compress(app->realbuf, app->window.win_srf);
 		rb_inc_sample(app->realbuf);

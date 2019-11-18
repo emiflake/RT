@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 13:20:57 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 15:41:21 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:16:53 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 ** By doing it this way, we are able to
 ** switch from floats to doubles.
 */
-# define SUPERSAMPLE 1
-
 # define SUCCESS 0
 # define FAILURE 1
 
 # define BYTE char
-# define REAL double
+# define REAL float
 
 #endif

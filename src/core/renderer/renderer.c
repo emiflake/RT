@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 18:24:50 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/18 10:16:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,14 @@ void	render_segm(void *data)
 		while (pixel.x < segm->end_position.x)
 		{
 			t_vec	aggregate = vec_make0();
-			for (size_t i = 0; i < SUPERSAMPLE; i++)
-			{
 				isect.t = INFINITY;
-				camera_cast_ray(&segm->scene->camera, &pixel, &ray, i);
+				camera_cast_ray(&segm->scene->camera, &pixel, &ray);
 				if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 				{
 					// aggregate = vec_adds(aggregate, (t_vec){255.0,255.0,255.0});
 					t_vec idk = trace(segm->scene, &ray, &isect);
 					vec_add_mut(&aggregate, &idk);
 				}
-			}
-			vec_mult_mut_scalar(&aggregate, 1.0 / SUPERSAMPLE);
 			rb_add_sample(segm->buf, (size_t)pixel.x, (size_t)pixel.y, &aggregate);
 			pixel.x++;
 		}
