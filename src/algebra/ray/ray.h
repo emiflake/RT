@@ -21,6 +21,8 @@ typedef struct		s_ray
 	t_vec			o;
 	t_vec			d;
 	unsigned char	depth;
+	REAL			refration;
+	struct s_object	*cur_obj;
 }					t_ray;
 
 t_ray				ray_make0();

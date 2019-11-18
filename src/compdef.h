@@ -27,6 +27,9 @@
 # define FAILURE 1
 
 # define BYTE char
-# define REAL float
+# define REAL double
+
+# define INIT_MEDIA 1.0f
+# define PARALLEL_CUTOFF 0.9f
 
 #endif

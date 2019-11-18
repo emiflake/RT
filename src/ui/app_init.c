@@ -40,7 +40,7 @@ int			app_init(t_app *app, int argc, char **argv)
 		SDL_DestroyWindow(app->window.win_ptr);
 		return (FAILURE);
 	}
-	app->realbuf = rb_create(768, 432);
+	app->realbuf = rb_create(1280, 720);
 	if (!app->realbuf)
 	{
 		SDL_DestroyWindow(app->window.win_ptr);

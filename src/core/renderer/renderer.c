@@ -19,7 +19,45 @@
 #include "algebra/mmath/mmath.h"
 #include "renderer.h"
 #include "ui/ui.h"
+/*
+#define SUPERSAMPLE 16
 
+void	render_segm(void *data)
+{
+	t_render_segm	*segm;
+	t_intersection	isect;
+	t_ray			ray;
+	t_point2		pixel;
+
+	segm = data;
+	pixel = (t_point2){segm->start_position.x, segm->start_position.y};
+	while (pixel.y < segm->end_position.y)
+	{
+		pixel.x = segm->start_position.x;
+		while (pixel.x < segm->end_position.x)
+		{
+			t_vec	aggregate = vec_make0();
+			for (size_t i = 0; i < SUPERSAMPLE; i++)
+			{
+				isect.t = INFINITY;
+				camera_cast_ray(&segm->scene->camera, &pixel, &ray);
+				if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
+				{
+					// aggregate = vec_adds(aggregate, (t_vec){255.0,255.0,255.0});
+					t_vec idk = trace(segm->scene, &ray, &isect);
+					vec_add_mut(&aggregate, &idk);
+				}
+			}
+			vec_mult_mut_scalar(&aggregate, 1.0 / SUPERSAMPLE);
+			vec_color_clamp_mut(&aggregate);
+			rb_add_sample(segm->buf, (size_t)pixel.x, (size_t)pixel.y, &aggregate);
+			pixel.x++;
+		}
+		pixel.y++;
+	}
+	segm->done = true;
+}
+*/
 void	render_segm(void *data)
 {
 	t_render_segm	*segm;

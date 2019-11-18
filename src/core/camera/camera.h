@@ -33,6 +33,7 @@ typedef struct	s_camera
 	t_point2	dim;
 
 	REAL		fov;
+	REAL		recursion;
 }				t_camera;
 
 void			camera_recompute(t_camera *camera, size_t w, size_t h);

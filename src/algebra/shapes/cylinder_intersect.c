@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/17 14:40:53 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/07 19:03:58 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ static bool	find_normal(const t_ray *ray, t_cylinder *cylinder,
 		return (false);
 	surf_point = vec_adds(ray->o, vec_mults_scalar(ray->d, distance));
 	origin_to_intersection = vec_sub(&cylinder->origin, &surf_point);
-	length = vec_dot(&origin_to_intersection, &cylinder->axis);
+	length = -vec_dot(&origin_to_intersection, &cylinder->axis);
 	if (length > cylinder->pos_height || length < cylinder->neg_height)
 		return (false);
 	intrs->t = distance;
 	intrs->p = surf_point;
-	axis_point = vec_adds(cylinder->origin, vec_mults_scalar(cylinder->axis, length));
+	axis_point = vec_adds(cylinder->origin,
+							  vec_mults_scalar(cylinder->axis, length));
 	intrs->normal = vec_sub(&intrs->p, &axis_point);
 	vec_normalize(&intrs->normal);
 	return (true);

@@ -35,11 +35,13 @@ void		camera_init(t_camera *cam, const t_json_value *camera_dict)
 			.origin = (t_vec){0, 1, -5.9},
 			.rotation = (t_vec){0, 0, 0},
 			.fov = 45,
+			.recursion = 15
 		};
 	}
 	else
 	{
 		cam->fov = dict_def_double(camera_dict, "fov", 90);
+		cam->recursion = dict_def_double(camera_dict, "recursion", 5);
 		dict_def_vec(camera_dict, "origin", (t_vec){0, 0, 0}, &cam->origin);
 		dict_def_vec(camera_dict, "rotation", (t_vec){0, 0, 0}, &cam->rotation);
 		ft_printf("[INFO] Camera all ready to go!\n");
@@ -50,6 +52,12 @@ void		init_material(t_material *mat, const t_json_value *val)
 {
 	dict_def_vec(val, "emission", (t_vec){0, 0, 0}, &mat->emission);
 	dict_def_vec(val, "color", (t_vec){0, 0, 0}, &mat->color);
+	mat->is_parallel = (bool)dict_def_double(val, "parallel_light", false);
+	mat->blurriness = dict_def_double(val, "blurry", 0.999);
+	mat->blurriness *= mat->blurriness;
+	mat->reflective = dict_def_double(val, "reflective", 0);
+	mat->refraction = dict_def_double(val, "refraction", 1.001);
+	mat->transparent = dict_def_double(val, "transparent", 0);
 }
 
 t_object	*object_init(const t_json_value *dict)

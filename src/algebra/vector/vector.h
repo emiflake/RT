@@ -16,7 +16,7 @@
 # include <math.h>
 # include "compdef.h"
 
-# define EPS	0.00001
+# define EPS	0.001
 
 typedef struct	s_vec
 {
