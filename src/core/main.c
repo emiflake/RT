@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 14:44:59 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/18 23:50:09 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@
 #include "algebra/mmath/mmath.h"
 
 
-
 #include <unistd.h>
 #include <SDL2/SDL.h>
 #include <ft_printf.h>
 #include "renderer/renderer.h"
 #include "../algebra/mmath/mmath.h"
 #include "../ui/ui.h"
+#include "../perlin_noise/perlin_noise.h"
+
 void			runnn(t_app *app)
 {
 	SDL_Event	evt;
@@ -53,6 +54,12 @@ void			runnn(t_app *app)
 				keystate_set_up(&app->keys, evt.key.keysym.scancode);
 		}
 		
+		t_perlin_noise *perl;
+
+		perl = perlin_noise_init(0, 10);
+		if (perl == NULL)
+			ft_printf("\nEERRORORORORR\n");
+
 		int x = 0;
 		int y = 0;
 		while (x < app->window.win_srf->w)
@@ -60,18 +67,17 @@ void			runnn(t_app *app)
 			y = 0;
 			while (y < app->window.win_srf->h)
 			{
-				int r = 255;
-				int g = 0;
-				int b = 255;
-
+				float value = perlin_noise(perl, x, y, .1);
+				//ft_printf("%f", value);
+				int r = ((float)255 * value);
+				int g = ((float)255 * value);
+				int b = ((float)255 * value);
 
 				((uint32_t*)app->window.win_srf->pixels)[y * app->window.win_srf->w + x] =  (uint32_t)r << 16 | (uint32_t)g << 8 | (uint32_t)b;
 				y++;
 			}
 			x++;
 		}
-		
-
 		SDL_UpdateWindowSurface(app->window.win_ptr);
 	}
 }

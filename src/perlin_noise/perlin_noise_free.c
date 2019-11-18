@@ -14,7 +14,7 @@
 
 void perlin_noise_free(t_perlin_noise **p_noise)
 {
-	free((*p_noise)->permutation);
+	free((*p_noise)->hash);
 	free(*p_noise);
-	*p_noise = NULL;	
+	*p_noise = NULL;
 }

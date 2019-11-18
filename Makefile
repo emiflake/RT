@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/17 18:32:41 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/18 23:20:42 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -210,6 +210,9 @@ STNAMES=		\
 				texture/load_texture_file \
 				texture/texture_init \
 				texture/uv_texel \
+				perlin_noise/perlin_noise \
+				perlin_noise/perlin_noise_init \
+				perlin_noise/perlin_noise_free \
 
 # Garbage location
 # .obj/
