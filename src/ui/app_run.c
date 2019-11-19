@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:03:47 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/19 23:28:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include "core/renderer/renderer.h"
 #include "algebra/mmath/mmath.h"
 #include "ui.h"
-
-#define CAMERA 0
-#define OBJECT 1
 
 static void		camera_move(t_camera *camera, const t_vec *delta)
 {
@@ -34,16 +31,12 @@ static void		camera_move(t_camera *camera, const t_vec *delta)
 static void		update(t_app *a)
 {
 	const REAL	s = keystate_is_down(&a->keys, SDL_SCANCODE_LSHIFT) ? 2.0 : 0.5;
-	static bool		selected = CAMERA;
-	static t_object_container_node	*cur_object = NULL;
 	t_vec		delta;
 	t_vec		rotation;
 	t_camera	*cam;
 
-	if (!cur_object)
-	cur_object = a->scene.obj_container.root;
-	selected = keystate_is_down(&a->keys, SDL_SCANCODE_K) ? CAMERA : selected;
-	selected = keystate_is_down(&a->keys, SDL_SCANCODE_O) ? OBJECT : selected;
+	a->camera_selected = keystate_is_down(&a->keys, SDL_SCANCODE_K) ? true : a->camera_selected;
+	a->camera_selected = keystate_is_down(&a->keys, SDL_SCANCODE_O) ? false : a->camera_selected;
 	cam = &a->scene.camera;
 	delta = (t_vec){0.0, 0.0, 0.0};
 	delta.x += keystate_is_down(&a->keys, SDL_SCANCODE_D) * s;
@@ -53,30 +46,22 @@ static void		update(t_app *a)
 	delta.z += keystate_is_down(&a->keys, SDL_SCANCODE_W) * s;
 	delta.z -= keystate_is_down(&a->keys, SDL_SCANCODE_S) * s;
 	rotation = (t_vec){0.0, 0.0, 0.0};
-	rotation.y += keystate_is_down(&a->keys, SDL_SCANCODE_LEFT) * M_PI / 180;
-	rotation.y -= keystate_is_down(&a->keys, SDL_SCANCODE_RIGHT) * M_PI / 180;
-	rotation.x += keystate_is_down(&a->keys, SDL_SCANCODE_DOWN) * M_PI / 180;
-	rotation.x -= keystate_is_down(&a->keys, SDL_SCANCODE_UP) * M_PI / 180;
-	rotation.z -= keystate_is_down(&a->keys, SDL_SCANCODE_RCTRL) * M_PI / 180;
-	rotation.z += keystate_is_down(&a->keys, SDL_SCANCODE_KP_0) * M_PI / 180;
-	if (selected == CAMERA)
+	rotation.y += keystate_is_down(&a->keys, SDL_SCANCODE_LEFT) * s / 5.0;
+	rotation.y -= keystate_is_down(&a->keys, SDL_SCANCODE_RIGHT) * s / 5.0;
+	rotation.x += keystate_is_down(&a->keys, SDL_SCANCODE_DOWN) * s / 5.0;
+	rotation.x -= keystate_is_down(&a->keys, SDL_SCANCODE_UP) * s / 5.0;
+	rotation.z -= keystate_is_down(&a->keys, SDL_SCANCODE_RCTRL) * s / 5.0;
+	rotation.z += keystate_is_down(&a->keys, SDL_SCANCODE_KP_0) * s / 5.0;
+	if (a->camera_selected)
 	{
 		camera_move(cam, &delta);
 		vec_add_mut(&cam->rotation, &rotation);
 	}
-	if (selected == OBJECT)
+	else if (a->selected_object != NULL)
 	{
-		if (keystate_is_down(&a->keys, SDL_SCANCODE_TAB))
-		{
-			if (cur_object->next)
-				cur_object = cur_object->next;
-			else
-				cur_object = a->scene.obj_container.root;
-		}
-		move_shape(&cur_object->val->shape, &delta, 1);
-		rotate_shape(&cur_object->val->shape, &rotation);
+		move_shape(&a->selected_object->shape, &delta, s);
+		rotate_shape(&a->selected_object->shape, &rotation);
 	}
-
 	if (keystate_any(&a->keys))
 		rb_clear(a->realbuf);
 }
@@ -112,6 +97,27 @@ void			dbg_text(t_app *app)
 		&app->window, (t_point2){10, 130}, txt);
 }
 
+void			handle_mouse(t_app *app)
+{
+	uint32_t		mstate;
+	int				x;
+	int				y;
+	t_ray			ray;
+	t_point2		pix;
+	t_intersection	isect;
+	
+	mstate = SDL_GetMouseState(&x, &y);
+	if (mstate & SDL_BUTTON_LEFT)
+	{
+		pix.x = ((double)x) * app->realbuf->width / app->window.win_srf->w;
+		pix.y = ((double)y) * app->realbuf->height / app->window.win_srf->h;
+		isect.t = INFINITY;
+		camera_cast_ray(&app->scene.camera, &pix, &ray);
+		if (bvh_is_intersect(app->scene.bvh, &ray, &isect))
+			app->selected_object = isect.obj_ptr;
+	}
+}
+
 void			app_run(t_app *app)
 {
 	SDL_Event	evt;
@@ -131,9 +137,13 @@ void			app_run(t_app *app)
 			if (evt.type == SDL_KEYUP)
 				keystate_set_up(&app->keys, evt.key.keysym.scancode);
 		}
-		update(app);
 		camera_recompute(&app->scene.camera,
 			app->realbuf->width, app->realbuf->height);
+		handle_mouse(app);
+		update(app);
+		bvh_free(app->scene.bvh);
+		app->scene.bvh = NULL;
+		app->scene.bvh = bvh_construct(app->scene.obj_container.root);
 		srand(time(NULL));
 		render_image(&app->scene, app->realbuf);
 		rb_compress(app->realbuf, app->window.win_srf);
