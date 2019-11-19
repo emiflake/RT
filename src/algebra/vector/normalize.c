@@ -30,6 +30,8 @@ void	vec_normalize(t_vec *v)
 	REAL l;
 
 	l = vec_length(v);
+	if (l < EPS || (l < 0 && -l < EPS))
+		l = 1;
 	v->x /= l;
 	v->y /= l;
 	v->z /= l;

@@ -12,6 +12,18 @@
 
 #include "shape.h"
 
+void		tetrahedron_set_sides(t_tetrahedron	*tet)
+{
+	triangle_set(&tet->side[0], tet->point[2], tet->point[3], tet->point[1]);
+	triangle_set(&tet->side[1], tet->point[3], tet->point[0], tet->point[2]);
+	triangle_set(&tet->side[2], tet->point[1], tet->point[0], tet->point[3]);
+	triangle_set(&tet->side[3], tet->point[2], tet->point[0], tet->point[1]);
+	triangle_set(&tet->side[4], tet->point[1], tet->point[3], tet->point[2]);
+	triangle_set(&tet->side[5], tet->point[2], tet->point[0], tet->point[3]);
+	triangle_set(&tet->side[6], tet->point[3], tet->point[0], tet->point[1]);
+	triangle_set(&tet->side[7], tet->point[1], tet->point[0], tet->point[2]);
+}
+
 bool		tetrahedron_init(t_shape *shape_out, const t_json_value *value)
 {
 	t_tetrahedron	*tet;
@@ -22,13 +34,6 @@ bool		tetrahedron_init(t_shape *shape_out, const t_json_value *value)
 	dict_def_vec(value, "b_pos", (t_vec){0, 0, 0}, &tet->point[1]);
 	dict_def_vec(value, "c_pos", (t_vec){0, 0, 0}, &tet->point[2]);
 	dict_def_vec(value, "d_pos", (t_vec){0, 0, 0}, &tet->point[3]);
-	triangle_set(&tet->side[0], tet->point[2], tet->point[3], tet->point[1]);
-	triangle_set(&tet->side[1], tet->point[3], tet->point[0], tet->point[2]);
-	triangle_set(&tet->side[2], tet->point[1], tet->point[0], tet->point[3]);
-	triangle_set(&tet->side[3], tet->point[2], tet->point[0], tet->point[1]);
-	triangle_set(&tet->side[4], tet->point[1], tet->point[3], tet->point[2]);
-	triangle_set(&tet->side[5], tet->point[2], tet->point[0], tet->point[3]);
-	triangle_set(&tet->side[6], tet->point[3], tet->point[0], tet->point[1]);
-	triangle_set(&tet->side[7], tet->point[1], tet->point[0], tet->point[2]);
+	tetrahedron_set_sides(tet);
 	return (true);
 }

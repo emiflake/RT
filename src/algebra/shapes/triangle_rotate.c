@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pyramid_move.c                                     :+:    :+:            */
+/*   triangle_rotate.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,17 +12,24 @@
 
 #include "shape.h"
 
-bool	pyramid_move(t_shape *shape, t_vec *direction, REAL distance)
+bool	triangle_rotate(t_shape *shape, t_vec *rotation_rad)
 {
-	t_pyramid	*pyr;
+	t_triangle	*tri;
+	REAL		len;
+	int			i;
 
-	pyr = &shape->val.as_pyramid;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&pyr->origin, direction);
-	vec_add_mut(&pyr->point[0], direction);
-	vec_add_mut(&pyr->point[1], direction);
-	vec_add_mut(&pyr->point[2], direction);
-	vec_add_mut(&pyr->point[3], direction);
-	pyramid_set_sides(pyr);
+	tri = &shape->val.as_triangle;
+	vec_rotate_xyz(&tri->normal[0], rotation_rad);
+	i = 0;
+	while (i < 1)
+	{
+		len = sqrt(vec_dot(&tri->side[i], &tri->side[i]));
+		vec_normalize(&tri->side[i]);
+		vec_rotate_xyz(&tri->side[i], rotation_rad);
+		vec_mult_mut_scalar(&tri->side[i], len);
+		tri->point[i + 1] = vec_add(&tri->point[0], &tri->side[i]);
+		vec_rotate_xyz(&tri->normal[i + 1], rotation_rad);
+		i++;
+	}
 	return (true);
 }

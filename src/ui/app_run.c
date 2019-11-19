@@ -18,6 +18,9 @@
 #include "algebra/mmath/mmath.h"
 #include "ui.h"
 
+#define CAMERA 0
+#define OBJECT 1
+
 static void		camera_move(t_camera *camera, const t_vec *delta)
 {
 	camera->origin.x +=
@@ -31,9 +34,16 @@ static void		camera_move(t_camera *camera, const t_vec *delta)
 static void		update(t_app *a)
 {
 	const REAL	s = keystate_is_down(&a->keys, SDL_SCANCODE_LSHIFT) ? 2.0 : 0.5;
+	static bool		selected = CAMERA;
+	static t_object_container_node	*cur_object = NULL;
 	t_vec		delta;
+	t_vec		rotation;
 	t_camera	*cam;
 
+	if (!cur_object)
+	cur_object = a->scene.obj_container.root;
+	selected = keystate_is_down(&a->keys, SDL_SCANCODE_K) ? CAMERA : selected;
+	selected = keystate_is_down(&a->keys, SDL_SCANCODE_O) ? OBJECT : selected;
 	cam = &a->scene.camera;
 	delta = (t_vec){0.0, 0.0, 0.0};
 	delta.x += keystate_is_down(&a->keys, SDL_SCANCODE_D) * s;
@@ -42,11 +52,31 @@ static void		update(t_app *a)
 	delta.y -= keystate_is_down(&a->keys, SDL_SCANCODE_Q) * s;
 	delta.z += keystate_is_down(&a->keys, SDL_SCANCODE_W) * s;
 	delta.z -= keystate_is_down(&a->keys, SDL_SCANCODE_S) * s;
-	camera_move(cam, &delta);
-	cam->rotation.y += keystate_is_down(&a->keys, SDL_SCANCODE_LEFT) * s * 0.1;
-	cam->rotation.y -= keystate_is_down(&a->keys, SDL_SCANCODE_RIGHT) * s * 0.1;
-	cam->rotation.x += keystate_is_down(&a->keys, SDL_SCANCODE_DOWN) * s * 0.1;
-	cam->rotation.x -= keystate_is_down(&a->keys, SDL_SCANCODE_UP) * s * 0.1;
+	rotation = (t_vec){0.0, 0.0, 0.0};
+	rotation.y += keystate_is_down(&a->keys, SDL_SCANCODE_LEFT) * M_PI / 180;
+	rotation.y -= keystate_is_down(&a->keys, SDL_SCANCODE_RIGHT) * M_PI / 180;
+	rotation.x += keystate_is_down(&a->keys, SDL_SCANCODE_DOWN) * M_PI / 180;
+	rotation.x -= keystate_is_down(&a->keys, SDL_SCANCODE_UP) * M_PI / 180;
+	rotation.z -= keystate_is_down(&a->keys, SDL_SCANCODE_RCTRL) * M_PI / 180;
+	rotation.z += keystate_is_down(&a->keys, SDL_SCANCODE_KP_0) * M_PI / 180;
+	if (selected == CAMERA)
+	{
+		camera_move(cam, &delta);
+		vec_add_mut(&cam->rotation, &rotation);
+	}
+	if (selected == OBJECT)
+	{
+		if (keystate_is_down(&a->keys, SDL_SCANCODE_TAB))
+		{
+			if (cur_object->next)
+				cur_object = cur_object->next;
+			else
+				cur_object = a->scene.obj_container.root;
+		}
+		move_shape(&cur_object->val->shape, &delta, 1);
+		rotate_shape(&cur_object->val->shape, &rotation);
+	}
+
 	if (keystate_any(&a->keys))
 		rb_clear(a->realbuf);
 }

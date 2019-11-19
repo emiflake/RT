@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pyramid_move.c                                     :+:    :+:            */
+/*   pyramid_rotate.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,17 +12,26 @@
 
 #include "shape.h"
 
-bool	pyramid_move(t_shape *shape, t_vec *direction, REAL distance)
+bool	pyramid_rotate(t_shape *shape, t_vec *rotation_rad)
 {
 	t_pyramid	*pyr;
+	t_vec		edge;
+	int			i;
+	REAL		len;
 
 	pyr = &shape->val.as_pyramid;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&pyr->origin, direction);
-	vec_add_mut(&pyr->point[0], direction);
-	vec_add_mut(&pyr->point[1], direction);
-	vec_add_mut(&pyr->point[2], direction);
-	vec_add_mut(&pyr->point[3], direction);
+	i = 0;
+	while (i < 4)
+	{
+		edge = vec_sub(&pyr->point[i], &pyr->origin);
+		len = sqrt(vec_dot(&edge, &edge));
+		vec_normalize(&edge);
+		vec_rotate_xyz(&edge, rotation_rad);
+		vec_mult_mut_scalar(&edge, len);
+		pyr->point[i] = vec_add(&pyr->origin, &edge);
+		i++;
+	}
 	pyramid_set_sides(pyr);
+	pyramid_normals(pyr);
 	return (true);
 }

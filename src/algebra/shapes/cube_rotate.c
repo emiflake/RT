@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pyramid_move.c                                     :+:    :+:            */
+/*   cube_rotate.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,17 +12,21 @@
 
 #include "shape.h"
 
-bool	pyramid_move(t_shape *shape, t_vec *direction, REAL distance)
+bool	cube_rotate(t_shape *shape, t_vec *rotation_rad)
 {
-	t_pyramid	*pyr;
+	t_cube	*cube;
 
-	pyr = &shape->val.as_pyramid;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&pyr->origin, direction);
-	vec_add_mut(&pyr->point[0], direction);
-	vec_add_mut(&pyr->point[1], direction);
-	vec_add_mut(&pyr->point[2], direction);
-	vec_add_mut(&pyr->point[3], direction);
-	pyramid_set_sides(pyr);
+	cube = &shape->val.as_cube;
+	vec_normalize(&cube->axis[0]);
+	vec_rotate_xyz(&cube->axis[0], rotation_rad);
+	vec_normalize(&cube->axis[1]);
+	vec_rotate_xyz(&cube->axis[1], rotation_rad);
+	vec_normalize(&cube->axis[2]);
+	vec_rotate_xyz(&cube->axis[2], rotation_rad);
+	vec_mult_mut_scalar(&cube->axis[0], cube->size.y);
+	vec_mult_mut_scalar(&cube->axis[1], cube->size.z);
+	vec_mult_mut_scalar(&cube->axis[2], cube->size.x);
+	cube_set_sides(cube);
+	cube_check_normals(cube);
 	return (true);
 }
