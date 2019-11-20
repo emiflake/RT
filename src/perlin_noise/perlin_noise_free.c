@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   texture_init.c                                     :+:    :+:            */
+/*   perlin_noise_free.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/15 15:39:47 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 19:36:23 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/18 16:03:47 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/11/20 16:38:20 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "texture.h"
+#include "perlin_noise.h"
 
-t_textures	*texture_init(void)
+void	perlin_noise_free(t_perlin_noise **p_noise)
 {
-	t_textures *result;
-
-	result = malloc(sizeof(t_textures));
-	if (result == NULL)
-		return (NULL);
-	result->hashmap = ash_hashmap_new(ash_hash);
-	if (result->hashmap == NULL)
-	{
-		free(result);
-		return (NULL);
-	}
-	if (!generate_textures(result))
-	{
-		//  free hash map
-		free(result);
-		return (NULL);
-	}
-	return (result);
+	free((*p_noise)->hash);
+	free(*p_noise);
+	*p_noise = NULL;
 }

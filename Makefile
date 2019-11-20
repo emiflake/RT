@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/20 17:25:47 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/20 19:35:26 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -219,10 +219,19 @@ STNAMES=		\
 				threadpool/manager \
 				threadpool/wait \
 				threadpool/free \
+				texture/generate_texture_lines \
+				texture/generate_texture_noise \
+				texture/generate_texture_wood \
+				texture/generate_textures \
 				texture/get_texture \
 				texture/load_texture_file \
+				texture/texture_free \
 				texture/texture_init \
+				texture/texture_new \
 				texture/uv_texel \
+				perlin_noise/perlin_noise_free \
+				perlin_noise/perlin_noise_init \
+				perlin_noise/perlin_noise \
 
 # Garbage location
 # .obj/
