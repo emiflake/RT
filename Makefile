@@ -170,6 +170,7 @@ STNAMES=		\
 				algebra/vector/reflectance \
 				algebra/vector/refract \
 				algebra/vector/vec_rotate \
+				algebra/vector/vec_rotate_one \
 				algebra/vector/minmax \
 				algebra/vector/to_int \
 				algebra/vector/clamp \

@@ -60,13 +60,13 @@ typedef bool(*t_is_inter_fn)(
 bool					is_intersect(
 	const t_shape *shape, const t_ray *ray, t_intersection *isect);
 
-bool					is_sphere_intersect(const t_shape *shape,const
-									t_ray *ray, t_intersection *intrs);
+bool					is_sphere_intersect(const t_shape *shape,
+							const t_ray *ray, t_intersection *intrs);
 void					sphere_intersecton(const t_ray *ray,
 									t_intersection *intrs);
 
-bool					is_plane_intersect(const t_shape *shape,const
-									t_ray *ray, t_intersection *intrs);
+bool					is_plane_intersect(const t_shape *shape,
+							const t_ray *ray, t_intersection *intrs);
 void					plane_intersection(const t_ray *ray,
 									t_intersection *intrs);
 
@@ -148,7 +148,6 @@ bool					pyramid_init(
 
 bool					sphere_init(
 	t_shape *shape_out, const t_json_value *value);
-
 
 bool					square_init(
 	t_shape *shape_out, const t_json_value *value);

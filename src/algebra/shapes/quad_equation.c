@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "shape.h"
+#include "shape.h"
 
 t_point2	quad_eq(REAL discr, REAL a, REAL b)
 {

@@ -12,7 +12,7 @@
 
 #include "shape.h"
 
-void					pyramid_normals(t_pyramid *pyr)
+void	pyramid_normals(t_pyramid *pyr)
 {
 	t_vec	test_vec;
 	int		i;
@@ -34,7 +34,7 @@ void					pyramid_normals(t_pyramid *pyr)
 	}
 }
 
-void					pyramid_set_sides(t_pyramid	*pyr)
+void	pyramid_set_sides(t_pyramid *pyr)
 {
 	triangle_set(&pyr->side[0], pyr->point[0], pyr->origin, pyr->point[1]);
 	triangle_set(&pyr->side[1], pyr->point[1], pyr->origin, pyr->point[2]);
@@ -47,8 +47,7 @@ void					pyramid_set_sides(t_pyramid	*pyr)
 	square_set(&pyr->base, pyr->point[1], pyr->point[0], pyr->point[2]);
 }
 
-bool					pyramid_init(
-	t_shape *shape_out, const t_json_value *value)
+bool	pyramid_init(t_shape *shape_out, const t_json_value *value)
 {
 	t_pyramid	*pyr;
 

@@ -44,11 +44,9 @@ void	cube_set_sides(t_cube *cube)
 					&cube->axis[0]);
 	tmp = vec_add(&cube->origin, &cube->axis[2]);
 	square_set_side(&cube->side[5], &tmp, &cube->axis[1], &cube->axis[0]);
-	
 }
 
-bool					cube_init(
-	t_shape *shape_out, const t_json_value *value)
+bool	cube_init(t_shape *shape_out, const t_json_value *value)
 {
 	t_cube	*cube;
 

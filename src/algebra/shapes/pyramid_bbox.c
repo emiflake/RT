@@ -15,11 +15,11 @@
 
 t_bbox		pyramid_bbox(const t_shape *shape)
 {
-    const t_pyramid		*s = &shape->val.as_pyramid;
-    t_bbox				aggr;
+	const t_pyramid		*s = &shape->val.as_pyramid;
+	t_bbox				aggr;
 	int					i;
 
-    aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
+	aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
 		(t_vec){-INFINITY, -INFINITY, -INFINITY}};
 	bbox_extend_mut(&aggr, s->origin);
 	i = 0;

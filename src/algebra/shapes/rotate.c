@@ -16,10 +16,11 @@
 
 bool	rotate_shape(t_shape *shape, t_vec *rotation_rad)
 {
-	t_rotate_fn	fns[] = {
+	static t_rotate_fn	fns[] = {
 		&sphere_rotate, &plane_rotate, &disk_rotate,
 		&square_rotate, &triangle_rotate, &cylinder_rotate,
 		&cone_rotate, &cube_rotate, &pyramid_rotate, &tetrahedron_rotate
 	};
+
 	return (fns[shape->type](shape, rotation_rad));
 }

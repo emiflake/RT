@@ -12,7 +12,7 @@
 
 #include "shape.h"
 
-void		tetrahedron_set_sides(t_tetrahedron	*tet)
+void		tetrahedron_set_sides(t_tetrahedron *tet)
 {
 	triangle_set(&tet->side[0], tet->point[2], tet->point[3], tet->point[1]);
 	triangle_set(&tet->side[1], tet->point[3], tet->point[0], tet->point[2]);

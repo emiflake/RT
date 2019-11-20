@@ -15,8 +15,8 @@
 
 t_bbox		cube_bbox(const t_shape *shape)
 {
-    const t_cube	*s = &shape->val.as_cube;
-    t_bbox			aggr;
+	const t_cube	*s = &shape->val.as_cube;
+	t_bbox			aggr;
 
 	aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
 		(t_vec){-INFINITY, -INFINITY, -INFINITY}};
@@ -25,7 +25,6 @@ t_bbox		cube_bbox(const t_shape *shape)
 	bbox_extend_mut(&aggr, vec_adds(s->origin, s->axis[1]));
 	bbox_extend_mut(&aggr, vec_adds(s->origin,
 									vec_adds(s->axis[0], s->axis[1])));
-	
 	bbox_extend_mut(&aggr, vec_adds(s->origin, s->axis[2]));
 	bbox_extend_mut(&aggr, vec_adds(vec_adds(s->origin, s->axis[2]),
 									s->axis[0]));

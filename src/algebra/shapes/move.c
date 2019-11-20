@@ -16,11 +16,12 @@
 
 bool	move_shape(t_shape *shape, t_vec *direction, REAL amount)
 {
-	t_move_fn	fns[] = {
+	static t_move_fn	fns[] = {
 		&sphere_move, &plane_move, &disk_move,
 		&square_move, &triangle_move, &cylinder_move,
 		&cone_move, &cube_move, &pyramid_move, &tetrahedron_move
 	};
+
 	vec_normalize(direction);
 	return (fns[shape->type](shape, direction, amount));
 }

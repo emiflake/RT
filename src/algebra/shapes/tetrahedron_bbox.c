@@ -15,11 +15,11 @@
 
 t_bbox		tetrahedron_bbox(const t_shape *shape)
 {
-    const t_tetrahedron		*s = &shape->val.as_tetrahedron;
-    t_bbox				aggr;
-	int					i;
+	const t_tetrahedron		*s = &shape->val.as_tetrahedron;
+	t_bbox					aggr;
+	int						i;
 
-    aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
+	aggr = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
 		(t_vec){-INFINITY, -INFINITY, -INFINITY}};
 	i = 0;
 	while (i < 4)
