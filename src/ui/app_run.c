@@ -141,7 +141,8 @@ void			app_run(t_app *app)
 			app->realbuf->width, app->realbuf->height);
 		handle_mouse(app);
 		update(app);
-		bvh_free(app->scene.bvh);
+		if (app->scene.bvh)
+			bvh_free(app->scene.bvh);
 		app->scene.bvh = NULL;
 		app->scene.bvh = bvh_construct(app->scene.obj_container.root);
 		srand(time(NULL));

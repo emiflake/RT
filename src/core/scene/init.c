@@ -131,5 +131,6 @@ int			scene_init(t_scene *scene, const char *scene_filename)
 	scene->obj_container.root = NULL;
 	objects_init(&scene->obj_container, dict_get(json_root, "objects"));
 	json_free(json_root);
+	scene->bvh = NULL;
 	return (SUCCESS);
 }
