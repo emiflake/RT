@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/19 21:20:00 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 21:24:28 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 22:10:02 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_vec	get_color(
 {
 	if (mat->texture)
 		return (uv_texel(texts, mat->texture,
-			fmod(isect->uv.x / mat->uv.x, 1.0),
-			fmod(isect->uv.y / mat->uv.y, 1.0)));
+			fmod(isect->uv.x, 1.0),
+			fmod(isect->uv.y, 1.0)));
 	else
 		return (mat->color);
 }

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   square_intersect.c                                           :+:    :+:  */
+/*   square_intersect.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/01 00:42:00 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/01 00:42:01 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/01 00:42:00 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/20 22:13:48 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
+#include "core/object/object.h"
 
 void	square_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
-	(void)intrs;
+	intrs->uv.x = fabs(intrs->p.x / intrs->obj_ptr->material.uv.x + 1000.0);
+	intrs->uv.y = fabs(intrs->p.z / intrs->obj_ptr->material.uv.x + 1000.0);
 }
 
 bool	is_square_intersect(const t_shape *shape, const t_ray *ray,
