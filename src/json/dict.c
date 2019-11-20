@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 20:31:37 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 17:24:00 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:28:13 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_json_value	*mk_dict(t_hashmap *dict)
 	return (val);
 }
 
-size_t			parse_and_insert_kvp(t_hashmap *dict, const char **str)
+size_t				parse_and_insert_kvp(t_hashmap *dict, const char **str)
 {
 	t_json_value	*key;
 	t_json_value	*value;
@@ -45,7 +45,7 @@ size_t			parse_and_insert_kvp(t_hashmap *dict, const char **str)
 	return (0);
 }
 
-t_json_value	*do_parse_dict(const char **str)
+t_json_value		*do_parse_dict(const char **str)
 {
 	t_hashmap		*dict;
 	const char		*walker;

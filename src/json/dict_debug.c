@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 21:49:30 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 14:33:20 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:31:24 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,33 @@ static void		do_kvp_debug(const t_bucket_node *node, size_t indentation)
 	}
 }
 
+void			do_debug_bucket(
+	const t_bucket *bucket, bool *was_first, size_t indentation)
+{
+	size_t			j;
+	t_bucket_node	*node;
+
+	node = bucket->nodes;
+	j = 0;
+	while (j < bucket->node_count)
+	{
+		if (*was_first)
+			*was_first = false;
+		else
+		{
+			ft_printf(",");
+			ft_printf("\n");
+		}
+		do_kvp_debug(node, indentation + 4);
+		node = node->next;
+		j++;
+	}
+}
+
 void			do_dict_debug(const t_json_dict *dict, size_t indentation)
 {
 	t_bucket		*bucket;
-	t_bucket_node	*node;
 	size_t			i;
-	size_t			j;
 	bool			was_first;
 
 	if (ash_length(dict->hashmap) == 0)
@@ -48,21 +69,7 @@ void			do_dict_debug(const t_json_dict *dict, size_t indentation)
 	while (i < dict->hashmap->bucket_count)
 	{
 		bucket = &dict->hashmap->buckets[i];
-		j = 0;
-		node = bucket->nodes;
-		while (j < bucket->node_count)
-		{
-			if (was_first)
-				was_first = false;
-			else
-			{
-				ft_printf(",");
-				ft_printf("\n");
-			}
-			do_kvp_debug(node, indentation + 4);
-			node = node->next;
-			j++;
-		}
+		do_debug_bucket(bucket, &was_first, indentation);
 		i++;
 	}
 	ft_printf("\n%*s}", indentation, "");

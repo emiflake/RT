@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:05:48 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:15:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 #include "renderer.h"
 #include "ui/ui.h"
 
-void	render_segm(void *data)
+void			render_segm(void *data)
 {
 	t_render_segm	*segm;
 	t_intersection	isect;
 	t_ray			ray;
 	t_point2		pixel;
+	t_vec			aggregate;
 
 	segm = data;
 	pixel = (t_point2){segm->start_position.x, segm->start_position.y};
@@ -34,15 +35,13 @@ void	render_segm(void *data)
 		pixel.x = segm->start_position.x;
 		while (pixel.x < segm->end_position.x)
 		{
-			t_vec	aggregate = vec_make0();
 			isect.t = INFINITY;
 			camera_cast_ray(&segm->scene->camera, &pixel, &ray);
 			if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 			{
-				t_vec idk = trace(segm->scene, &ray, &isect);
-				vec_add_mut(&aggregate, &idk);
+				aggregate = trace(segm->scene, &ray, &isect);
+				rb_add_sample(segm->buf, pixel.x, pixel.y, &aggregate);
 			}
-			rb_add_sample(segm->buf, (size_t)pixel.x, (size_t)pixel.y, &aggregate);
 			pixel.x++;
 		}
 		pixel.y++;
@@ -52,13 +51,43 @@ void	render_segm(void *data)
 
 #define SEGMENT_COUNT 100
 
-void	render_image(const t_scene *scene, t_realbuffer *buf)
+static void		prepare_segment(
+	t_render_segm *s, size_t i, const t_scene *scene, t_realbuffer *buf)
+{
+	s->buf = buf;
+	s->scene = scene;
+	s->done = false;
+	s->start_position = (t_point2){0, i * buf->height / SEGMENT_COUNT};
+	s->end_position =
+		(t_point2){buf->width, (i + 1) * buf->height / SEGMENT_COUNT};
+}
+
+static void		wait_for_all(t_render_segm *segments)
+{
+	bool			should_die;
+	size_t			i;
+
+	should_die = false;
+	while (!should_die)
+	{
+		should_die = true;
+		i = 0;
+		while (i < SEGMENT_COUNT)
+		{
+			if (!segments[i].done)
+				should_die = false;
+			i++;
+		}
+		usleep(10);
+	}
+}
+
+void			render_image(const t_scene *scene, t_realbuffer *buf)
 {
 	t_render_segm	segments[SEGMENT_COUNT];
 	t_work			work[SEGMENT_COUNT];
 	t_threadpool	*pool;
 	size_t			i;
-	bool			should_die;
 
 	pool = threadpool_init(4);
 	if (!pool)
@@ -68,27 +97,13 @@ void	render_image(const t_scene *scene, t_realbuffer *buf)
 	i = 0;
 	while (i < SEGMENT_COUNT)
 	{
-		segments[i].buf = buf;
-		segments[i].scene = scene;
-		segments[i].done = false;
-		segments[i].start_position = (t_point2){0, i * buf->height / SEGMENT_COUNT};
-		segments[i].end_position = (t_point2){buf->width, (i + 1) * buf->height / SEGMENT_COUNT};
+		prepare_segment(&segments[i], i, scene, buf);
 		work[i].argument = &segments[i];
 		work[i].fn = render_segm;
 		threadpool_push_work(pool, &work[i]);
 		i++;
 	}
-	should_die = false;
-	while (!should_die)
-	{
-		should_die = true;
-		for (size_t i = 0; i < SEGMENT_COUNT; i++)
-		{
-			if (!segments[i].done)
-				should_die = false;
-		}
-		usleep(10);
-	}
+	wait_for_all(segments);
 	threadpool_free(pool);
 	ui_get_fps(1);
 }

@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/17 18:32:41 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/20 17:25:47 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ STNAMES=		\
 				core/renderer/rb_samp \
 				core/renderer/rb_compress \
 				core/scene/init \
+				core/scene/init_obj \
 				core/scene/free \
 				core/settings/init \
 				ui/window_init \

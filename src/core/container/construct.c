@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 16:30:12 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 00:43:01 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:24:04 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <ft_printf.h>
 #include <assert.h>
 
-t_bvh_node		*bvh_construct(t_object_container_node *shapes)
+t_bvh_node				*bvh_construct(t_object_container_node *shapes)
 {
-	t_object_container_node	*w;
-	size_t							i;
+	t_object_container_node		*w;
+	size_t						i;
 
 	i = 0;
 	w = shapes;
@@ -58,22 +58,21 @@ static t_bvh_node		*build_branch(t_bvh_node *left, t_bvh_node *right)
 	return (node);
 }
 
-static void		bvh_sort(t_object_container_node *shapes, size_t count, size_t dimension)
+static void				bvh_sort(
+	t_object_container_node *shapes, size_t count, size_t dimension)
 {
 	t_object_container_node	*i;
 	t_object_container_node	*j;
 	t_object				*tmp;
-	size_t					x;
-	size_t					y;
+	size_t					it[2];
 
-	
 	i = shapes;
-	x = 0;
-	while (i && x < count)
+	it[0] = 0;
+	while (i && it[0] < count)
 	{
-		y = x;
+		it[1] = it[0];
 		j = i;
-		while (j && y < count)
+		while (j && it[1] < count)
 		{
 			if (bbox_cmp_center(i->val, j->val, dimension) > 0)
 			{
@@ -82,23 +81,20 @@ static void		bvh_sort(t_object_container_node *shapes, size_t count, size_t dime
 				j->val = tmp;
 			}
 			j = j->next;
-			y++;
+			it[1]++;
 		}
 		i = i->next;
-		x++;
+		it[0]++;
 	}
 }
 
-t_bvh_node		*bvh_construct_rec(t_object_container_node *shapes,
+t_bvh_node				*bvh_construct_rec(t_object_container_node *shapes,
 	size_t count,
 	size_t dimension)
 {
-	t_bbox							aggregate_bbox;
-	t_object_container_node	*node;
-	size_t							i;
+	t_object_container_node		*node;
+	size_t						i;
 
-	aggregate_bbox = (t_bbox){(t_vec){INFINITY, INFINITY, INFINITY},
-							(t_vec){-INFINITY, -INFINITY, -INFINITY}};
 	if (count == 0)
 		return (NULL);
 	else if (count == 1)

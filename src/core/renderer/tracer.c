@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 23:48:59 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 15:33:55 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	diffuse(t_vec *dir, t_vec *vector, t_intersection *isect)
 
 	coord_system_create(&isect->normal, &sys);
 	hemi = hemisphere(float_rand(), float_rand());
-	*dir =  (t_vec){
+	*dir = (t_vec){
 	hemi.x * sys.nb.x + hemi.y * vector->x + hemi.z * sys.nt.x,
 	hemi.x * sys.nb.y + hemi.y * vector->y + hemi.z * sys.nt.y,
 	hemi.x * sys.nb.z + hemi.y * vector->z + hemi.z * sys.nt.z};
@@ -48,10 +48,10 @@ bool	check_reflectance(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 
 	if (ray->cur_obj)
 		reflectance = vec_reflectance(&ray->d, &isect->normal, ray->refration,
-									  INIT_MEDIA);
+									INIT_MEDIA);
 	else
 		reflectance = vec_reflectance(&ray->d, &isect->normal, INIT_MEDIA,
-									  isect->obj_ptr->material.refraction);
+									isect->obj_ptr->material.refraction);
 	if (float_rand() > reflectance)
 		return (true);
 	if (float_rand() < isect->obj_ptr->material.blurriness)
@@ -67,14 +67,11 @@ void	refract(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 
 	if (!check_reflectance(new_ray, ray, isect))
 		return ;
-	//if (ray->cur_obj || vec_dot(&new_ray->d, &isect->normal) > 0)
-		norm = vec_negate(&isect->normal);
-	//else
-	//	norm = isect->normal;
+	norm = vec_negate(&isect->normal);
 	if (ray->cur_obj == NULL || ray->cur_obj != isect->obj_ptr)
 	{
 		new_ray->d = vec_refracts(ray->d, norm, INIT_MEDIA,
-							  isect->obj_ptr->material.refraction);
+							isect->obj_ptr->material.refraction);
 		new_ray->cur_obj = isect->obj_ptr;
 		new_ray->refration = isect->obj_ptr->material.refraction;
 	}
@@ -92,7 +89,7 @@ void	refract(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 void	reflected_clr(t_vec *color, REAL reflect)
 {
 	REAL	max;
-	
+
 	max = (color->x > color->y) ? color->x : color->y;
 	max = (max > color->z) ? max : color->z;
 	color->x += ((max - color->x) * reflect);

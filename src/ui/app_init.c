@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:45:32 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:11:00 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 19:31:30 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,20 @@ int			usage(int argc, char **argv)
 	return (FAILURE);
 }
 
+static void	app_defaults(t_app *app)
+{
+	app->running = true;
+	app->camera_selected = true;
+	app->selected_object = NULL;
+}
+
 int			app_init(t_app *app, int argc, char **argv)
 {
 	if (window_init(&app->window) != SUCCESS)
 		return (FAILURE);
 	if (argc < 2)
 		return (usage(argc, argv));
-	ft_printf("- Welcome to RT! -\n");
-	app->running = true;
+	app_defaults(app);
 	keystate_init(&app->keys);
 	if (settings_init(&app->settings) == FAILURE ||
 		scene_init(&app->scene, argv[1]) == FAILURE)
@@ -47,9 +53,16 @@ int			app_init(t_app *app, int argc, char **argv)
 		scene_free(&app->scene);
 		return (FAILURE);
 	}
-	app->camera_selected = true;
-	app->selected_object = NULL;
+	app->textures = texture_init();
+	if (!app->textures)
+	{
+		SDL_DestroyWindow(app->window.win_ptr);
+		scene_free(&app->scene);
+		rb_free(app->realbuf);
+		return (FAILURE);
+	}
 	gfx_init(&app->gfx_ctx);
 	srand(time(NULL));
+	ft_printf("- Welcome to RT! -\n");
 	return (SUCCESS);
 }

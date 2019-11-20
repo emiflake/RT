@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:28:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 15:33:14 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,18 @@ void			dbg_text(t_app *app)
 	ui_put_text_free(&app->gfx_ctx.font, &app->window,
 		(t_point2){10, 10}, txt);
 	ft_asprintf(&txt, "Welcome to our amazing RT");
-	ui_put_text_free(&app->gfx_ctx.font,
-		&app->window, (t_point2){10, 40}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 40}, txt);
 	ft_asprintf(&txt, "Camera Position: %.2lf %.2lf %.2lf\n",
 		app->scene.camera.origin.x,
 		app->scene.camera.origin.y,
 		app->scene.camera.origin.z);
-	ui_put_text_free(&app->gfx_ctx.font,
-		&app->window, (t_point2){10, 70}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 70}, txt);
 	ft_asprintf(&txt, "Camera rotation: %.2lf %.2lf %.2lf\n",
 		app->scene.camera.rotation.x,
 		app->scene.camera.rotation.y,
 		app->scene.camera.rotation.z);
-	ui_put_text_free(&app->gfx_ctx.font,
-		&app->window, (t_point2){10, 100}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window,
+		(t_point2){10, 100}, txt);
 	ft_asprintf(&txt, "Samples: %llu\n",
 		app->realbuf->samples);
 	ui_put_text_free(&app->gfx_ctx.font,
@@ -99,15 +97,13 @@ void			dbg_text(t_app *app)
 
 void			handle_mouse(t_app *app)
 {
-	uint32_t		mstate;
 	int				x;
 	int				y;
 	t_ray			ray;
 	t_point2		pix;
 	t_intersection	isect;
-	
-	mstate = SDL_GetMouseState(&x, &y);
-	if (mstate & SDL_BUTTON_LEFT)
+
+	if (SDL_GetMouseState(&x, &y) & SDL_BUTTON_LEFT)
 	{
 		pix.x = ((double)x) * app->realbuf->width / app->window.win_srf->w;
 		pix.y = ((double)y) * app->realbuf->height / app->window.win_srf->h;

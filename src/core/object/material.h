@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/12 16:00:10 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:41:45 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct	s_material
 {
 	t_vec	color;
+	char	*texture;
 	t_vec	emission;
 	bool	is_parallel;
 	REAL	blurriness;
