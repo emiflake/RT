@@ -59,3 +59,13 @@ void			camera_cast_ray(
 	ray_out->d = dir;
 	ray_out->depth = cam->recursion;
 }
+
+void		camera_move(t_camera *camera, const t_vec *delta)
+{
+	camera->origin.x +=
+		cos(camera->rotation.y) * delta->x - sin(camera->rotation.y) * delta->z;
+	camera->origin.y += delta->y;
+	camera->origin.z -=
+		-cos(camera->rotation.y)
+		* delta->z - sin(camera->rotation.y) * delta->x;
+}

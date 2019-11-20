@@ -25,7 +25,8 @@ void		camera_init(t_camera *cam, const t_json_value *camera_dict)
 			.origin = (t_vec){0, 1, -5.9},
 			.rotation = (t_vec){0, 0, 0},
 			.fov = 45,
-			.recursion = 15
+			.recursion = 15,
+			.color_filter = 0
 		};
 	}
 	else
@@ -35,6 +36,7 @@ void		camera_init(t_camera *cam, const t_json_value *camera_dict)
 		dict_def_vec(camera_dict, "origin", (t_vec){0, 0, 0}, &cam->origin);
 		dict_def_vec(camera_dict, "rotation", (t_vec){0, 0, 0}, &cam->rotation);
 		ft_printf("[INFO] Camera all ready to go!\n");
+		cam->color_filter = (int)dict_def_double(camera_dict, "filter", 0);
 	}
 }
 

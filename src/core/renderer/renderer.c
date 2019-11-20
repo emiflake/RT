@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 20:15:34 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:52:43 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,23 @@
 
 #include "threadpool/threadpool.h"
 #include "algebra/mmath/mmath.h"
+#include "algebra/intersection/intersection.h"
 #include "renderer.h"
 #include "ui/ui.h"
 
-void			render_segm(void *data)
+void	apply_filter(t_vec *color, int filter)
+{
+	REAL 	sat;
+
+	if (filter < 1 || filter > 2)
+		return ;
+	sat = (color->x + color->y + color->z) * DELTAVAL;
+	sat = (sat < DELTAVAL) ? DELTAVAL : sat;
+	*color = (filter == 1) ? SEPIA_VAL : WB_VAL;
+	vec_mult_mut_scalar(color, sat);
+}
+
+void	render_segm(void *data)
 {
 	t_render_segm	*segm;
 	t_intersection	isect;
@@ -40,6 +53,7 @@ void			render_segm(void *data)
 			if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 			{
 				aggregate = trace(segm->scene, &ray, &isect, segm->app->textures);
+				apply_filter(&aggregate, segm->scene->camera.color_filter);
 				rb_add_sample(segm->buf, pixel.x, pixel.y, &aggregate);
 			}
 			pixel.x++;

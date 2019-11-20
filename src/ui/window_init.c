@@ -12,15 +12,16 @@
 
 #include <SDL2/SDL.h>
 
+#include "core/settings/settings.h"
 #include "ui.h"
 
-int				window_init(t_window *win)
+int				window_init(t_window *win, const t_settings *settings)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		return (FAILURE);
 	win->win_ptr = SDL_CreateWindow(
 		"RT", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-		1280, 720, SDL_WINDOW_SHOWN);
+		settings->width, settings->height, SDL_WINDOW_SHOWN);
 	if (!win->win_ptr)
 		return (FAILURE);
 	win->win_srf = SDL_GetWindowSurface(win->win_ptr);
