@@ -94,6 +94,9 @@ STNAMES=		\
 				ui/gfx_free \
 				ui/prim \
 				ui/putpixel \
+				ui/app_update \
+				ui/mouse \
+				ui/ui \
 				algebra/ray/duplicate \
 				algebra/ray/make \
 				algebra/shapes/quad_equation \

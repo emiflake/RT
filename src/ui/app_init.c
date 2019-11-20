@@ -27,8 +27,6 @@ int			usage(int argc, char **argv)
 
 int			app_init(t_app *app, int argc, char **argv)
 {
-	if (window_init(&app->window) != SUCCESS)
-		return (FAILURE);
 	if (argc < 2)
 		return (usage(argc, argv));
 	ft_printf("- Welcome to RT! -\n");
@@ -36,15 +34,17 @@ int			app_init(t_app *app, int argc, char **argv)
 	keystate_init(&app->keys);
 	if (settings_init(&app->settings) == FAILURE ||
 		scene_init(&app->scene, argv[1]) == FAILURE)
-	{
-		SDL_DestroyWindow(app->window.win_ptr);
 		return (FAILURE);
-	}
-	app->realbuf = rb_create(1280, 720);
+	app->realbuf = rb_create(app->settings.width, app->settings.height);
 	if (!app->realbuf)
 	{
-		SDL_DestroyWindow(app->window.win_ptr);
 		scene_free(&app->scene);
+		return (FAILURE);
+	}
+	if (window_init(&app->window, &app->settings) != SUCCESS)
+	{
+		scene_free(&app->scene);
+		rb_free(app->realbuf);
 		return (FAILURE);
 	}
 	app->camera_selected = true;

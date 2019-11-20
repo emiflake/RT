@@ -20,6 +20,18 @@
 #include "renderer.h"
 #include "ui/ui.h"
 
+void	apply_filter(t_vec *color, int filter)
+{
+	REAL 	sat;
+
+	if (filter < 1 || filter > 2)
+		return ;
+	sat = (color->x + color->y + color->z) * DELTAVAL;
+	sat = (sat < DELTAVAL) ? DELTAVAL : sat;
+	*color = (filter == 1) ? SEPIA_VAL : WB_VAL;
+	vec_mult_mut_scalar(color, sat);
+}
+
 void	render_segm(void *data)
 {
 	t_render_segm	*segm;
@@ -40,6 +52,7 @@ void	render_segm(void *data)
 			if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 			{
 				t_vec idk = trace(segm->scene, &ray, &isect);
+				apply_filter(&idk, segm->scene->camera.color_filter);
 				vec_add_mut(&aggregate, &idk);
 			}
 			rb_add_sample(segm->buf, (size_t)pixel.x, (size_t)pixel.y, &aggregate);

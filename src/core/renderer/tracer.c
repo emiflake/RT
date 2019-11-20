@@ -67,10 +67,7 @@ void	refract(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 
 	if (!check_reflectance(new_ray, ray, isect))
 		return ;
-	//if (ray->cur_obj || vec_dot(&new_ray->d, &isect->normal) > 0)
 		norm = vec_negate(&isect->normal);
-	//else
-	//	norm = isect->normal;
 	if (ray->cur_obj == NULL || ray->cur_obj != isect->obj_ptr)
 	{
 		new_ray->d = vec_refracts(ray->d, norm, INIT_MEDIA,

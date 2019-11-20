@@ -1,7 +1,8 @@
 {
 	"camera": {
 		"fov": 50,
-		"origin": [0, 18, -75]
+		"origin": [0, 18, -75],
+		"filter": 2
 	},
 	"objects": [
 		{
