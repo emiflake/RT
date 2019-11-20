@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 13:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/17 17:24:48 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 14:33:55 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static t_texture	*texture_load_img(char *name)
 	t_texture	*result;
 	char		*filename;
 
-	result = malloc(sizeof(t_texture));
+	result = texture_new();
 	if (result == NULL)
 		return (NULL);
 	filename = string_append("assets/textures/", name);

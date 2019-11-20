@@ -1,0 +1,14 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [0, 0, -20]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"origin": [-20, 0, 10],
+			"radius": 5,
+			"emission": [0, 0, 255]
+		}
+	]
+}

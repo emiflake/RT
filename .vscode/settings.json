@@ -15,6 +15,7 @@
 		"utility": "c",
 		"vector": "c",
 		"noise.h": "c",
-		"perlin_noise.h": "c"
+		"perlin_noise.h": "c",
+		"typeinfo": "c"
 	}
 }

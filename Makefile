@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/18 23:20:42 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/11/20 17:23:58 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ NAME=		RT
 all: $(NAME)
 
 CFLAGS=		\
-			-Werror -Wall -Wextra \
 			-O3 \
 			-pedantic \
 
@@ -210,6 +209,12 @@ STNAMES=		\
 				texture/load_texture_file \
 				texture/texture_init \
 				texture/uv_texel \
+				texture/texture_free \
+				texture/texture_new \
+				texture/generate_textures \
+				texture/generate_texture_lines \
+				texture/generate_texture_wood \
+				texture/generate_texture_noise \
 				perlin_noise/perlin_noise \
 				perlin_noise/perlin_noise_init \
 				perlin_noise/perlin_noise_free \

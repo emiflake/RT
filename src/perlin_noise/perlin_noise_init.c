@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/18 15:03:09 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/18 23:39:08 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 16:38:13 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,5 @@ t_perlin_noise	*perlin_noise_init(int seed, int depth)
 		return (NULL);
 	result->seed = seed;
 	result->depth = depth;
-	// result->hash = create_lookup_table();
-	// if (result->hash == NULL)
-	// {
-	// 	free(result);
-	// 	return (NULL);
-	// }
 	return (result);
 }
