@@ -33,8 +33,6 @@ REAL			vec_reflectance(t_vec *vec, t_vec *norm, REAL k1, REAL k2)
 	vec_normalize(vec);
 	vec_normalize(norm);
 	tmp_norm = (vec_dot(vec, norm) > 0) ? *norm : vec_negate(norm);
-	//tmp_norm = vec_negate(norm);
-	//tmp_norm = *norm;
 	neg_norm = vec_negate(&tmp_norm);
 	refracted = vec_refracts(*vec, tmp_norm, k1, k2);
 	if (vec_isnull(&refracted))

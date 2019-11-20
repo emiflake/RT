@@ -23,7 +23,7 @@ bool	is_square_intersect(const t_shape *shape, const t_ray *ray,
 {
 	t_vec			orig_to_inters;
 	const t_square	*square;
-	REAL 			dist[2];
+	REAL			dist[2];
 	t_intersection	tmp_intrs;
 	t_shape			shape2;
 

@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "core/object/object.h"
-# include "shape.h"
-# include <stdio.h>
+#include "core/object/object.h"
+#include "shape.h"
+#include <stdio.h>
 
-void	cone_intersection(const t_ray *ray, t_intersection *intrs)
+void			cone_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
 	(void)intrs;

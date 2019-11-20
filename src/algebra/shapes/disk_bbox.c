@@ -15,12 +15,12 @@
 
 t_bbox		disk_bbox(const t_shape *shape)
 {
-    const t_disk	*s = &shape->val.as_disk;
-    t_bbox			aggr;
+	const t_disk	*s = &shape->val.as_disk;
+	t_bbox			aggr;
 
 	aggr = (t_bbox){(t_vec){s->plane.origin.x - s->outer_radius,
 							s->plane.origin.y - s->outer_radius,
-							s->plane.origin.z - s->outer_radius,},
+							s->plane.origin.z - s->outer_radius},
 					(t_vec){s->plane.origin.x + s->outer_radius,
 							s->plane.origin.y + s->outer_radius,
 							s->plane.origin.z + s->outer_radius}};

@@ -13,11 +13,11 @@
 #include "shape.h"
 #include "../bbox/bbox.h"
 
-t_bbox		cylinder_bbox(const t_shape *shape)
+t_bbox			cylinder_bbox(const t_shape *shape)
 {
-    const t_cylinder	*s = &shape->val.as_cylinder;
+	const t_cylinder	*s = &shape->val.as_cylinder;
 	REAL				length;
-    t_bbox				aggr;
+	t_bbox				aggr;
 
 	length = ((s->pos_height - s->neg_height) + s->radius);
 	aggr = (t_bbox){(t_vec){s->origin.x - length,

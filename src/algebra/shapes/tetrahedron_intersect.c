@@ -24,7 +24,7 @@ bool	is_tetrahedron_intersect(const t_shape *shape, const t_ray *ray,
 	int				i;
 	t_shape			shape2;
 	bool			found;
-	
+
 	found = false;
 	i = 0;
 	while (i < 8)

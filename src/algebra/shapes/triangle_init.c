@@ -12,8 +12,7 @@
 
 #include "shape.h"
 
-bool					triangle_init
-					(t_shape *shape_out, const t_json_value *value)
+bool	triangle_init(t_shape *shape_out, const t_json_value *value)
 {
 	t_triangle	*tri;
 
@@ -33,8 +32,7 @@ bool					triangle_init
 	return (true);
 }
 
-void					triangle_set
-					(t_triangle *tri, t_vec a_pos, t_vec b_pos, t_vec c_pos)
+void	triangle_set(t_triangle *tri, t_vec a_pos, t_vec b_pos, t_vec c_pos)
 {
 	tri->point[0] = a_pos;
 	tri->point[1] = b_pos;

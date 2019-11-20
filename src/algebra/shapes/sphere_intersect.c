@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "core/object/object.h"
-# include "shape.h"
+#include "core/object/object.h"
+#include "shape.h"
 
 void	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
 {

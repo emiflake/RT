@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "core/object/object.h"
-# include "shape.h"
-# include <stdio.h>
+#include "core/object/object.h"
+#include "shape.h"
+#include <stdio.h>
 
-void	cylinder_intersection(const t_ray *ray, t_intersection *intrs)
+void		cylinder_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
 	(void)intrs;
@@ -52,7 +52,7 @@ static bool	find_normal(const t_ray *ray, t_cylinder *cylinder,
 	intrs->t = distance;
 	intrs->p = surf_point;
 	axis_point = vec_adds(cylinder->origin,
-							  vec_mults_scalar(cylinder->axis, length));
+							vec_mults_scalar(cylinder->axis, length));
 	intrs->normal = vec_sub(&intrs->p, &axis_point);
 	vec_normalize(&intrs->normal);
 	return (true);

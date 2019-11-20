@@ -15,9 +15,9 @@
 
 t_bbox		cone_bbox(const t_shape *shape)
 {
-    const t_cone	*s = &shape->val.as_cone;
+	const t_cone	*s = &shape->val.as_cone;
 	REAL			length;
-    t_bbox			aggr;
+	t_bbox			aggr;
 
 	length = ((s->pos_height - s->neg_height) +
 			(s->pos_height - s->neg_height) * tan(deg_to_rad(s->angle_deg)));

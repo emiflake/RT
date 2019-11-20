@@ -13,7 +13,7 @@
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
 
-#include "../point2/point2.h"
+# include "../point2/point2.h"
 
 typedef struct	s_intersection
 {
