@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 14:50:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 16:24:03 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/19 22:51:13 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct	s_app
 	t_settings		settings;
 
 	t_realbuffer	*realbuf;
+
+	t_object		*selected_object;
+	bool			camera_selected;
 
 	bool			running;
 }				t_app;

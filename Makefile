@@ -130,6 +130,17 @@ STNAMES=		\
 				algebra/shapes/square_move \
 				algebra/shapes/tetrahedron_move \
 				algebra/shapes/triangle_move \
+				algebra/shapes/rotate \
+				algebra/shapes/cone_rotate \
+				algebra/shapes/cube_rotate \
+				algebra/shapes/cylinder_rotate \
+				algebra/shapes/disk_rotate \
+				algebra/shapes/plane_rotate \
+				algebra/shapes/pyramid_rotate \
+				algebra/shapes/sphere_rotate \
+				algebra/shapes/square_rotate \
+				algebra/shapes/tetrahedron_rotate \
+				algebra/shapes/triangle_rotate \
 				algebra/shapes/bbox_construct \
 				algebra/shapes/cone_bbox \
 				algebra/shapes/cube_bbox \

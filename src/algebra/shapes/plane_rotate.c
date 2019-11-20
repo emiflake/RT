@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pyramid_move.c                                     :+:    :+:            */
+/*   plane_rotate.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,17 +12,8 @@
 
 #include "shape.h"
 
-bool	pyramid_move(t_shape *shape, t_vec *direction, REAL distance)
+bool	plane_rotate(t_shape *shape, t_vec *rotation_rad)
 {
-	t_pyramid	*pyr;
-
-	pyr = &shape->val.as_pyramid;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&pyr->origin, direction);
-	vec_add_mut(&pyr->point[0], direction);
-	vec_add_mut(&pyr->point[1], direction);
-	vec_add_mut(&pyr->point[2], direction);
-	vec_add_mut(&pyr->point[3], direction);
-	pyramid_set_sides(pyr);
+	vec_rotate_xyz(&shape->val.as_plane.normal, rotation_rad);
 	return (true);
 }

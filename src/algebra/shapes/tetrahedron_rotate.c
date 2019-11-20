@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pyramid_move.c                                     :+:    :+:            */
+/*   tetrahedron_rotate.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,17 +12,25 @@
 
 #include "shape.h"
 
-bool	pyramid_move(t_shape *shape, t_vec *direction, REAL distance)
+bool	tetrahedron_rotate(t_shape *shape, t_vec *rotation_rad)
 {
-	t_pyramid	*pyr;
+	t_tetrahedron	*tet;
+	t_vec			edge;
+	int				i;
+	REAL			len;
 
-	pyr = &shape->val.as_pyramid;
-	vec_mult_mut_scalar(direction, distance);
-	vec_add_mut(&pyr->origin, direction);
-	vec_add_mut(&pyr->point[0], direction);
-	vec_add_mut(&pyr->point[1], direction);
-	vec_add_mut(&pyr->point[2], direction);
-	vec_add_mut(&pyr->point[3], direction);
-	pyramid_set_sides(pyr);
+	tet = &shape->val.as_tetrahedron;
+	i = 1;
+	while (i < 4)
+	{
+		edge = vec_sub(&tet->point[i], &tet->point[0]);
+		len = sqrt(vec_dot(&edge, &edge));
+		vec_normalize(&edge);
+		vec_rotate_xyz(&edge, rotation_rad);
+		vec_mult_mut_scalar(&edge, len);
+		tet->point[i] = vec_add(&tet->point[0], &edge);
+		i++;
+	}
+	tetrahedron_set_sides(tet);
 	return (true);
 }

@@ -6,11 +6,11 @@
 	"objects": [
 		{
 			"type": "square",
-			"origin": [-15, 39.9, -15],
-			"normal": [0, -1, 0],
+			"origin": [-20, 0, -15],
+			"normal": [1, 0, 0],
 			"side_a": [0, 0, 30],
-			"side_b": [30, 0, 0],
-			"emission": [255, 255, 255]
+			"side_b": [0, 30, 0],
+			"emission": [400, 350, 250]
 		},
 		{
 			"type": "square",
@@ -18,9 +18,7 @@
 			"normal": [0, -1, 0],
 			"side_a": [0, 0, 40],
 			"side_b": [40, 0, 0],
-			"color": [255, 255, 255],
-			"reflective": 1.0,
-			"blurry": 0.0
+			"color": [255, 255, 255]
 		},
 		{
 			"type": "square",
@@ -56,9 +54,27 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [0, 5, 10],
+			"origin": [-5, 5, 15],
 			"radius": 5,
-			"color": [255, 255, 255]
+			"color": [255, 255, 255],
+			"blurry": 0,
+			"reflective": 0.0
+		},
+		{
+			"type": "sphere",
+			"origin": [2.5, 5, 7.5],
+			"radius": 5,
+			"color": [255, 255, 255],
+			"blurry": 0.5,
+			"reflective": 1.0
+		},
+		{
+			"type": "sphere",
+			"origin": [10, 5, 0],
+			"radius": 5,
+			"color": [255, 255, 255],
+			"blurry": 1.0,
+			"reflective": 1.0
 		}
 	]
 }

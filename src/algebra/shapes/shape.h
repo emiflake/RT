@@ -163,17 +163,19 @@ bool					triangle_init(
 ** Auxiliar functions
 */
 
-void	cube_set_sides(
-	t_cube *cube);
+void					cube_set_sides(t_cube *cube);
+void					cube_check_normals(t_cube *cube);
 
-void					pyramid_normals(
-	t_pyramid *pyr);
+void					pyramid_normals(t_pyramid *pyr);
+void					pyramid_set_sides(t_pyramid	*pyr);
 
 void					square_set(
 	t_square *square, t_vec origin, t_vec point_a, t_vec point_b);
 
 void					square_set_side(
 	t_square *square, t_vec *origin, t_vec *side_a, t_vec *side_b);
+
+void					tetrahedron_set_sides(t_tetrahedron	*tet);
 
 void					triangle_set(
 	t_triangle *tri, t_vec a_pos, t_vec b_pos, t_vec c_pos);
@@ -208,6 +210,25 @@ bool					tetrahedron_move(t_shape *shape, t_vec *direction,
 							REAL distance);
 bool					triangle_move(t_shape *shape, t_vec *direction,
 							REAL distance);
+
+/*
+** Rotating objects
+*/
+
+typedef bool(*t_rotate_fn)(t_shape *shape, t_vec *rotation_rad);
+
+bool					rotate_shape(t_shape *shape, t_vec *rotation_rad);
+
+bool					cube_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					cone_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					cylinder_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					sphere_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					plane_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					square_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					disk_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					pyramid_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					tetrahedron_rotate(t_shape *shape, t_vec *rotation_rad);
+bool					triangle_rotate(t_shape *shape, t_vec *rotation_rad);
 
 /*
 ** Constructing BBOXs

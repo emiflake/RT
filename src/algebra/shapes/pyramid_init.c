@@ -34,6 +34,19 @@ void					pyramid_normals(t_pyramid *pyr)
 	}
 }
 
+void					pyramid_set_sides(t_pyramid	*pyr)
+{
+	triangle_set(&pyr->side[0], pyr->point[0], pyr->origin, pyr->point[1]);
+	triangle_set(&pyr->side[1], pyr->point[1], pyr->origin, pyr->point[2]);
+	triangle_set(&pyr->side[2], pyr->point[2], pyr->origin, pyr->point[3]);
+	triangle_set(&pyr->side[3], pyr->point[3], pyr->origin, pyr->point[0]);
+	triangle_set(&pyr->side[4], pyr->point[1], pyr->origin, pyr->point[0]);
+	triangle_set(&pyr->side[5], pyr->point[2], pyr->origin, pyr->point[1]);
+	triangle_set(&pyr->side[6], pyr->point[3], pyr->origin, pyr->point[2]);
+	triangle_set(&pyr->side[7], pyr->point[0], pyr->origin, pyr->point[3]);
+	square_set(&pyr->base, pyr->point[1], pyr->point[0], pyr->point[2]);
+}
+
 bool					pyramid_init(
 	t_shape *shape_out, const t_json_value *value)
 {
@@ -46,15 +59,7 @@ bool					pyramid_init(
 	dict_def_vec(value, "b_pos", (t_vec){0, 0, 0}, &pyr->point[1]);
 	dict_def_vec(value, "c_pos", (t_vec){0, 0, 0}, &pyr->point[2]);
 	dict_def_vec(value, "d_pos", (t_vec){0, 0, 0}, &pyr->point[3]);
-	triangle_set(&pyr->side[0], pyr->point[0], pyr->origin, pyr->point[1]);
-	triangle_set(&pyr->side[1], pyr->point[1], pyr->origin, pyr->point[2]);
-	triangle_set(&pyr->side[2], pyr->point[2], pyr->origin, pyr->point[3]);
-	triangle_set(&pyr->side[3], pyr->point[3], pyr->origin, pyr->point[0]);
-	triangle_set(&pyr->side[4], pyr->point[1], pyr->origin, pyr->point[0]);
-	triangle_set(&pyr->side[5], pyr->point[2], pyr->origin, pyr->point[1]);
-	triangle_set(&pyr->side[6], pyr->point[3], pyr->origin, pyr->point[2]);
-	triangle_set(&pyr->side[7], pyr->point[0], pyr->origin, pyr->point[3]);
-	square_set(&pyr->base, pyr->point[1], pyr->point[0], pyr->point[2]);
+	pyramid_set_sides(pyr);
 	pyramid_normals(pyr);
 	return (true);
 }
