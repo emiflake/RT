@@ -25,8 +25,8 @@ int			settings_init(t_settings *settings)
 		ft_printf("Settings file could not be loaded.\n");
 		return (FAILURE);
 	}
-	settings->spp = dict_def_double(json_root, "spp", 1);
-	settings->sqrt_spp = sqrt(settings->spp);
+	settings->width = dict_def_double(json_root, "width", 1280);
+	settings->height = dict_def_double(json_root, "height", 720);
 	json_free(json_root);
 	return (SUCCESS);
 }

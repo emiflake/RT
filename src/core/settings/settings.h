@@ -17,8 +17,8 @@
 
 typedef struct	s_settings
 {
-	size_t		spp;
-	size_t		sqrt_spp;
+	size_t		width;
+	size_t		height;
 }				t_settings;
 
 int			settings_init(t_settings *settings);

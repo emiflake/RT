@@ -60,7 +60,7 @@ typedef struct	s_app
 	bool			running;
 }				t_app;
 
-int				window_init(t_window *win);
+int				window_init(t_window *win, const t_settings *settings);
 
 int				app_init(t_app *app, int argc, char **argv);
 
@@ -77,4 +77,15 @@ void			prim_clear(SDL_Surface *surface, uint32_t color);
 
 void			ui_put_pixel(
 	SDL_Surface *surface, size_t x, size_t y, uint32_t color);
+
+void			dbg_text(t_app *app);
+
+void			show_selected_object(t_app *app);
+
+void			camera_move(t_camera *camera, const t_vec *delta);
+
+void			handle_mouse(t_app *app);
+
+void			update(t_app *a);
+
 #endif

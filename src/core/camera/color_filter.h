@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   camera.h                                           :+:    :+:            */
+/*   color_filter.h                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,37 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
+#ifndef COLOR_FILTER_H
+# define COLOR_FILTER_H
 
-# include "algebra/point2/point2.h"
-# include "algebra/vector/vector.h"
-# include "algebra/ray/ray.h"
-# include "color_filter.h"
+# define SEPIA		1
+# define WB			2
 
-typedef struct	s_viewport
-{
-	REAL	width;
-	REAL	height;
-}				t_viewport;
-
-typedef struct	s_camera
-{
-	t_vec		origin;
-	t_vec		rotation;
-
-	REAL		aspect_ratio;
-	REAL		delta;
-	t_point2	dim;
-
-	REAL		fov;
-	REAL		recursion;
-	REAL		color_filter;
-}				t_camera;
-
-void			camera_recompute(t_camera *camera, size_t w, size_t h);
-
-void			camera_cast_ray(
-		const t_camera *cam, const t_point2 *pos, t_ray *ray_out);
+# define SEPIA_VAL	(t_vec){127, 90, 45}
+# define WB_VAL		(t_vec){127, 127, 127}
+# define DELTAVAL	0.002625
 
 #endif
