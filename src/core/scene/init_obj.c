@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 17:25:04 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 18:01:42 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:27:08 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ static void		init_material(t_material *mat, const t_json_value *val)
 	mat->is_parallel = (bool)dict_def_double(val, "parallel_light", false);
 	mat->blurriness = dict_def_double(val, "blurry", 0.999);
 	mat->blurriness *= mat->blurriness;
+	mat->uv.y = dict_def_double(val, "uscale", 1.0);
+	mat->uv.x = dict_def_double(val, "vscale", 1.0);
 	mat->reflective = dict_def_double(val, "reflective", 0);
 	mat->refraction = dict_def_double(val, "refraction", 1.001);
 	mat->transparent = dict_def_double(val, "transparent", 0);
 	mat->texture = dict_def_string(val, "texture", NULL);
+	if (mat->texture)
+		ft_asprintf(&mat->texture, "%s", mat->texture);
+	mat->etexture = dict_def_string(val, "etexture", NULL);
+	if (mat->etexture)
+		ft_asprintf(&mat->etexture, "%s", mat->etexture);
 }
 
 t_object		*object_init(const t_json_value *dict)

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 15:39:47 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 19:36:23 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:07:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_textures	*texture_init(void)
 	result = malloc(sizeof(t_textures));
 	if (result == NULL)
 		return (NULL);
+	pthread_mutex_init(&result->lock, NULL);
 	result->hashmap = ash_hashmap_new(ash_hash);
 	if (result->hashmap == NULL)
 	{

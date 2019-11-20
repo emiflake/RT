@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 12:03:10 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 19:36:11 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:07:06 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "../../deps/libftprintf/ft_printf.h"
 # include "../perlin_noise/perlin_noise.h"
 
+# include <pthread.h>
+
 typedef struct	s_texture
 {
 	t_img		*img;
@@ -27,7 +29,8 @@ typedef struct	s_texture
 
 typedef struct	s_textures
 {
-	t_hashmap	*hashmap;
+	pthread_mutex_t		lock;
+	t_hashmap			*hashmap;
 }				t_textures;
 
 t_texture		*get_texture(t_textures *textures, char *key);

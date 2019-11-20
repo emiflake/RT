@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   plane_intersect.c                                            :+:    :+:  */
+/*   plane_intersect.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/01 00:42:00 by pacovali      #+#    #+#                 */
-/*   Updated: 2019/01/01 00:42:01 by pacovali      ########   odam.nl         */
+/*   Created: 2019/01/01 00:42:00 by pacovali       #+#    #+#                */
+/*   Updated: 2019/11/20 20:11:26 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	plane_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
 	(void)intrs;
+	intrs->uv.x = fmod(fabs(intrs->p.x), 1.0);
+	intrs->uv.y = fmod(fabs(intrs->p.z), 1.0);
 }
 
 bool	is_plane_intersect(const t_shape *shape, const t_ray *ray,

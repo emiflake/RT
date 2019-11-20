@@ -70,7 +70,6 @@
 		},
 		{
 			"type": "sphere",
-			"texture": "w.ppm",
 			"origin": [10, 5, 0],
 			"radius": 5,
 			"color": [255, 255, 255],

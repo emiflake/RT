@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/07 19:03:58 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 20:20:24 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	sphere_intersecton(const t_ray *ray, t_intersection *intrs)
 	intrs->p = vec_add(&ray->o, &intrs->p);
 	intrs->normal = vec_sub(&intrs->p, &sphere->origin);
 	vec_normalize(&intrs->normal);
+	intrs->uv.x = 0.5 + atan2(intrs->normal.z, intrs->normal.x) / M_PI / 2.0;
+	intrs->uv.y = 0.5 - asin(intrs->normal.y) / M_PI;
 }
 
 bool	is_sphere_intersect(const t_shape *shape, const t_ray *ray,

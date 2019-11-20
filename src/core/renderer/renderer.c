@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 17:15:30 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 20:15:34 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			render_segm(void *data)
 			camera_cast_ray(&segm->scene->camera, &pixel, &ray);
 			if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
 			{
-				aggregate = trace(segm->scene, &ray, &isect);
+				aggregate = trace(segm->scene, &ray, &isect, segm->app->textures);
 				rb_add_sample(segm->buf, pixel.x, pixel.y, &aggregate);
 			}
 			pixel.x++;
@@ -52,10 +52,11 @@ void			render_segm(void *data)
 #define SEGMENT_COUNT 100
 
 static void		prepare_segment(
-	t_render_segm *s, size_t i, const t_scene *scene, t_realbuffer *buf)
+	t_render_segm *s, size_t i, t_app *app, t_realbuffer *buf)
 {
 	s->buf = buf;
-	s->scene = scene;
+	s->scene = &app->scene;
+	s->app = app;
 	s->done = false;
 	s->start_position = (t_point2){0, i * buf->height / SEGMENT_COUNT};
 	s->end_position =
@@ -82,7 +83,7 @@ static void		wait_for_all(t_render_segm *segments)
 	}
 }
 
-void			render_image(const t_scene *scene, t_realbuffer *buf)
+void			render_image(t_app *scene, t_realbuffer *buf)
 {
 	t_render_segm	segments[SEGMENT_COUNT];
 	t_work			work[SEGMENT_COUNT];
@@ -91,9 +92,7 @@ void			render_image(const t_scene *scene, t_realbuffer *buf)
 
 	pool = threadpool_init(4);
 	if (!pool)
-	{
 		exit(FAILURE);
-	}
 	i = 0;
 	while (i < SEGMENT_COUNT)
 	{
