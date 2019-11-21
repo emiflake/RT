@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/20 20:00:28 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/21 21:02:01 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS=		\
 
 CC=			clang
 
-EXTRA=	
+EXTRA=
 
 #### Project Structure
 
@@ -58,7 +58,8 @@ DEP_FLAGS=		\
 
 clean_deps:
 	@echo "$(TIME) $(CMINUS) Cleaning dependencies"
-	@for f in $(DEPS) ; do $(MAKE) fclean -C $$(dirname $$f) ; echo "$(TIME) $(CMINUS) Dependency $$f" ; done
+	@for f in $(DEPS) ; do $(MAKE) fclean -C $$(dirname $$f) ;\
+		echo "$(TIME) $(CMINUS) Dependency $$f" ; done
 
 # Source code (includes and header files mixed):
 # src/
@@ -74,6 +75,7 @@ STNAMES=		\
 				core/container/free \
 				core/renderer/renderer \
 				core/renderer/tracer \
+				core/renderer/tracer_utils \
 				core/renderer/fps \
 				core/renderer/rb_create \
 				core/renderer/rb_clear \
@@ -232,6 +234,7 @@ STNAMES=		\
 				texture/texture_free \
 				texture/texture_init \
 				texture/texture_new \
+				texture/textures_free \
 				texture/uv_texel \
 				perlin_noise/perlin_noise_free \
 				perlin_noise/perlin_noise_init \
@@ -256,7 +259,7 @@ $(NAME): $(ONAMES)
 	@echo "$(TIME) $(CPLUS) $@"
 	@$(CC) -o $@ $(ONAMES) $(CFLAGS) $(DEP_FLAGS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEPS) $(INCLUDES) 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEPS) $(INCLUDES)
 	@echo "$(TIME) $(CPLUS) $@"
 	@mkdir -p $(shell dirname $@)
 	@$(CC) -o $@ -c $< $(EXTRA) $(CFLAGS) $(INCLUDE_FLAG)

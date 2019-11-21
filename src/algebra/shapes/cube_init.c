@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 00:05:41 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/13 01:00:56 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 19:44:06 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ bool	cube_init(t_shape *shape_out, const t_json_value *value)
 	dict_def_vec(value, "axis_vert", (t_vec){0, 0, 0}, &cube->axis[0]);
 	dict_def_vec(value, "size", (t_vec){0, 0, 0}, &cube->size);
 	vec_normalize(&cube->axis[0]);
-	cube->axis[1] = (t_vec){-0.147, 0.864, 0.333};
-	vec_normalize(&cube->axis[1]);
+	cube->axis[1] = (t_vec){0.0, 1.0, 0.0};
 	cube->axis[2] = vec_cross(&cube->axis[0], &cube->axis[1]);
 	vec_normalize(&cube->axis[2]);
 	cube->axis[1] = vec_cross(&cube->axis[0], &cube->axis[2]);

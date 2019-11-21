@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 17:25:04 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 21:27:08 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 18:09:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void		init_material(t_material *mat, const t_json_value *val)
 {
 	dict_def_vec(val, "emission", (t_vec){0, 0, 0}, &mat->emission);
 	dict_def_vec(val, "color", (t_vec){0, 0, 0}, &mat->color);
-	mat->is_parallel = (bool)dict_def_double(val, "parallel_light", false);
 	mat->blurriness = dict_def_double(val, "blurry", 0.999);
 	mat->blurriness *= mat->blurriness;
 	mat->uv.y = dict_def_double(val, "uscale", 1.0);

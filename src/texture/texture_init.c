@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 15:39:47 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 21:07:40 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:34:20 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ t_textures	*texture_init(void)
 	}
 	if (!generate_textures(result))
 	{
-		//  free hash map
-		free(result);
+		textures_free(result);
 		return (NULL);
 	}
 	return (result);

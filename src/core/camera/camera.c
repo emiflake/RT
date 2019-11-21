@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 17:19:17 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:02:52 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			camera_cast_ray(
 	ray_out->depth = cam->recursion;
 }
 
-void		camera_move(t_camera *camera, const t_vec *delta)
+void			camera_move(t_camera *camera, const t_vec *delta)
 {
 	camera->origin.x +=
 		cos(camera->rotation.y) * delta->x - sin(camera->rotation.y) * delta->z;

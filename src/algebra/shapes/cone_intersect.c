@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/07 19:03:58 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:55:05 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void			cone_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
 	(void)intrs;
+	intrs->uv.x = 0.5 + atan2(intrs->normal.z, intrs->normal.x) / M_PI / 2.0;
+	intrs->uv.y = 0.5 - asin(intrs->normal.y) / M_PI;
 }
 
 static void		find_abc(t_vec *abc, const t_ray *ray, const t_cone *cone)

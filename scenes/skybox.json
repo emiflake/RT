@@ -1,0 +1,30 @@
+{
+	"camera": {
+		"fov": 50,
+		"origin": [0, 0, -20]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"texture": "marble.ppm",
+			"origin": [-10, 0, 10],
+			"radius": 5,
+			"blurry": 0.6000000000000001,
+			"reflective": 0.2
+		},
+		{
+			"type": "sphere",
+			"texture": "marble.ppm",
+			"origin": [10, 0, 10],
+			"radius": 5,
+			"blurry": 0.1000000000000001,
+			"reflective": 0.2
+		},
+		{
+			"type": "sphere",
+			"etexture": "house_sphere.ppm",
+			"radius": 10000,
+			"color": [255, 255, 255]
+		}
+	]
+}

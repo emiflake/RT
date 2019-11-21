@@ -1,0 +1,101 @@
+{
+	"camera": {
+		"fov": 70,
+		"origin": [0, 10, -30],
+		"rotation": [0, 0, 0]
+	},
+	"objects": [
+		{
+			"type": "square",
+			"origin": [-40, 0, 20],
+			"side_b": [0, 20, 0],
+			"side_a": [20, 0, 20],
+			"emission": [555, 555, 555],
+			"color": [255, 255, 255],
+			"blurry": 1
+		},
+		{
+			"type": "square",
+			"origin": [-30, 0, -20],
+			"side_b": [0, 20, 0],
+			"side_a": [20, 0, -20],
+			"emission": [555, 555, 555],
+			"color": [255, 255, 255],
+			"blurry": 1
+		},
+		{
+			"type": "square",
+			"origin": [40, 0, -20],
+			"side_b": [0, 20, 0],
+			"side_a": [20, 0, 20],
+			"emission": [555, 555, 555],
+			"color": [255, 255, 255],
+			"blurry": 1
+		},
+		{
+			"type": "sphere",
+			"texture": "marble.ppm",
+			"uscale": 0.5,
+			"vscale": 0.5,
+			"origin": [0, 11, 0],
+			"axis": [0.5, 0, 0.866],
+			"radius": 10,
+			"emission": [0, 0, 0],
+			"blurry": 0.9,
+			"reflective": 0,
+			"refraction": 1.5,
+			"transparent": 0
+		},
+
+
+
+		{
+			"type": "square",
+			"origin": [-60, 60, -60],
+			"normal": [0, -1, 0],
+			"side_a": [0, 0, 120],
+			"side_b": [120, 0, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-60, 0, 60],
+			"normal": [0, 0, -1],
+			"side_a": [120, 0, 0],
+			"side_b": [0, 120, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-60, 0, -60],
+			"normal": [0, 0, -1],
+			"side_a": [0, 120, 0],
+			"side_b": [120, 0, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "square",
+			"origin": [-60, 0, -60],
+			"normal": [1, 0, 0],
+			"side_a": [0, 0, 120],
+			"side_b": [0, 120, 0],
+			"color": [255, 100, 100]
+		},
+		{
+			"type": "square",
+			"origin": [60, 0, -60],
+			"normal": [-1, 0, 0],
+			"side_a": [0, 120, 0],
+			"side_b": [0, 0, 120],
+			"color": [100, 255, 100]
+		},
+		{
+			"type": "square",
+			"origin": [-60, 0, -60],
+			"normal": [0, 1, 0],
+			"side_a": [120, 0, 0],
+			"side_b": [0, 0, 120],
+			"color": [255.0, 255.0, 255.0]
+		}
+	]
+}

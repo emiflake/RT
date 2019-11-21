@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:28:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 16:49:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,14 @@ void			dbg_text(t_app *app)
 	sec_per_frame = ui_get_fps(0);
 	ft_asprintf(&txt,
 			"FPS:%7.3f\t\tSPF:%7.3f\n", 1.0 / sec_per_frame, sec_per_frame);
-	ui_put_text_free(&app->gfx_ctx.font, &app->window,
-		(t_point2){10, 10}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 10}, txt);
 	ft_asprintf(&txt, "Welcome to our amazing RT");
-	ui_put_text_free(&app->gfx_ctx.font,
-		&app->window, (t_point2){10, 40}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 40}, txt);
 	ft_asprintf(&txt, "Camera Position: %.2lf %.2lf %.2lf\n",
 		app->scene.camera.origin.x,
 		app->scene.camera.origin.y,
 		app->scene.camera.origin.z);
-	ui_put_text_free(&app->gfx_ctx.font,
-		&app->window, (t_point2){10, 70}, txt);
+	ui_put_text_free(&app->gfx_ctx.font, &app->window, (t_point2){10, 70}, txt);
 	ft_asprintf(&txt, "Camera rotation: %.2lf %.2lf %.2lf\n",
 		app->scene.camera.rotation.x,
 		app->scene.camera.rotation.y,
@@ -54,16 +51,26 @@ static void		check_object(
 {
 	uint32_t	color;
 	int			address;
+	size_t		i;
+	size_t		j;
 
 	address = (size_t)coords.x + (size_t)coords.y * app->window.win_srf->w;
 	color = (size_t)coords.x % 2 == 0 ? 0xff0000 : 0x00ff00;
 	if (bvh_is_intersect(app->scene.bvh, ray, isect) &&
 		app->selected_object == isect->obj_ptr)
 	{
-		for (size_t i = 0; i < 3; i++)
-			for (size_t j = 0; j < 3; j++)
+		i = 0;
+		while (i < 3)
+		{
+			j = 0;
+			while (j < 3)
+			{
 				ui_put_pixel(app->window.win_srf, (int)coords.x + i,
-							 (int)coords.y + j, color);
+							(int)coords.y + j, color);
+				j++;
+			}
+			i++;
+		}
 	}
 }
 
