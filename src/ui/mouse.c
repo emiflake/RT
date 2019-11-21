@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:28:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 16:53:21 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@
 void			handle_mouse(t_app *app)
 {
 	uint32_t		mstate;
-	int				x;
-	int				y;
+	int				mpos[2];
 	t_ray			ray;
 	t_point2		pix;
 	t_intersection	isect;
-	
-	mstate = SDL_GetMouseState(&x, &y);
+
+	mstate = SDL_GetMouseState(&mpos[0], &mpos[1]);
 	if (mstate & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
 		app->camera_selected = false;
-		pix.x = ((double)x) * app->realbuf->width / app->window.win_srf->w;
-		pix.y = ((double)y) * app->realbuf->height / app->window.win_srf->h;
+		pix.x = ((double)mpos[0])
+			* app->realbuf->width / app->window.win_srf->w;
+		pix.y = ((double)mpos[1])
+			* app->realbuf->height / app->window.win_srf->h;
 		isect.t = INFINITY;
 		camera_cast_ray(&app->scene.camera, &pix, &ray);
 		if (bvh_is_intersect(app->scene.bvh, &ray, &isect))

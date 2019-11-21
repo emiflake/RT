@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 22:19:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 16:53:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "core/renderer/renderer.h"
 #include "algebra/mmath/mmath.h"
 #include "ui.h"
-
 
 static void		app_run_split(t_app *app)
 {

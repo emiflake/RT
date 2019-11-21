@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 21:52:43 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:02:22 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "renderer.h"
 #include "ui/ui.h"
 
-void	apply_filter(t_vec *color, int filter)
+void			apply_filter(t_vec *color, int filter)
 {
 	REAL 	sat;
 
@@ -33,7 +33,7 @@ void	apply_filter(t_vec *color, int filter)
 	vec_mult_mut_scalar(color, sat);
 }
 
-void	render_segm(void *data)
+void			render_segm(void *data)
 {
 	t_render_segm	*segm;
 	t_intersection	isect;

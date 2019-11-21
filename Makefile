@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/20 20:00:28 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/21 17:33:31 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -232,6 +232,7 @@ STNAMES=		\
 				texture/texture_free \
 				texture/texture_init \
 				texture/texture_new \
+				texture/textures_free \
 				texture/uv_texel \
 				perlin_noise/perlin_noise_free \
 				perlin_noise/perlin_noise_init \

@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 18:56:23 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/20 21:26:39 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:02:38 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_vec			get_color(
 	const t_intersection *isect,
 	const t_material *mat, struct s_textures *texts);
 
-t_vec	get_emission(
-	const t_intersection *isect, const t_material *mat, struct s_textures *texts);
+t_vec			get_emission(
+	const t_intersection *isect,
+	const t_material *mat, struct s_textures *texts);
 
 #endif

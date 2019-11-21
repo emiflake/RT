@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   app_free.c                                         :+:    :+:            */
+/*   textures_free.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/16 21:25:51 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/21 17:30:16 by nmartins      ########   odam.nl         */
+/*   Created: 2019/11/21 17:31:29 by nmartins       #+#    #+#                */
+/*   Updated: 2019/11/21 17:42:10 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include "texture/texture.h"
-#include "ui.h"
+#include "texture.h"
 
-void	app_free(t_app *app)
+static void		clean_f(void *vptr)
 {
-	gfx_free(&app->gfx_ctx);
-	SDL_DestroyWindow(app->window.win_ptr);
-	scene_free(&app->scene);
-	rb_free(app->realbuf);
-	textures_free(app->textures);
+	t_bucket_node	*node;
+	t_texture		*tex;
+
+	node = vptr;
+	tex = node->value;
+	free(node->key);
+	texture_free(&tex);
+}
+
+void			textures_free(t_textures *tex)
+{
+	ash_hashmap_clean(tex->hashmap, clean_f);
+	pthread_mutex_destroy(&tex->lock);
+	free(tex);
 }

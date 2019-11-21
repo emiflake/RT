@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 21:51:07 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:01:43 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_vec	trace(const t_scene *scene, const t_ray *ray,
 		{
 			hemi = trace(scene, &new_ray, &new_isect, tex);
 			current_color = vec_mults_scalar(
-					get_color(isect, &isect->obj_ptr->material, tex), 1.0 / 255.0);
+				get_color(isect, &isect->obj_ptr->material, tex), 1.0 / 255.0);
 			reflected_clr(&current_color, isect->obj_ptr->material.reflective);
 			vec_mult_mut(&hemi, &current_color);
 			vec_add_mut(&aggregate_color, &hemi);

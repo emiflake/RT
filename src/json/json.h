@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/20 21:50:35 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 17:01:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct				s_json_value
 		JSON_NUMBER,
 		JSON_DICT,
 		JSON_LIST,
-	}	type;
+	}						type;
 }							t_json_value;
 
 /*
