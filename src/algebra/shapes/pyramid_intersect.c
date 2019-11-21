@@ -6,7 +6,7 @@
 /*   By: pacovali <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/01 00:42:00 by pacovali       #+#    #+#                */
-/*   Updated: 2019/11/12 18:38:48 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 18:09:49 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	pyramid_intersection(const t_ray *ray, t_intersection *intrs)
 {
 	(void)ray;
 	(void)intrs;
+	intrs->uv.x = 0.5 + atan2(intrs->normal.z, intrs->normal.x) / M_PI / 2.0;
+	intrs->uv.y = 0.5 - asin(intrs->normal.y) / M_PI;
 }
 
 bool	is_pyramid_intersect(const t_shape *shape, const t_ray *ray,

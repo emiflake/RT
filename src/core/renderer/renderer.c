@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/21 17:02:22 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/21 18:27:38 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,49 +21,51 @@
 #include "renderer.h"
 #include "ui/ui.h"
 
-void			apply_filter(t_vec *color, int filter)
+static void		add_filtered(
+	t_vec *aggregate, t_render_segm *s, t_point2 p)
 {
-	REAL 	sat;
+	int		filter;
+	REAL	sat;
 
-	if (filter < 1 || filter > 2)
-		return ;
-	sat = (color->x + color->y + color->z) * DELTAVAL;
-	sat = (sat < DELTAVAL) ? DELTAVAL : sat;
-	*color = (filter == 1) ? SEPIA_VAL : WB_VAL;
-	vec_mult_mut_scalar(color, sat);
+	filter = s->scene->camera.color_filter;
+	if (filter >= 1 && filter <= 2)
+	{
+		sat = (aggregate->x + aggregate->y + aggregate->z) * DELTAVAL;
+		sat = (sat < DELTAVAL) ? DELTAVAL : sat;
+		*aggregate = (filter == 1) ? SEPIA_VAL : WB_VAL;
+		vec_mult_mut_scalar(aggregate, sat);
+	}
+	rb_add_sample(s->buf, p.x, p.y, aggregate);
 }
 
 void			render_segm(void *data)
 {
-	t_render_segm	*segm;
+	t_render_segm	*s;
 	t_intersection	isect;
 	t_ray			ray;
 	t_point2		pixel;
 	t_vec			aggregate;
 
-	segm = data;
-	pixel = (t_point2){segm->start_position.x, segm->start_position.y};
-	while (pixel.y < segm->end_position.y)
+	s = (t_render_segm*)data;
+	pixel = (t_point2){s->start_position.x, s->start_position.y};
+	while (pixel.y < s->end_position.y)
 	{
-		pixel.x = segm->start_position.x;
-		while (pixel.x < segm->end_position.x)
+		pixel.x = s->start_position.x;
+		while (pixel.x < s->end_position.x)
 		{
 			isect.t = INFINITY;
-			camera_cast_ray(&segm->scene->camera, &pixel, &ray);
-			if (bvh_is_intersect(segm->scene->bvh, &ray, &isect))
+			camera_cast_ray(&s->scene->camera, &pixel, &ray);
+			if (bvh_is_intersect(s->scene->bvh, &ray, &isect))
 			{
-				aggregate = trace(segm->scene, &ray, &isect, segm->app->textures);
-				apply_filter(&aggregate, segm->scene->camera.color_filter);
-				rb_add_sample(segm->buf, pixel.x, pixel.y, &aggregate);
+				aggregate = trace(s->scene, &ray, &isect, s->app->textures);
+				add_filtered(&aggregate, s, pixel);
 			}
 			pixel.x++;
 		}
 		pixel.y++;
 	}
-	segm->done = true;
+	s->done = true;
 }
-
-#define SEGMENT_COUNT 100
 
 static void		prepare_segment(
 	t_render_segm *s, size_t i, t_app *app, t_realbuffer *buf)

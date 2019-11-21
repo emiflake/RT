@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/21 17:33:31 by nmartins      ########   odam.nl          #
+#    Updated: 2019/11/21 18:13:06 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ STNAMES=		\
 				core/container/free \
 				core/renderer/renderer \
 				core/renderer/tracer \
+				core/renderer/tracer_utils \
 				core/renderer/fps \
 				core/renderer/rb_create \
 				core/renderer/rb_clear \
