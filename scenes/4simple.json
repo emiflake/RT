@@ -1,0 +1,57 @@
+{
+	"camera": {
+		"fov": 70,
+		"origin": [-2, 5, -3.5],
+		"rotation": [0, 0, 0]
+	},
+	"objects": [
+		{
+			"type": "square",
+			"origin": [-33, 0, 20],
+			"side_b": [0, 35, 0],
+			"side_a": [50, 0, -50],
+			"emission": [255, 255, 255],
+			"color": [0, 0, 0],
+			"blurry": 1
+		},
+		{
+			"type": "cone",
+			"origin": [2, 2, 8],
+			"axis": [0, 1, 0],
+			"angle_deg": 30,
+			"pos_height": 15,
+			"neg_height": -2,
+			"emission": [0, 0, 0],
+			"color": [0, 255, 0],
+			"blurry": 0.8
+		},
+		{
+			"type": "sphere",
+			"origin": [-3, 2, 12],
+			"axis": [0.5, 0, 0.866],
+			"radius": 2,
+			"emission": [0, 0, 0],
+			"color": [255, 0, 0],
+			"blurry": 0.8
+		},
+		{
+			"type": "cylinder",
+			"origin": [-6, 3, 6],
+			"axis": [0.5, 0.866, 0],
+			"radius": 1,
+			"pos_height": 10,
+			"neg_height": -10,
+			"emission": [0, 0, 0],
+			"color": [0, 0, 255],
+			"blurry": 0.8
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 0, 255],
+			"blurry": 0.8,
+			"reflective": 0
+		}
+	]
+}
