@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:20:54 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 23:47:52 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:18:40 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "container.h"
 
-bool	container_is_intersect(
+bool			container_is_intersect(
 	const t_object_container *container,
 	const t_ray *ray, t_intersection *isect)
 {
@@ -49,7 +49,7 @@ bool			bvh_is_intersect(
 	did_intersect = false;
 	if (!bbox_intersect(&node->bounding_box, ray))
 		return (false);
-	if (node->object &&is_intersect(&node->object->shape, ray, isect) )
+	if (node->object && is_intersect(&node->object->shape, ray, isect))
 	{
 		isect->obj_ptr = node->object;
 		return (true);

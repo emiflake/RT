@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 12:06:48 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 17:23:11 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:41:50 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,16 @@ static t_texture	*empty_texture(int width, int height)
 	return (result);
 }
 
-static char			*jr_strnew(char *str)
-{
-	int		len;
-	int		i;
-	char	*result;
-
-	len = 0;
-	while (str[len])
-		len++;
-	result = malloc(len + 1);
-	if (result == NULL)
-		return (NULL);
-	result[len] = 0;
-	i = 0;
-	while (i < len)
-	{
-		((uint8_t *)result)[i] = ((uint8_t *)str)[i];
-		i++;
-	}
-	return (result);
-}
-
 static bool			add_texture(t_textures *textures, char *name,
 	bool (*func)(t_texture *texture))
 {
 	t_texture	*tmp_texture;
 	char		*tmp_name;
 
-	tmp_texture = empty_texture(1920, 1080);
+	tmp_texture = empty_texture(2048, 2048);
 	if (tmp_texture == NULL)
 		return (false);
-	tmp_name = jr_strnew(name);
+	ft_asprintf(&tmp_name, "%s", name);
 	if (tmp_name == NULL)
 	{
 		texture_free(&tmp_texture);

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 13:39:25 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 16:46:13 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:04:00 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ bool			generate_texture_wood(t_texture *texture)
 	t_perlin_noise	*noise;
 
 	x = 0;
-	y = 0;
 	noise = perlin_noise_init(4, 8);
 	while (x < texture->img->width)
 	{
@@ -42,5 +41,6 @@ bool			generate_texture_wood(t_texture *texture)
 		}
 		x++;
 	}
+	perlin_noise_free(&noise);
 	return (true);
 }

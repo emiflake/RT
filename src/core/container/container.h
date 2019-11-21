@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/05 15:59:15 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/16 21:34:39 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:18:51 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			container_push_object(
 
 void			container_free(t_object_container_node *nd);
 
-bool	container_is_intersect(
+bool			container_is_intersect(
 	const t_object_container *container,
 	const t_ray *ray, t_intersection *isect);
 

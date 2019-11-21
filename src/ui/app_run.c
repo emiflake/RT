@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 16:53:03 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/19 23:28:32 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 22:19:32 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		app_run_split(t_app *app)
 	app->scene.bvh = NULL;
 	app->scene.bvh = bvh_construct(app->scene.obj_container.root);
 	srand(time(NULL));
-	render_image(&app->scene, app->realbuf);
+	render_image(app, app->realbuf);
 	rb_compress(app->realbuf, app->window.win_srf);
 	rb_inc_sample(app->realbuf);
 	show_selected_object(app);
@@ -52,6 +52,12 @@ void			app_run(t_app *app)
 			{
 				if (evt.key.keysym.sym == SDLK_ESCAPE)
 					app->running = false;
+				if (evt.key.keysym.scancode == SDL_SCANCODE_SPACE)
+				{
+					app->scene.camera.color_filter =
+						fmod(app->scene.camera.color_filter + 1.0, 3.0);
+					rb_clear(app->realbuf);
+				}
 				keystate_set_down(&app->keys, evt.key.keysym.scancode);
 			}
 			if (evt.type == SDL_KEYUP)

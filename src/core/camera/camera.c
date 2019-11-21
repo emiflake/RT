@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/26 16:32:43 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:16:14 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:19:17 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			camera_recompute(t_camera *camera, size_t w, size_t h)
 	camera->dim.y = h;
 }
 
-static t_point2		supersample(REAL delta)
+static t_point2	supersample(REAL delta)
 {
 	t_point2	super_pixel;
 
@@ -42,7 +42,6 @@ static t_point2		supersample(REAL delta)
 
 void			camera_cast_ray(
 		const t_camera *cam, const t_point2 *pos, t_ray *ray_out)
-						
 {
 	REAL		px;
 	REAL		py;

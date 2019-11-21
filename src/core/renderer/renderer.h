@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:32:18 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/17 18:23:38 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 19:56:20 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_render_segm
 {
 	t_realbuffer	*buf;
 	const t_scene	*scene;
+	struct s_app	*app;
 
 	volatile bool	done;
 
@@ -29,11 +30,13 @@ typedef struct	s_render_segm
 	t_point2		end_position;
 }				t_render_segm;
 
+struct s_app;
+struct s_textures;
+
 REAL			ui_get_fps(int do_tick);
-void			render_image(const t_scene *scene, t_realbuffer *surf);
+void			render_image(struct s_app *scene, t_realbuffer *buf);
 void			render_segm(void *data);
-void			render_image(const t_scene *scene, t_realbuffer *surf);
-t_vec			trace(
-				const t_scene *scene, const t_ray *ray, t_intersection *isect);
+t_vec			trace(const t_scene *scene, const t_ray *ray,
+	t_intersection *isect, struct s_textures *tex);
 
 #endif

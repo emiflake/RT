@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/07 16:35:34 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/15 23:48:59 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:51:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "algebra/mmath/mmath.h"
 #include "renderer.h"
 #include "ui/ui.h"
+#include "core/object/object.h"
+#include "core/object/material.h"
 
 void	diffuse(t_vec *dir, t_vec *vector, t_intersection *isect)
 {
@@ -27,7 +29,7 @@ void	diffuse(t_vec *dir, t_vec *vector, t_intersection *isect)
 
 	coord_system_create(&isect->normal, &sys);
 	hemi = hemisphere(float_rand(), float_rand());
-	*dir =  (t_vec){
+	*dir = (t_vec){
 	hemi.x * sys.nb.x + hemi.y * vector->x + hemi.z * sys.nt.x,
 	hemi.x * sys.nb.y + hemi.y * vector->y + hemi.z * sys.nt.y,
 	hemi.x * sys.nb.z + hemi.y * vector->z + hemi.z * sys.nt.z};
@@ -48,10 +50,10 @@ bool	check_reflectance(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 
 	if (ray->cur_obj)
 		reflectance = vec_reflectance(&ray->d, &isect->normal, ray->refration,
-									  INIT_MEDIA);
+									INIT_MEDIA);
 	else
 		reflectance = vec_reflectance(&ray->d, &isect->normal, INIT_MEDIA,
-									  isect->obj_ptr->material.refraction);
+									isect->obj_ptr->material.refraction);
 	if (float_rand() > reflectance)
 		return (true);
 	if (float_rand() < isect->obj_ptr->material.blurriness)
@@ -67,11 +69,11 @@ void	refract(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 
 	if (!check_reflectance(new_ray, ray, isect))
 		return ;
-		norm = vec_negate(&isect->normal);
+	norm = vec_negate(&isect->normal);
 	if (ray->cur_obj == NULL || ray->cur_obj != isect->obj_ptr)
 	{
 		new_ray->d = vec_refracts(ray->d, norm, INIT_MEDIA,
-							  isect->obj_ptr->material.refraction);
+							isect->obj_ptr->material.refraction);
 		new_ray->cur_obj = isect->obj_ptr;
 		new_ray->refration = isect->obj_ptr->material.refraction;
 	}
@@ -89,7 +91,7 @@ void	refract(t_ray *new_ray, t_ray *ray, t_intersection *isect)
 void	reflected_clr(t_vec *color, REAL reflect)
 {
 	REAL	max;
-	
+
 	max = (color->x > color->y) ? color->x : color->y;
 	max = (max > color->z) ? max : color->z;
 	color->x += ((max - color->x) * reflect);
@@ -110,7 +112,8 @@ void	ray_calculate(const t_ray *ray, t_intersection *isect, t_ray *new_ray)
 	new_ray->depth = ray->depth - 1;
 }
 
-t_vec	trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
+t_vec	trace(const t_scene *scene, const t_ray *ray,
+	t_intersection *isect, t_textures *tex)
 {
 	t_vec					aggregate_color;
 	t_vec					hemi;
@@ -120,17 +123,18 @@ t_vec	trace(const t_scene *scene, const t_ray *ray, t_intersection *isect)
 
 	intersection(&isect->obj_ptr->shape, ray, isect);
 	aggregate_color = vec_make0();
+	current_color = get_emission(isect, &isect->obj_ptr->material, tex);
 	if (!isect->obj_ptr->material.is_parallel)
-		vec_add_mut(&aggregate_color, &isect->obj_ptr->material.emission);
+		vec_add_mut(&aggregate_color, &current_color);
 	if (ray->depth > 0)
 	{
 		ray_calculate(ray, isect, &new_ray);
 		new_isect.t = INFINITY;
 		if (bvh_is_intersect(scene->bvh, &new_ray, &new_isect))
 		{
-			hemi = trace(scene, &new_ray, &new_isect);
+			hemi = trace(scene, &new_ray, &new_isect, tex);
 			current_color = vec_mults_scalar(
-					isect->obj_ptr->material.color, 1.0 / 255.0);
+					get_color(isect, &isect->obj_ptr->material, tex), 1.0 / 255.0);
 			reflected_clr(&current_color, isect->obj_ptr->material.reflective);
 			vec_mult_mut(&hemi, &current_color);
 			vec_add_mut(&aggregate_color, &hemi);

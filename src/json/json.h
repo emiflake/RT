@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 14:03:38 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/12 17:22:26 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:50:35 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stddef.h>
 # include <stdbool.h>
-# include "algebra/vector/vector.h" 
+# include "algebra/vector/vector.h"
 # include "compdef.h"
 # include "hashmap/ashmap.h"
 

@@ -6,7 +6,7 @@
 /*   By: nmartins <nmartins@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/17 16:06:45 by nmartins       #+#    #+#                */
-/*   Updated: 2019/11/18 10:00:20 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 21:53:07 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void			rb_compress(const t_realbuffer *buf, SDL_Surface *surf)
 		x = 0;
 		while (x < (size_t)surf->w)
 		{
-			((uint32_t*)surf->pixels)[y * surf->w + x] =
-				pix(x, y, buf);
+			((uint32_t*)surf->pixels)[y * surf->w + x] = pix(x, y, buf);
 			x++;
 		}
 		y++;

@@ -6,50 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/15 13:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 14:33:55 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 19:36:13 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ft_printf.h>
+
 #include "texture.h"
-
-static void			ft_memcpy(void *from, void *to, size_t len)
-{
-	size_t i;
-
-	i = 0;
-	while (i < len)
-	{
-		((uint8_t *)to)[i] = ((uint8_t *)from)[i];
-		i++;
-	}
-}
-
-static int			ft_strlen(char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-static char			*string_append(char *a, char *b)
-{
-	size_t	l1;
-	size_t	l2;
-	char	*result;
-
-	l1 = ft_strlen(a);
-	l2 = ft_strlen(b);
-	result = malloc((l1 + l2 + 1) * sizeof(char));
-	if (result == NULL)
-		return (NULL);
-	ft_memcpy(a, result, l1);
-	ft_memcpy(b, result + l1, l2);
-	result[l1 + l2] = 0;
-	return (result);
-}
 
 static t_texture	*texture_load_img(char *name)
 {
@@ -59,7 +22,7 @@ static t_texture	*texture_load_img(char *name)
 	result = texture_new();
 	if (result == NULL)
 		return (NULL);
-	filename = string_append("assets/textures/", name);
+	ft_asprintf(&filename, "assets/textures/%s", name);
 	if (filename != NULL)
 		result->img = ppm_file_to_img(filename);
 	if (filename == NULL || result->img == NULL)

@@ -6,7 +6,7 @@
 /*   By: emiflake <marvin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/14 18:53:08 by emiflake       #+#    #+#                */
-/*   Updated: 2019/11/01 14:59:00 by nmartins      ########   odam.nl         */
+/*   Updated: 2019/11/20 17:28:00 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "./ashmap.h"
 #include "./ash_common.h"
 
-static void ash_hashmap_clean_node(t_bucket_node *node, void (*clean_f)(void*))
+static void	ash_hashmap_clean_node(t_bucket_node *node, void (*clean_f)(void*))
 {
 	if (!node)
 		return ;

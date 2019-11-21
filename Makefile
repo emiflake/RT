@@ -6,7 +6,7 @@
 #    By: pacovali <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/05 19:50:44 by pacovali       #+#    #+#                 #
-#    Updated: 2019/11/20 17:30:08 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/11/20 20:00:28 by nmartins      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,8 +81,10 @@ STNAMES=		\
 				core/renderer/rb_samp \
 				core/renderer/rb_compress \
 				core/scene/init \
+				core/scene/init_obj \
 				core/scene/free \
 				core/settings/init \
+				core/object/getcolor \
 				ui/window_init \
 				ui/app_init \
 				ui/app_run \

@@ -18,7 +18,9 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [0, 0, 10],
+			"etexture": "lava.ppm",
+			"uscale": 0.1,
+			"vscale": 0.1,
 			"radius": 5,
 			"color": [255, 255, 255]
 		},

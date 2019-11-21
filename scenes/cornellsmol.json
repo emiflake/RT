@@ -2,7 +2,7 @@
 	"camera": {
 		"fov": 50,
 		"origin": [0, 18, -75],
-		"filter": 2
+		"filter": 0
 	},
 	"objects": [
 		{
@@ -47,11 +47,13 @@
 		},
 		{
 			"type": "square",
+			"etexture": "lava.ppm",
+			"uscale": 3.0,
+			"vscale": 3.0,
 			"origin": [-20, 0, -20],
 			"normal": [0, 1, 0],
 			"side_a": [40, 0, 0],
-			"side_b": [0, 0, 40],
-			"color": [255, 255, 255]
+			"side_b": [0, 0, 40]
 		},
 		{
 			"type": "sphere",

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/18 14:47:42 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/11/20 16:44:32 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/11/20 20:54:14 by nmartins      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 typedef struct	s_perlin_noise
 {
-	int		*hash;
 	int		seed;
 	int		depth;
 	REAL	amp;
